@@ -50,7 +50,7 @@ class App extends React.Component {
             )}
           />
           <Route path="/signup" exact component={() => <Signup />} />
-          <Route path="/edit-user" exact component={() => <EditUser />} />
+          <Route path="/edit-user" exact component={() => <EditUser user={this.state.user}/>} />
         </Switch>
       </div>
     );
