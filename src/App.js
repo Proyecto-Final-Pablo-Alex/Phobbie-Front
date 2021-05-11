@@ -5,14 +5,17 @@ import { Link, Switch, Route, Redirect } from "react-router-dom";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Profile from "./components/Profile";
+import EditUser from "./components/EditUser";
 
 class App extends React.Component {
   state = {
     user: {
       username: "",
       friends: [],
+      hobbies: [],
       _id: "",
       password: "",
+      photo: ''
     },
     logInSuccess: false,
   };
@@ -46,6 +49,7 @@ class App extends React.Component {
             )}
           />
           <Route path="/signup" exact component={() => <Signup />} />
+          <Route path="/edit-user" exact component={() => <EditUser />} />
         </Switch>
       </div>
     );

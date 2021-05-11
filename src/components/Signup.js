@@ -47,7 +47,7 @@ class Signup extends React.Component {
     'Orense','Palencia','Las Palmas','Pontevedra','La Rioja','Salamanca','Segovia','Sevilla','Soria','Tarragona',
     'Santa Cruz de Tenerife','Teruel','Toledo','Valencia','Valladolid','Vizcaya','Zamora','Zaragoza']
 
-    const allOptions=provincias.map((provincia)=>{return(<option>{provincia}</option>)})
+    const allOptions=provincias.map((provincia, index)=>{return(<option key={index}>{provincia}</option>)})
     
     return this.state.successSignUp ? (
       <Redirect to="/login" />

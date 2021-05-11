@@ -31,7 +31,7 @@ class AddHobbie extends React.Component {
 
   handleInput(e) {
     const {name, value } = e.target;
-    this.setState({ ...this.state, newHobbie: {[name]: value })
+    this.setState({ ...this.state, newHobbie: {[name]: value }})
   }
 
   render() {
