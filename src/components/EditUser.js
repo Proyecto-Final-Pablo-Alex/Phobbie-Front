@@ -53,11 +53,13 @@ class EditUser extends React.Component {
 
     const allOptions=provincias.map((provincia, index)=>{return(<option key={index}>{provincia}</option>)})
 
-    const {photo, password, age, location} = this.props.user
+    const {photo, password, age, _id, location} = this.props.user
     return (
       <div>
        <h1>Edit profile</h1>
         <form onSubmit={(event) => this.handleSubmit(event)}>
+
+        <input type="text" name="_id" hidden value={_id} />
 
         <label htmlFor="photo">Profile Picture</label>
           <input
