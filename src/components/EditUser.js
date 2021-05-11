@@ -8,6 +8,7 @@ class EditUser extends React.Component {
         user: {
             username: "",
             age: '',
+            location: '',
             friends: [],
             hobbies: [],
             _id: "",

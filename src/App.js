@@ -12,6 +12,7 @@ class App extends React.Component {
     user: {
       username: "",
       age: '',
+      location: '',
       friends: [],
       hobbies: [],
       _id: "",

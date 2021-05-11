@@ -6,7 +6,13 @@ class AddHobbie extends React.Component {
   state = {
     user: {
       username: "",
+      age: '',
+      location: '',
+      friends: [],
+      hobbies: [],
+      _id: "",
       password: "",
+      photo: ''
     },
     newHobbie: {
 
