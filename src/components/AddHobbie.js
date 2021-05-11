@@ -23,7 +23,7 @@ class AddHobbie extends React.Component {
     e.preventDefault();
     axios({
       method: "post",
-      url: "http://localhost:5000/addHobbie",
+      url: "http://localhost:5000/hobbies/addHobbie",
       data: this.state.user,
       withCredentials: true
     })

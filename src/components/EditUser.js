@@ -44,13 +44,13 @@ class EditUser extends React.Component {
       }
 
       handleChange(event) {
+          
         const { value, name } = event.target;
         this.setState({
           ...this.state,
           user: { ...this.state.user, [name]: value },
         });
-        console.log(this.state.user);
-        
+        console.log(this.state.user);  
       }
 
   render() {
