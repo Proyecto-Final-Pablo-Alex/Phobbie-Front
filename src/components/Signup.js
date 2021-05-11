@@ -5,8 +5,13 @@ import { Redirect } from "react-router-dom";
 class Signup extends React.Component {
   state = {
     user: {
-      username: ``,
-      password: ``,
+      username: "",
+      age: '',
+      friends: [],
+      hobbies: [],
+      _id: "",
+      password: "",
+      photo: ''
     },
     successSignUp: false,
     errorMessage: false,

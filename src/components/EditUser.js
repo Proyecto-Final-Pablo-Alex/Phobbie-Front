@@ -7,6 +7,7 @@ class EditUser extends React.Component {
     state = {
         user: {
             username: "",
+            age: '',
             friends: [],
             hobbies: [],
             _id: "",
@@ -14,7 +15,6 @@ class EditUser extends React.Component {
             photo: ''
           },
           successEditing: false,
-
     }
 
     handleSubmit(event) {
@@ -51,6 +51,8 @@ class EditUser extends React.Component {
     'Santa Cruz de Tenerife','Teruel','Toledo','Valencia','Valladolid','Vizcaya','Zamora','Zaragoza']
 
     const allOptions=provincias.map((provincia, index)=>{return(<option key={index}>{provincia}</option>)})
+
+    const {photo, password, age, location} = this.props.user
     return (
       <div>
        <h1>Edit profile</h1>
@@ -60,15 +62,16 @@ class EditUser extends React.Component {
           <input
             type="file"
             name="photo"
+            onChange={(event)=>this.handleChange(event)}
           />
-          <input type="text" name="actualPhoto" hidden value={this.state.photo} />
+          <input type="text" name="actualPhoto" hidden defaultValue={photo} />
 
           <label htmlFor="password">Password</label>
           <input
             type="password"
             name="password"
             onChange={(event) => this.handleChange(event)}
-            value={this.state.password}
+            value={password}
           />
 
           <label htmlFor="age">Age</label>
@@ -76,11 +79,11 @@ class EditUser extends React.Component {
             type="number"
             name="age"
             onChange={(event) => this.handleChange(event)}
-            value={this.state.age}
+            value={age}
           />
 
           <label htmlFor="location">Location</label>
-          <select name="location" onChange={(event) => this.handleChange(event)} value={this.state.location}>
+          <select name="location" onChange={(event) => this.handleChange(event)} value={location}>
             {allOptions}
           </select>
 
