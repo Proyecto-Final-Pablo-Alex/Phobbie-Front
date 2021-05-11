@@ -61,12 +61,7 @@ class EditUser extends React.Component {
 
     const allOptions=provincias.map((provincia, index)=>{return(<option key={index}>{provincia}</option>)})
 
-<<<<<<< HEAD
-    const {_id, photo, username, password, age, location} = this.props.user
-    console.log(this.state.user)
-=======
     const {photo, password, age, _id, location} = this.props.user
->>>>>>> 284e0b63761949a9c7ddd3c4afe2715eca470d55
     return (
       <div>
        <h1>Edit profile</h1>
