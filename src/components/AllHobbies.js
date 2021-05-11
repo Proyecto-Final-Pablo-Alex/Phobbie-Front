@@ -1,6 +1,6 @@
 import axios from "axios";
 import React from "react";
-
+import { Link } from "react-router-dom";
 
 class AllHobbies extends React.Component {
     state={
@@ -44,7 +44,7 @@ class AllHobbies extends React.Component {
     }
 
   render() {
-    const hobbiesmap = copyAllHobbies.map((hobbie, index)=>{
+    const hobbiesmap = this.state.copyAllHobbies.map((hobbie, index)=>{
       return <li key={index}>
                 <img src={hobbie.photo} alt={hobbie.name} style={{width: "100px"}}/> 
                 <h3>{hobbie.name}</h3>
