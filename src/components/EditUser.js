@@ -17,7 +17,13 @@ class EditUser extends React.Component {
           },
           successEditing: false,
     }
-
+    componentDidMount(){
+      const user=this.props.user
+      this.setState({
+          ...this.state,
+          user: user,
+        });
+    }
     handleSubmit(event) {
         event.preventDefault();
         axios({
@@ -42,6 +48,8 @@ class EditUser extends React.Component {
           ...this.state,
           user: { ...this.state.user, [name]: value },
         });
+        console.log(this.state.user);
+        
       }
 
   render() {
@@ -53,7 +61,8 @@ class EditUser extends React.Component {
 
     const allOptions=provincias.map((provincia, index)=>{return(<option key={index}>{provincia}</option>)})
 
-    const {photo, password, age, location} = this.props.user
+    const {_id, photo, username, password, age, location} = this.props.user
+    console.log(this.state.user)
     return (
       <div>
        <h1>Edit profile</h1>
@@ -72,7 +81,7 @@ class EditUser extends React.Component {
             type="password"
             name="password"
             onChange={(event) => this.handleChange(event)}
-            value={password}
+            defaultValue={password}
           />
 
           <label htmlFor="age">Age</label>
@@ -80,14 +89,15 @@ class EditUser extends React.Component {
             type="number"
             name="age"
             onChange={(event) => this.handleChange(event)}
-            value={age}
+            defaultValue={age}
           />
 
           <label htmlFor="location">Location</label>
-          <select name="location" onChange={(event) => this.handleChange(event)} value={location}>
+          <select name="location" onChange={(event) => this.handleChange(event)} defaultValue={location}>
             {allOptions}
           </select>
 
+       
           <button>Edit profile</button>
           
         </form>
