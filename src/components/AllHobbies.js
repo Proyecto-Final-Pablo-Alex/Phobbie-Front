@@ -19,12 +19,15 @@ class AllHobbies extends React.Component {
         search:``
     }
     componentDidMount(){
+      const user = this.props.user
       axios({
         method: "get",
         url: "http://localhost:5000/hobbies/allHobbies",
       })
         .then((result) => {
-          console.log(result);
+          console.log(result.data);
+          const {hobbies} = result.data
+          this.setState({...this.state, allHobbies: hobbies, copyAllHobbies: hobbies, user})
         })
         .catch((err) => {
           console.log(err);

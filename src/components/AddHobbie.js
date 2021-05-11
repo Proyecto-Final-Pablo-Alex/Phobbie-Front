@@ -23,6 +23,7 @@ class AddHobbie extends React.Component {
   };
 
   handleSubmit(e) {
+    console.log(this.state.newHobbie);
     e.preventDefault();
     axios({
       method: "post",
@@ -40,7 +41,7 @@ class AddHobbie extends React.Component {
 
   handleInput(e) {
     const {name, value } = e.target;
-    this.setState({ ...this.state, newHobbie: {[name]: value }})
+    this.setState({ ...this.state, newHobbie: {...this.state.newHobbie, [name]: value }})
   }
 
   render() {

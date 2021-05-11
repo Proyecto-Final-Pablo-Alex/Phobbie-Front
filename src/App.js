@@ -38,6 +38,8 @@ class App extends React.Component {
         <Link to="/login">Log in </Link>
         <Link to="/signup">Sign up</Link>
         <Link to="/profile"> My profile </Link>
+        <Link to="/add-hobbies"> Add Hobbie </Link>
+        <Link to="/all-hobbies"> All Hobbies </Link>
         <Switch>
           <Route
             path="/profile"
@@ -55,7 +57,7 @@ class App extends React.Component {
           />
           <Route path="/signup" exact component={() => <Signup />} />
           <Route path="/edit-user" exact component={() => <EditUser user={this.state.user}/>} />
-          <Route path="/all-hobbies" exact component={() => <AllHobbies />}/>
+          <Route path="/all-hobbies" exact component={() => <AllHobbies user={this.state.user} />}/>
           <Route path="/add-hobbies" exact component={() => <AddHobbie />}/>
         </Switch>
       </div>
