@@ -14,7 +14,7 @@ class Profile extends React.Component {
     });
     return (
       <div>
-        <Link to="/allHobbies">All hobbies</Link>
+        <Link to="/edit-user">Edit user</Link>
         <h1>Hola {username}</h1>
         <img src="foto" alt={`Foto de perfil de ${username}`} />
         <div>
@@ -22,7 +22,7 @@ class Profile extends React.Component {
           <ul>{friendList}</ul>
         </div>
       </div>
-    );
+    )
   }
 }
 

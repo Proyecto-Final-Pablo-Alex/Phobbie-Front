@@ -13,6 +13,8 @@ class EditUser extends React.Component {
             password: "",
             photo: ''
           },
+          successEditing: false,
+
     }
 
     handleSubmit(event) {
@@ -25,9 +27,7 @@ class EditUser extends React.Component {
           .then((result) => {
             console.log(result);
             if (result.data.message === "User created") {
-              this.setState({ ...this.state, successSignUp: true });
-            } else {
-              this.setState({ ...this.state, errorMessage: true });
+              this.setState({ ...this.state, successEditing: true });
             }
           })
           .catch((err) => {
@@ -84,7 +84,7 @@ class EditUser extends React.Component {
             {allOptions}
           </select>
 
-          <button>Sign up</button>
+          <button>Edit profile</button>
           
         </form>
       </div>
