@@ -1,4 +1,5 @@
-import React from "react";
+import React from "react"
+import axios from 'axios'
 
 
 class AddHobbie extends React.Component {
@@ -15,7 +16,9 @@ class AddHobbie extends React.Component {
       photo: ''
     },
     newHobbie: {
-
+      name: '',
+      photo: '',
+      description: ''
     }
   };
 
@@ -24,11 +27,11 @@ class AddHobbie extends React.Component {
     axios({
       method: "post",
       url: "http://localhost:5000/hobbies/addHobbie",
-      data: this.state.user,
+      data: this.state.newHobbie,
       withCredentials: true
     })
       .then((result) => {
-        this.props.setAppState(result.data.result);
+        console.log(result);
       })
       .catch((error) => {
         console.log(error);
@@ -49,7 +52,7 @@ class AddHobbie extends React.Component {
             <label htmlFor="name">Name: </label>
             <input type="text" name='name' onChange={(e) => this.handleInput(e)} />
 
-            <label htmlFor="photo">Picture: </label>
+            <label htmlFor="photo">Picture url: </label>
             <input type="text" name='photo' onChange={(e) => this.handleInput(e)} />
 
             <label htmlFor="description">Description: </label>
