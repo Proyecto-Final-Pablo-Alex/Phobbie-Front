@@ -6,6 +6,8 @@ import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Profile from "./components/Profile";
 import EditUser from "./components/EditUser";
+import AllHobbies from "./components/AllHobbies";
+import AddHobbie from "./components/AddHobbie";
 
 class App extends React.Component {
   state = {
@@ -53,6 +55,8 @@ class App extends React.Component {
           />
           <Route path="/signup" exact component={() => <Signup />} />
           <Route path="/edit-user" exact component={() => <EditUser user={this.state.user}/>} />
+          <Route path="/all-hobbies" exact component={() => <AllHobbies />}/>
+          <Route path="/add-hobbies" exact component={() => <AddHobbie />}/>
         </Switch>
       </div>
     );
