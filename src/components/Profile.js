@@ -7,14 +7,14 @@ class Profile extends React.Component {
     const friendList = friends.map((friend, index) => {
       return (
         <li key={index}>
-          <img src={} alt={`${friend.name} foto`} />
+          <img src={friend.photo} alt={`${friend.name} foto`} />
           {friend.name}
         </li>
       );
     });
     return (
       <div>
-        <Link to="/all-pokemon">All hobbies</Link>
+        <Link to="/allHobbies">All hobbies</Link>
         <h1>Hola {username}</h1>
         <img src="foto" alt={`Foto de perfil de ${username}`} />
         <div>
