@@ -24,6 +24,7 @@ class App extends React.Component {
     const stateCopy = { ...this.state };
     stateCopy.user = body;
     stateCopy.logInSuccess = true;
+    console.log(body)
     this.setState(stateCopy);
   }
   render() {
