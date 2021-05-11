@@ -4,17 +4,17 @@ import { Link } from "react-router-dom";
 class Profile extends React.Component {
   render() {
     const { username, friends } = this.props.user;
-    const friendList = friends.map((pokemon, index) => {
+    const friendList = friends.map((friend, index) => {
       return (
         <li key={index}>
-          <img src={pokemon.sprite} alt={`${pokemon.name} foto`} />
-          {pokemon.name}
+          <img src={} alt={`${friend.name} foto`} />
+          {friend.name}
         </li>
       );
     });
     return (
       <div>
-        <Link to="/all-pokemon">All pokemon</Link>
+        <Link to="/all-pokemon">All hobbies</Link>
         <h1>Hola {username}</h1>
         <img src="foto" alt={`Foto de perfil de ${username}`} />
         <div>
