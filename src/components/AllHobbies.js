@@ -18,6 +18,7 @@ class AllHobbies extends React.Component {
         copyAllHobbies:[],
         search:``
     }
+
     componentDidMount(){
       const user = this.props.user
       axios({
@@ -33,11 +34,31 @@ class AllHobbies extends React.Component {
           console.log(err);
         });
     }
+
+    filterHobbies(e){
+      const {value} = e.target
+      const hobbiesfiletered = this.state.allHobbies.filter(hobbie=>{
+        return hobbie.name.toLowerCase().includes(value.toLowerCase())
+      })
+      this.setState({...this.state, copyAllHobbies: hobbiesfiletered})
+    }
+
   render() {
-    
+    const hobbiesmap = copyAllHobbies.map((hobbie, index)=>{
+      return <li key={index}>
+                <img src={hobbie.photo} alt={hobbie.name} style={{width: "100px"}}/> 
+                <h3>{hobbie.name}</h3>
+                <p>{hobbie.description}</p>
+                <Link to="/"><button>Details & Users</button></Link>
+              </li>
+    })
     return (
-      <>
-      </>
+      <div>
+        <input type='text' onChange={(e)=>this.filterHobbies(e)} />
+        <ul>
+          {hobbiesmap}
+        </ul>
+      </div>
     )
   }
 }
