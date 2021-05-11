@@ -24,6 +24,7 @@ class EditUser extends React.Component {
           user: user,
         });
     }
+
     handleSubmit(event) {
         event.preventDefault();
         axios({
@@ -75,7 +76,7 @@ class EditUser extends React.Component {
             name="photo"
             onChange={(event)=>this.handleChange(event)}
           />
-          <input type="text" name="actualPhoto" hidden defaultValue={photo} />
+          <input type="text" name="actualPhoto" hidden value={photo} />
 
           <label htmlFor="password">Password</label>
           <input
