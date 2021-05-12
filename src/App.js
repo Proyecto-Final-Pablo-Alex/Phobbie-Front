@@ -58,7 +58,7 @@ class App extends React.Component {
           <Route path="/signup" exact component={() => <Signup />} />
           <Route path="/edit-user" exact component={() => <EditUser user={this.state.user}/>} />
           <Route path="/all-hobbies" exact component={() => <AllHobbies user={this.state.user} />}/>
-          <Route path="/add-hobbies" exact component={() => <AddHobbie />}/>
+          <Route path="/add-hobbies" exact component={() => <AddHobbie user={this.state.user}/>}/>
         </Switch>
       </div>
     );

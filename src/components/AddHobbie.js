@@ -16,11 +16,17 @@ class AddHobbie extends React.Component {
       photo: ''
     },
     newHobbie: {
+      userId: '',
       name: '',
       photo: '',
       description: ''
     }
   };
+
+  componentDidMount(){
+    const {user} = this.props
+    this.setState({user, newHobbie: {...this.state.newHobbie, userId: user._id}})
+  }
 
   handleSubmit(e) {
     console.log(this.state.newHobbie);
