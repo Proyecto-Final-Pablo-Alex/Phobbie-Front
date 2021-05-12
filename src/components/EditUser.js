@@ -27,24 +27,30 @@ class EditUser extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
+        let photo = event.target.photo.files[0]
+        let uploadForm = new FormData()
+        uploadForm.append('imageUrl', photo)
         axios({
-          method: "post",
-          url: "http://localhost:5000/edit-user",
-          data: this.state.user,
+          method: 'post',
+          url: 'http://localhost:5000/upload',
+          data: uploadForm
         })
-          .then((result) => {
-            console.log(result);
-            if (result.data.message === "User created") {
-              this.setState({ ...this.state, successEditing: true });
-            }
+        .then(image => {
+          axios({
+            method: "post",
+            url: "http://localhost:5000/edit-user",
+            data: {...this.state.user, photo: image.data.image}
           })
-          .catch((err) => {
-            console.log(err);
-          });
+          .then((res)=>{
+            console.log(res)
+          })
+        })
+        .catch(error => {
+          console.log(error)
+        })
       }
 
-      handleChange(event) {
-          
+      handleChange(event) { 
         const { value, name } = event.target;
         this.setState({
           ...this.state,
@@ -74,7 +80,6 @@ class EditUser extends React.Component {
           <input
             type="file"
             name="photo"
-            onChange={(event)=>this.handleChange(event)}
           />
           <input type="text" name="actualPhoto" hidden value={photo} />
 
