@@ -1,9 +1,38 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import axios from 'axios'
 
 class Profile extends React.Component {
+
+  state = {
+    user: {
+      username: "",
+      age: '',
+      location: '',
+      friends: [],
+      hobbies: [],
+      _id: "",
+      password: "",
+      photo: ''
+    }
+  }
+
+
+  componentDidMount(){
+    axios({
+      method: "get",
+      url: "http://localhost:5000/return-user"
+    })
+    .then(result => {
+      this.setState({user: result})
+    })
+    .catch(error => {
+      console.log(error)
+    })
+    
+  }
   render() {
-    const { username, friends, photo, hobbies} = this.props.user;
+    const { username, friends, photo, hobbies} = this.state.user;
     const friendList = friends.map((friend, index) => {
       return (
         <li key={index}>
