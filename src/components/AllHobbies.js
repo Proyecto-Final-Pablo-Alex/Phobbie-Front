@@ -1,6 +1,7 @@
 import axios from "axios";
 import React from "react";
 import { Link } from "react-router-dom";
+import AddHobbie from "./AddHobbie";
 
 class AllHobbies extends React.Component {
     state={
@@ -56,10 +57,18 @@ class AllHobbies extends React.Component {
     return (
       <div>
         <input type='text' onChange={(e)=>this.filterHobbies(e)} />
-        <ul>
-          {hobbiesmap}
-        </ul>
-      </div>
+
+        {(hobbiesmap.length > 0)
+        ? <div>
+            <ul>
+              {hobbiesmap}
+            </ul>
+          </div>
+        : <div>
+            <AddHobbie user={this.state.user}/>
+          </div>
+          }
+        </div>
     )
   }
 }

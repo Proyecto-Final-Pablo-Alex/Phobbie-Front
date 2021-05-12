@@ -53,7 +53,7 @@ class AddHobbie extends React.Component {
   render() {
     return (
       <div>
-        <h2>Add a new hobbie</h2>
+        <h2>No results, create your desired hobbie</h2>
         <form onSubmit={(e)=>this.handleSubmit(e)}>
 
             <label htmlFor="name">Name: </label>
