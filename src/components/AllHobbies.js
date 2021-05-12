@@ -45,6 +45,7 @@ class AllHobbies extends React.Component {
       this.setState({...this.state, copyAllHobbies: hobbiesfiletered})
     }
 
+
   render() {
     const sortedHobbiesByName = this.state.copyAllHobbies.sort((a,b)=> a.name.localeCompare(b.name))
     const sortedHobbiesByUsers = sortedHobbiesByName.sort((a,b)=> b.users.length - a.users.length)

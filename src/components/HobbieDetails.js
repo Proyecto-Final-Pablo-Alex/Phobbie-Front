@@ -41,13 +41,42 @@ class HobbieDetails extends React.Component {
         console.log(err);
       });
   }
+
+  addToMyHobbies(_id){
+    axios({
+      method: "post",
+      url: "http://localhost:5000/hobbies/addToMyHobbies",
+      data: {_id, userId: this.state.user._id}
+    })
+    .then(result => {
+      console.log(result)
+    })
+    .catch(error => {
+      console.log(error)
+    })  
+  }
+
+  removeFromMyHobbies(_id){
+    axios({
+      method: "post",
+      url: "http://localhost:5000/hobbies/removeFromMyHobbies",
+      data: {_id, userId: this.state.user._id}
+    })
+    .then(result => {
+      console.log(result)
+    })
+    .catch(error => {
+      console.log(error)
+    })  
+  }
+
   render() {
-    const {name,photo,description,users} = this.state.hobbie
-    const sortedUsersByName = users.sort((a,b)=> a.name.localeCompare(b.name))
+    const {name,photo,description,users, _id} = this.state.hobbie
+    const sortedUsersByName = users.sort((a,b)=> a.username.localeCompare(b.username))
     const usersmap = sortedUsersByName.map((user, index)=>{
       return <li key={index}>
-                <img src={user.photo} alt={user.name} style={{width: "100px"}}/> 
-                <h3>{user.name}</h3>
+                <img src={user.photo} alt={user.username} style={{width: "100px"}}/> 
+                <h3>{user.username}</h3>
                 <Link to={`/`}><button>Add friend</button></Link>
               </li>
     })
@@ -57,7 +86,11 @@ class HobbieDetails extends React.Component {
         <img src={photo} alt={name} />
         <h2>{name}</h2>
         <p>{description}</p>
-
+        {this.state.user.hobbies.includes(_id) ? (
+            <button onClick={()=>this.removeFromMyHobbies(_id)}>Remove from my hobbies</button>
+        ):(
+            <button onClick={()=>this.addToMyHobbies(_id)}>Add to my hobbies</button>
+            )}
         <div>
         <ul>
             {usersmap}
