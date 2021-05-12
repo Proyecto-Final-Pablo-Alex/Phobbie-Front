@@ -13,7 +13,8 @@ class EditUser extends React.Component {
             hobbies: [],
             _id: "",
             password: "",
-            photo: ''
+            photo: '',
+            status:''
           },
           successEditing: false,
     }
@@ -27,7 +28,8 @@ class EditUser extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        let photo = event.target.photo.files[0]
+        if (event.target.photo.files.length > 0)
+        {let photo = event.target.photo.files[0]
         let uploadForm = new FormData()
         uploadForm.append('imageUrl', photo)
         axios({
@@ -47,9 +49,23 @@ class EditUser extends React.Component {
             console.log(res)
           })
         })
-        .catch(error => {
-          console.log(error)
+          .catch(error => {
+            console.log(error)
         })
+      }else{
+          axios({
+            method: "post",
+            url: "http://localhost:5000/edit-user",
+            data: {...this.state.user},
+            withCredentials: true
+          })
+          .then((res)=>{
+            console.log(res)
+          })
+          .catch(error => {
+          console.log(error)
+          })
+          }
       }
 
       handleChange(event) { 
@@ -70,7 +86,7 @@ class EditUser extends React.Component {
 
     const allOptions=provincias.map((provincia, index)=>{return(<option key={index}>{provincia}</option>)})
 
-    const {photo, password, age, _id, location} = this.props.user
+    const {photo, password, age, _id, location,status} = this.props.user
     return (
       <div>
        <h1>Edit profile</h1>
@@ -106,7 +122,14 @@ class EditUser extends React.Component {
             {allOptions}
           </select>
 
-       
+          <label htmlFor="status">Status</label>
+          <input
+            type="text"
+            name="status"
+            onChange={(event) => this.handleChange(event)}
+            defaultValue={status}
+          />
+
           <button>Edit profile</button>
           
         </form>

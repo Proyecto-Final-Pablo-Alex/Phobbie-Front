@@ -12,7 +12,8 @@ class Signup extends React.Component {
       hobbies: [],
       _id: "",
       password: "",
-      photo: ''
+      photo: '',
+      status:''
     },
     successSignUp: false,
     errorMessage: false,
