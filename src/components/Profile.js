@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 class Profile extends React.Component {
   render() {
-    const { username, friends } = this.props.user;
+    const { username, friends, photo, hobbies} = this.props.user;
     const friendList = friends.map((friend, index) => {
       return (
         <li key={index}>
@@ -12,16 +12,41 @@ class Profile extends React.Component {
         </li>
       );
     });
+    const hobbiesList = hobbies.map((hobbie, index) => {
+      return (
+        <li key={index}>
+          <img src={hobbie.photo} alt={`${hobbie.name} foto`} />
+          {hobbie.name}
+        </li>
+      );
+    });
     return (
       <div>
         <Link to="/edit-user">Edit user</Link>
         <h1>Hola {username}</h1>
-        <img src="foto" alt={`Foto de perfil de ${username}`} />
-        <div>
-          <h2>Friends</h2>
-          <ul>{friendList}</ul>
-        </div>
-      </div>
+        <img src={photo} alt={`Foto de perfil de ${username}`} />
+
+          {(friends.length !== 0)
+          ? <div>
+              <h2>Friends</h2>
+              <ul>{friendList}</ul>
+            </div>
+
+          : <div>
+            You don't have friends yet
+            </div>}
+          
+          {(hobbies.length !== 0)
+          ? <div>
+              <h2>Hobbies</h2>
+              <ul>{hobbiesList}</ul>
+            </div>
+
+          : <div>
+            You don't have hobbies yet
+            </div>}
+          
+          </div>
     )
   }
 }
