@@ -24,6 +24,7 @@ class AllHobbies extends React.Component {
       axios({
         method: "get",
         url: "http://localhost:5000/hobbies/allHobbies",
+        withCredentials: true
       })
         .then((result) => {
           console.log(result.data);

@@ -33,13 +33,15 @@ class EditUser extends React.Component {
         axios({
           method: 'post',
           url: 'http://localhost:5000/upload',
-          data: uploadForm
+          data: uploadForm,
+          withCredentials: true
         })
         .then(image => {
           axios({
             method: "post",
             url: "http://localhost:5000/edit-user",
-            data: {...this.state.user, photo: image.data.image}
+            data: {...this.state.user, photo: image.data.image},
+            withCredentials: true
           })
           .then((res)=>{
             console.log(res)

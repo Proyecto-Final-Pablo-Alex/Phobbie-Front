@@ -24,6 +24,7 @@ class Signup extends React.Component {
       method: "post",
       url: "http://localhost:5000/signup",
       data: this.state.user,
+      withCredentials: true
     })
       .then((result) => {
         console.log(result);
