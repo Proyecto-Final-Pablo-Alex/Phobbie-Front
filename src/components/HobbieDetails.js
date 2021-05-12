@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Redirect,Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 class HobbieDetails extends React.Component {
   state = {
@@ -21,21 +21,32 @@ class HobbieDetails extends React.Component {
       users: [],
       _id: "",
     },
-  };
+    loaded: false,
+    added: false
+  }
+
   componentDidMount() {
-    console.log("hola");
     axios({
       method: "get",
       url: `http://localhost:5000/hobbie-details/${this.props.match.params.name}`,
       withCredentials: true,
     })
-      .then((result) => {
-        console.log(result.data);
-        this.setState({
-          ...this.state,
-          hobbie: result.data,
-          user: this.props.user
-        });
+      .then((hobbie) => {
+
+          axios({
+              method: "get",
+              url: "http://localhost:5000/return-user",
+              withCredentials: true
+          })
+          .then(user=>{
+
+              this.setState({
+                ...this.state,
+                hobbie: hobbie.data,
+                user: user.data.result,
+                loaded: true
+              })
+          })
       })
       .catch((err) => {
         console.log(err);
@@ -49,7 +60,8 @@ class HobbieDetails extends React.Component {
       data: {_id, userId: this.state.user._id}
     })
     .then(result => {
-      console.log(result)
+        console.log(result)
+      this.setState({...this.state, user: result.data.user, hobbie: result.data.hobbie, added: true})
     })
     .catch(error => {
       console.log(error)
@@ -63,7 +75,8 @@ class HobbieDetails extends React.Component {
       data: {_id, userId: this.state.user._id}
     })
     .then(result => {
-      console.log(result)
+        console.log(result)
+        this.setState({...this.state, user: result.data.user, hobbie: result.data.hobbie, added: false})
     })
     .catch(error => {
       console.log(error)
@@ -80,7 +93,7 @@ class HobbieDetails extends React.Component {
                 <Link to={`/`}><button>Add friend</button></Link>
               </li>
     })
-    return (
+    return this.state.loaded ? (
       <div>
         <h1>{name}</h1>
         <img src={photo} alt={name} />
@@ -92,12 +105,13 @@ class HobbieDetails extends React.Component {
             <button onClick={()=>this.addToMyHobbies(_id)}>Add to my hobbies</button>
             )}
         <div>
+        {this.state.added ? <p>Added successfully!</p> : null}
         <ul>
             {usersmap}
         </ul>
         </div>
       </div>
-    );
+    ) : (<p>Loading...</p>)
   }
 }
 

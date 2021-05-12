@@ -72,7 +72,7 @@ class App extends React.Component {
           <Route
             path="/hobbie-details/:name"
             exact
-            component={(routeProps) => <HobbieDetails {...routeProps} user={this.state.user}/>}
+            component={(routeProps) => <HobbieDetails {...routeProps} />}
           />
         </Switch>
       </div>
