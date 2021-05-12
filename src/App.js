@@ -8,6 +8,7 @@ import EditUser from "./components/EditUser";
 import AllHobbies from "./components/AllHobbies";
 import AddHobbie from "./components/AddHobbie";
 import Navbar from "./components/Navbar";
+import HobbieDetails from "./components/Navbar";
 
 class App extends React.Component {
   state = {
@@ -67,6 +68,11 @@ class App extends React.Component {
             path="/add-hobbies"
             exact
             component={() => <AddHobbie user={this.state.user} />}
+          />
+          <Route
+            path="/hobbie-details/${hobbie.name}"
+            exact
+            component={() => <HobbieDetails user={this.state.user} />}
           />
         </Switch>
       </div>

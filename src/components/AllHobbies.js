@@ -46,12 +46,15 @@ class AllHobbies extends React.Component {
     }
 
   render() {
-    const hobbiesmap = this.state.copyAllHobbies.map((hobbie, index)=>{
+    const sortedHobbiesByName = this.state.copyAllHobbies.sort((a,b)=> a.name.localeCompare(b.name))
+    const sortedHobbiesByUsers = sortedHobbiesByName.sort((a,b)=> b.users.length - a.users.length)
+    const hobbiesmap = sortedHobbiesByUsers.map((hobbie, index)=>{
       return <li key={index}>
                 <img src={hobbie.photo} alt={hobbie.name} style={{width: "100px"}}/> 
                 <h3>{hobbie.name}</h3>
                 <p>{hobbie.description}</p>
-                <Link to="/"><button>Details & Users</button></Link>
+                <p>{hobbie.users.length} users</p>
+                <Link to={`/hobbie-details/${hobbie.name}`}><button>Details & Users</button></Link>
               </li>
     })
     return (

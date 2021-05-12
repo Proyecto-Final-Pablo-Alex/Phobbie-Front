@@ -1,5 +1,6 @@
 import React from "react"
 import axios from 'axios'
+import { Redirect } from "react-router";
 
 
 class AddHobbie extends React.Component {
@@ -20,7 +21,8 @@ class AddHobbie extends React.Component {
       name: '',
       photo: '',
       description: ''
-    }
+    },
+    hobbieCreated: false
   };
 
   componentDidMount(){
@@ -39,6 +41,7 @@ class AddHobbie extends React.Component {
     })
       .then((result) => {
         console.log(result);
+        this.setState({...this.state, hobbieCreated:true})
       })
       .catch((error) => {
         console.log(error);
@@ -53,6 +56,7 @@ class AddHobbie extends React.Component {
   render() {
     return (
       <div>
+        {this.state.hobbieCreated ? <Redirect to='/profile'/> : null}
         <h2>No results, create your desired hobbie</h2>
         <form onSubmit={(e)=>this.handleSubmit(e)}>
 
