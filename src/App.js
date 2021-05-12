@@ -8,7 +8,7 @@ import EditUser from "./components/EditUser";
 import AllHobbies from "./components/AllHobbies";
 import AddHobbie from "./components/AddHobbie";
 import Navbar from "./components/Navbar";
-import HobbieDetails from "./components/Navbar";
+import HobbieDetails from "./components/HobbieDetails";
 
 class App extends React.Component {
   state = {
@@ -70,7 +70,8 @@ class App extends React.Component {
             component={() => <AddHobbie user={this.state.user} />}
           />
           <Route
-            path={'/hobbie-details/:name'}
+            path="/hobbie-details/:name"
+            exact
             component={(routeProps) => <HobbieDetails {...routeProps} user={this.state.user}/>}
           />
         </Switch>

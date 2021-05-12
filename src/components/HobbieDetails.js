@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Redirect } from "react-router-dom";
+import { Redirect,Link } from "react-router-dom";
 
 class HobbieDetails extends React.Component {
   state = {
@@ -33,8 +33,8 @@ class HobbieDetails extends React.Component {
         console.log(result.data);
         this.setState({
           ...this.state,
-          hobbie: result.data.hobbie,
-         ,
+          hobbie: result.data,
+          user: this.props.user
         });
       })
       .catch((err) => {
@@ -42,13 +42,27 @@ class HobbieDetails extends React.Component {
       });
   }
   render() {
-      this.setState({...this.state, user: this.props.user})
+    const {name,photo,description,users} = this.state.hobbie
+    const sortedUsersByName = users.sort((a,b)=> a.name.localeCompare(b.name))
+    const usersmap = sortedUsersByName.map((user, index)=>{
+      return <li key={index}>
+                <img src={user.photo} alt={user.name} style={{width: "100px"}}/> 
+                <h3>{user.name}</h3>
+                <Link to={`/`}><button>Add friend</button></Link>
+              </li>
+    })
     return (
       <div>
-        <h1>Detalles de {this.state.hobbie.name}</h1>
-        <img src={this.state.hobbie.photo} alt={this.state.hobbie.name} />
-        <h2>{this.state.hobbie.name}</h2>
-        <p>{this.state.hobbie.description}</p>
+        <h1>{name}</h1>
+        <img src={photo} alt={name} />
+        <h2>{name}</h2>
+        <p>{description}</p>
+
+        <div>
+        <ul>
+            {usersmap}
+        </ul>
+        </div>
       </div>
     );
   }
