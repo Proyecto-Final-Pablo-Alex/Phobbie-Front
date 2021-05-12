@@ -8,7 +8,6 @@ class Navbar extends React.Component {
         return this.props.loggedIn ? (
             <div>
                 <Link to="/profile"> My profile </Link>
-                <Link to="/add-hobbies"> Add Hobbie </Link>
                 <Link to="/all-hobbies"> All Hobbies </Link>
                 <Link to="/"> Logout</Link>
             </div>

@@ -39,18 +39,27 @@ class HobbieDetails extends React.Component {
               withCredentials: true
           })
           .then(user=>{
-
+            if(user.data.result.hobbies.filter(hob=> hob.name === hobbie.data.name).length>0){
+              this.setState({
+                ...this.state,
+                hobbie: hobbie.data,
+                user: user.data.result,
+                loaded: true,
+                added: true
+              })
+            }else{
               this.setState({
                 ...this.state,
                 hobbie: hobbie.data,
                 user: user.data.result,
                 loaded: true
               })
+            }
           })
       })
       .catch((err) => {
         console.log(err);
-      });
+      })
   }
 
   addToMyHobbies(_id){
@@ -99,7 +108,7 @@ class HobbieDetails extends React.Component {
         <img src={photo} alt={name} />
         <h2>{name}</h2>
         <p>{description}</p>
-        {this.state.user.hobbies.includes(_id) ? (
+        {this.state.added ? (
             <button onClick={()=>this.removeFromMyHobbies(_id)}>Remove from my hobbies</button>
         ):(
             <button onClick={()=>this.addToMyHobbies(_id)}>Add to my hobbies</button>
