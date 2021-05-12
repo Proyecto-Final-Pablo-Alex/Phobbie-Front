@@ -70,9 +70,8 @@ class App extends React.Component {
             component={() => <AddHobbie user={this.state.user} />}
           />
           <Route
-            path="/hobbie-details/${hobbie.name}"
-            exact
-            component={() => <HobbieDetails user={this.state.user} />}
+            path={'/hobbie-details/:name'}
+            component={(routeProps) => <HobbieDetails {...routeProps} user={this.state.user}/>}
           />
         </Switch>
       </div>

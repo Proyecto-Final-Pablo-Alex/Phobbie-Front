@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-class HobbieDetails extends React.Component {
+class Navbar extends React.Component {
 
     render(){
 
@@ -21,4 +21,4 @@ class HobbieDetails extends React.Component {
     }
 }
 
-export default HobbieDetails;
+export default Navbar;
