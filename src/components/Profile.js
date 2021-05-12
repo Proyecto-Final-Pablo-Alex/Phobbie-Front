@@ -14,17 +14,20 @@ class Profile extends React.Component {
       _id: "",
       password: "",
       photo: ''
-    }
+    },
+    loaded: false
   }
 
 
   componentDidMount(){
     axios({
       method: "get",
-      url: "http://localhost:5000/return-user"
+      url: "http://localhost:5000/return-user",
+      withCredentials: true
     })
     .then(result => {
-      this.setState({user: result})
+      console.log(result)
+      this.setState({user: result.data.result, loaded: true})
     })
     .catch(error => {
       console.log(error)
@@ -33,22 +36,27 @@ class Profile extends React.Component {
   }
   render() {
     const { username, friends, photo, hobbies} = this.state.user;
-    const friendList = friends.map((friend, index) => {
-      return (
-        <li key={index}>
-          <img src={friend.photo} alt={`${friend.name} foto`} />
-          {friend.name}
-        </li>
-      );
-    });
-    const hobbiesList = hobbies.map((hobbie, index) => {
-      return (
-        <li key={index}>
-          <img src={hobbie.photo} alt={`${hobbie.name} foto`} />
-          {hobbie.name}
-        </li>
-      );
-    });
+    console.log(friends)
+    console.log(hobbies)
+    let friendList, hobbiesList
+    if (this.state.loaded){
+      friendList = friends.map((friend, index) => {
+        return (
+          <li key={index}>
+            <img src={friend.photo} alt={`${friend.name} foto`} />
+            {friend.name}
+          </li>
+        );
+      });
+      hobbiesList = hobbies.map((hobbie, index) => {
+        return (
+          <li key={index}>
+            <img src={hobbie.photo} alt={`${hobbie.name} foto`} />
+            {hobbie.name}
+          </li>
+        );
+      });
+    }
     return (
       <div>
         <Link to="/edit-user">Edit user</Link>
