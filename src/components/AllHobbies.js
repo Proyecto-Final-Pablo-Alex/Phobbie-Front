@@ -13,7 +13,8 @@ class AllHobbies extends React.Component {
         hobbies: [],
         _id: "",
         password: "",
-        photo: ''
+        photo: '',
+        status:''
       },
         allHobbies:[],
         copyAllHobbies:[],

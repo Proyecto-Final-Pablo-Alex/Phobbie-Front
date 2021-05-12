@@ -21,23 +21,23 @@ class App extends React.Component {
       _id: "",
       password: "",
       photo: "",
+      status:''
     },
-    logInSuccess: false,
-    loggedIn: false
-  };
+    logInSuccess: false
+  }
 
   editStateFromLogin(body) {
     const stateCopy = { ...this.state }
     stateCopy.user = body
     stateCopy.logInSuccess = true
-    stateCopy.loggedIn = true
     this.setState(stateCopy)
   }
+  
   render() {
     return (
       <div className="App">
         <h1>Welcome to HobbiesSphere</h1>
-        <Navbar loggedIn={this.state.loggedIn} />
+        <Navbar />
         <Switch>
           <Route
             path="/profile"

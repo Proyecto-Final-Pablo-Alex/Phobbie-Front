@@ -13,6 +13,7 @@ class HobbieDetails extends React.Component {
       _id: "",
       password: "",
       photo: "",
+      status:''
     },
     hobbie: {
       name: "",

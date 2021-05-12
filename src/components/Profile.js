@@ -13,7 +13,8 @@ class Profile extends React.Component {
       hobbies: [],
       _id: "",
       password: "",
-      photo: ''
+      photo: '',
+      status:''
     },
     loaded: false
   }

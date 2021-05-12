@@ -14,7 +14,8 @@ class AddHobbie extends React.Component {
       hobbies: [],
       _id: "",
       password: "",
-      photo: ''
+      photo: '',
+      status:''
     },
     newHobbie: {
       userId: '',
