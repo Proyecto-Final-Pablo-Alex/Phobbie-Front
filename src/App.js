@@ -1,6 +1,5 @@
-import "./App.css";
 import React from "react";
-import { Link, Switch, Route, Redirect } from "react-router-dom";
+import {Switch, Route} from "react-router-dom";
 
 import Login from "./components/Login";
 import Signup from "./components/Signup";
@@ -8,38 +7,36 @@ import Profile from "./components/Profile";
 import EditUser from "./components/EditUser";
 import AllHobbies from "./components/AllHobbies";
 import AddHobbie from "./components/AddHobbie";
+import Navbar from "./components/Navbar";
 
 class App extends React.Component {
   state = {
     user: {
       username: "",
-      age: '',
-      location: '',
+      age: "",
+      location: "",
       friends: [],
       hobbies: [],
       _id: "",
       password: "",
-      photo: ''
+      photo: "",
     },
     logInSuccess: false,
+    loggedIn: false
   };
 
   editStateFromLogin(body) {
-    const stateCopy = { ...this.state };
-    stateCopy.user = body;
-    stateCopy.logInSuccess = true;
-
-    this.setState(stateCopy);
+    const stateCopy = { ...this.state }
+    stateCopy.user = body
+    stateCopy.logInSuccess = true
+    stateCopy.loggedIn = true
+    this.setState(stateCopy)
   }
   render() {
     return (
       <div className="App">
-        <h1>Welcome to Jobbis</h1>
-        <Link to="/login">Log in </Link>
-        <Link to="/signup">Sign up</Link>
-        <Link to="/profile"> My profile </Link>
-        <Link to="/add-hobbies"> Add Hobbie </Link>
-        <Link to="/all-hobbies"> All Hobbies </Link>
+        <h1>Welcome to HobbiesSphere</h1>
+        <Navbar loggedIn={this.state.loggedIn} />
         <Switch>
           <Route
             path="/profile"
@@ -56,9 +53,21 @@ class App extends React.Component {
             )}
           />
           <Route path="/signup" exact component={() => <Signup />} />
-          <Route path="/edit-user" exact component={() => <EditUser user={this.state.user}/>} />
-          <Route path="/all-hobbies" exact component={() => <AllHobbies user={this.state.user} />}/>
-          <Route path="/add-hobbies" exact component={() => <AddHobbie user={this.state.user}/>}/>
+          <Route
+            path="/edit-user"
+            exact
+            component={() => <EditUser user={this.state.user} />}
+          />
+          <Route
+            path="/all-hobbies"
+            exact
+            component={() => <AllHobbies user={this.state.user} />}
+          />
+          <Route
+            path="/add-hobbies"
+            exact
+            component={() => <AddHobbie user={this.state.user} />}
+          />
         </Switch>
       </div>
     );

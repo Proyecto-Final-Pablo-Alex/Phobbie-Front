@@ -59,9 +59,9 @@ class Profile extends React.Component {
     }
     return (
       <div>
-        <Link to="/edit-user">Edit user</Link>
         <h1>Hola {username}</h1>
         <img src={photo} alt={`Foto de perfil de ${username}`} />
+        <Link to="/edit-user">Edit user</Link>
 
           {(friends.length !== 0)
           ? <div>
