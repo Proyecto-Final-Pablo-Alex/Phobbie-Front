@@ -66,7 +66,7 @@ class Profile extends React.Component {
     })
   }
 
-  DeleteFriend(friendId){
+  deleteFriend(friendId){
     axios({
       method: "post",
       url: "http://localhost:5000/delete-friend",
@@ -93,7 +93,7 @@ class Profile extends React.Component {
       hobbiesList = hobbies.map((hobbie, index) => {
         return (
           <li key={index}>
-            <img src={hobbie.photo} alt={`${hobbie.name} foto`} />
+            <img src={hobbie.photo} alt={`${hobbie.name} foto`} style={{width: "200px"}} />
             {hobbie.name}
           </li>
         );
