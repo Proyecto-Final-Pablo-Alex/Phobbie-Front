@@ -66,6 +66,15 @@ class Profile extends React.Component {
     })
   }
 
+  DeleteFriend(friendId){
+    axios({
+      method: "post",
+      url: "http://localhost:5000/delete-friend",
+      data: {requester:this.state.user._id, recipient:friendId},
+      withCredentials: true
+    })
+  }
+
   render() {
     const { username, friends, photo, hobbies} = this.state.user;
     const {requests} = this.state
@@ -77,6 +86,7 @@ class Profile extends React.Component {
           <li key={index}>
             <img src={friend.photo} alt={`${friend.name} foto`} />
             <p>{friend.username}</p>
+            <button onClick={()=>this.deleteFriend(friend._id)}>Delete Friend</button>
           </li>
         );
       });
