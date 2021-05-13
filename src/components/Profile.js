@@ -59,6 +59,12 @@ class Profile extends React.Component {
       data: {_id:reqId, requester:requesterId, recipient: this.state.user._id},
       withCredentials: true
     })
+    .then(result => {
+      console.log(result)
+    })
+    .catch(error => {
+      console.log(error)
+    })
   }
 
   rejectFriendRequest(requesterId, reqId){
@@ -68,6 +74,12 @@ class Profile extends React.Component {
       data: {_id:reqId, requester:requesterId, recipient: this.state.user._id},
       withCredentials: true
     })
+    .then(result => {
+      console.log(result)
+    })
+    .catch(error => {
+      console.log(error)
+    })
   }
 
   deleteFriend(friendId){
@@ -76,6 +88,12 @@ class Profile extends React.Component {
       url: "http://localhost:5000/delete-friend",
       data: {requester:this.state.user._id, recipient:friendId},
       withCredentials: true
+    })
+    .then(result => {
+      console.log(result)
+    })
+    .catch(error => {
+      console.log(error)
     })
   }
 
@@ -102,7 +120,7 @@ class Profile extends React.Component {
       withCredentials:true
     })
     .then((result)=>{
-      this.setState({...this.state, deleted:true})
+      this.props.setAppState()
     })
   }
 
@@ -127,8 +145,8 @@ class Profile extends React.Component {
             <img src={hobbie.photo} alt={`${hobbie.name} foto`} style={{width: "200px"}} />
             {hobbie.name}
           </li>
-        );
-      });
+        )
+      })
       friendRequests = requests.map((req, index)=>{
         return (
           <li key={index}>
@@ -140,7 +158,7 @@ class Profile extends React.Component {
         )
       })
     }
-    return this.state.deleted ? <Redirect to="/" /> : (
+    return (!this.props.logInSuccess) ? <Redirect to="/signup" /> : (
       <div>
         <h1>Hola {username}</h1>
         <img src={photo} alt={`Foto de perfil de ${username}`} />

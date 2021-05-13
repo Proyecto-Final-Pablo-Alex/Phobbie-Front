@@ -26,6 +26,7 @@ class App extends React.Component {
     logInSuccess: false
   }
 
+
   editStateFromLogin(body) {
     const stateCopy = { ...this.state }
     stateCopy.user = body
@@ -48,7 +49,8 @@ class App extends React.Component {
         <Switch>
           <Route
             path="/profile"
-            component={() => <Profile />}
+            exact
+            component={() => <Profile logInSuccess={this.state.logInSuccess} setAppState={()=>this.editStateFromLogout()}/>}
           />
           <Route
             path="/login"
