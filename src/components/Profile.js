@@ -19,7 +19,6 @@ class Profile extends React.Component {
     loaded: false
   }
 
-
   componentDidMount(){
     axios({
       method: "get",

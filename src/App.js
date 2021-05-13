@@ -32,16 +32,23 @@ class App extends React.Component {
     stateCopy.logInSuccess = true
     this.setState(stateCopy)
   }
+
+  editStateFromLogout(){
+    const stateCopy = { ...this.state }
+    stateCopy.user = {}
+    stateCopy.logInSuccess = false
+    this.setState(stateCopy)
+  }
   
   render() {
     return (
       <div className="App">
         <h1>Welcome to HobbiesSphere</h1>
-        <Navbar />
+        <Navbar logInSuccess={this.state.logInSuccess} setAppState={()=>this.editStateFromLogout()}/>
         <Switch>
           <Route
             path="/profile"
-            component={() => <Profile user={this.state.user} />}
+            component={() => <Profile />}
           />
           <Route
             path="/login"

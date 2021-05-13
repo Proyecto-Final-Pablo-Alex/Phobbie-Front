@@ -9,6 +9,7 @@ class Login extends React.Component {
       username: "",
       password: "",
     },
+    errorMsg: false
   };
 
   handleSubmit(event) {
@@ -20,7 +21,11 @@ class Login extends React.Component {
       withCredentials: true
     })
       .then((result) => {
-        this.props.setAppState(result.data.user);
+        if(result.data.user){
+          this.props.setAppState(result.data.user);
+        }else{
+          this.setState({...this.state, errorMsg: true})
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -57,6 +62,8 @@ class Login extends React.Component {
           />
 
           <button>Log in</button>
+
+          {this.state.errorMsg ? <p>Wrong credentials. Try again.</p> : null}
         </form>
       </div>
     );

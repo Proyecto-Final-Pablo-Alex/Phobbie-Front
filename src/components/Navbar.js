@@ -5,46 +5,30 @@ import { Link } from "react-router-dom";
 class Navbar extends React.Component {
 
     state = {
-        user: {
-            username: "",
-            age: '',
-            location: '',
-            friends: [],
-            hobbies: [],
-            _id: "",
-            password: "",
-            photo: '',
-            status:''
-          },
-        logged: false
+        loggedout: false
     }
 
-    componentDidMount(){
+    logout(){
         axios({
             method: 'get',
-            url: "http://localhost:5000/return-user",
+            url: "http://localhost:5000/logout",
             withCredentials: true
         })
-        .then(user => {
-            if(user.data.result.username){
-                this.setState({user: user.data.result, logged: true})
-            }else{
-                return
-            }
+        .then(result => {
+            this.props.setAppState()
+            this.setState({loggedout: true})
         })
         .catch(error => {
             console.log(error)
         })
-        
     }
 
     render(){
-
-        return this.state.logged ? (
+        return this.props.logInSuccess ? (
             <div>
                 <Link to="/profile"> My profile </Link>
                 <Link to="/all-hobbies"> All Hobbies </Link>
-                <Link to="/"> Logout</Link>
+                <Link to="/"><button onClick={()=>this.logout()}>Logout</button></Link>
             </div>
         ) : (
             <div>
