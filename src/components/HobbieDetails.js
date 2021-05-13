@@ -25,6 +25,8 @@ class HobbieDetails extends React.Component {
     loaded: false,
     added: false,
     requestSent: false,
+    renderUsers: [],
+    usersChecked: false
   }
 
   componentDidMount() {
@@ -46,6 +48,7 @@ class HobbieDetails extends React.Component {
                 ...this.state,
                 hobbie: hobbie.data,
                 user: user.data.result,
+                renderUsers: hobbie.data.users,
                 loaded: true,
                 added: true
               })
@@ -53,6 +56,7 @@ class HobbieDetails extends React.Component {
               this.setState({
                 ...this.state,
                 hobbie: hobbie.data,
+                renderUsers: hobbie.data.users,
                 user: user.data.result,
                 loaded: true
               })
@@ -111,10 +115,31 @@ class HobbieDetails extends React.Component {
     })
   }
 
+  filterUsers(e){
+    const {value} = e.target
+    const renderUsers = this.state.hobbie.users.filter(user=>{
+      return user.username.toLowerCase().includes(value.toLowerCase())
+    })
+    this.setState({...this.state, renderUsers: renderUsers})
+  }
+
+  onlyMyAreaUsers(){
+    const {usersChecked} = this.state
+    if (usersChecked === false){
+      const filteredUsers = this.state.hobbie.users.filter(user=>{
+        return user.location == this.state.user.location
+      })
+      this.setState({...this.state, usersChecked: true, renderUsers: filteredUsers})
+    }else{
+      this.setState({...this.state, usersChecked: false, renderUsers: this.state.hobbie.users})
+    }
+  }
+
   render() {
 
-    const {name,photo,description,users, _id} = this.state.hobbie
-    const sortedUsersByName = users.sort((a,b)=> a.username.localeCompare(b.username))
+    const {name,photo,description, _id} = this.state.hobbie
+    const {renderUsers} = this.state
+    const sortedUsersByName = renderUsers.sort((a,b)=> a.username.localeCompare(b.username))
     const usersmap = sortedUsersByName.map((user, index)=>{
       return <li key={index}>
                 <img src={user.photo} alt={user.username} style={{width: "100px"}}/> 
@@ -134,7 +159,14 @@ class HobbieDetails extends React.Component {
             <button onClick={()=>this.addToMyHobbies(_id)}>Add to my hobbies</button>
             )}
         <div>
-        {this.state.added ? <p>Added successfully!</p> : null}
+
+        <p>Search users</p>
+        <input type="text" onChange={(e)=>this.filterUsers(e)}/>
+        <div>
+            <input type="checkbox" onChange={()=>this.onlyMyAreaUsers()} />
+            <label>My area users</label>            
+        </div> 
+
         <ul>
             {usersmap}
         </ul>

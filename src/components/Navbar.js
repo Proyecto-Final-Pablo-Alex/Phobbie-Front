@@ -26,14 +26,14 @@ class Navbar extends React.Component {
     render(){
         return this.props.logInSuccess ? (
             <div>
-                <Link to="/profile"> My profile </Link>
-                <Link to="/all-hobbies"> All Hobbies </Link>
+                <Link to="/profile"><button> My profile </button></Link>
+                <Link to="/all-hobbies"><button>All Hobbies </button></Link>
                 <Link to="/"><button onClick={()=>this.logout()}>Logout</button></Link>
             </div>
         ) : (
             <div>
-                <Link to="/login">Log in </Link>
-                <Link to="/signup">Sign up</Link>
+                <Link to="/login"><button>Log in </button></Link>
+                <Link to="/signup"><button>Sign up</button></Link>
             </div>
         )
     }

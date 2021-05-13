@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import axios from 'axios'
 
 class Profile extends React.Component {
@@ -17,7 +17,11 @@ class Profile extends React.Component {
       status:''
     },
     loaded: false,
-    requests: []
+    requests: [],
+    delButton:false,
+    delButtonConfirm: "",
+    deleted:false
+
   }
 
   componentDidMount(){
@@ -75,6 +79,33 @@ class Profile extends React.Component {
     })
   }
 
+  deleteAccountButton(){
+    if(!this.state.delButton){
+      this.setState({...this.state, delButton:true})
+    }else{
+      this.setState({...this.state, delButton:false})
+    }
+  }
+
+  handleInput(e){
+    const {value} = e.target
+    const stateCopy={...this.state}
+    stateCopy.delButtonConfirm = value
+    this.setState(stateCopy)
+  }
+
+  delAccountConfirmation(){
+    axios({
+      method:"POST",
+      url:"http://localhost:5000/delete-user",
+      data: {_id: this.state.user._id},
+      withCredentials:true
+    })
+    .then((result)=>{
+      this.setState({...this.state, deleted:true})
+    })
+  }
+
   render() {
     const { username, friends, photo, hobbies} = this.state.user;
     const {requests} = this.state
@@ -109,11 +140,21 @@ class Profile extends React.Component {
         )
       })
     }
-    return (
+    return this.state.deleted ? <Redirect to="/" /> : (
       <div>
         <h1>Hola {username}</h1>
         <img src={photo} alt={`Foto de perfil de ${username}`} />
-        <Link to="/edit-user">Edit user</Link>
+        <Link to="/edit-user"><button>Edit user</button></Link>
+        <button onClick={()=>this.deleteAccountButton()}>Delete account</button>
+        {this.state.delButton ? (
+          <div>
+            <p>Are you sure? Type your username to confirm: </p>
+            <form onSubmit={()=>this.delAccountConfirmation()}>
+              <input type="text" onChange={(e)=>this.handleInput(e)} />
+              <button>Confirm</button>
+            </form>
+          </div>
+          ): null}
 
         {(this.state.requests.length !== 0)
           ? <div>

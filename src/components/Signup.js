@@ -12,6 +12,7 @@ class Signup extends React.Component {
       hobbies: [],
       _id: "",
       password: "",
+      passwordConfirm:"",
       photo: '',
       status:''
     },
@@ -74,6 +75,13 @@ class Signup extends React.Component {
           <input
             type="password"
             name="password"
+            onChange={(event) => this.handleChange(event)}
+          />
+
+          <label htmlFor="passwordConfirm">Password</label>
+          <input
+            type="password"
+            name="passwordConfirm"
             onChange={(event) => this.handleChange(event)}
           />
 
