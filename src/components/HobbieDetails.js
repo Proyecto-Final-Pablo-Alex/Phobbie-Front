@@ -23,7 +23,8 @@ class HobbieDetails extends React.Component {
       _id: "",
     },
     loaded: false,
-    added: false
+    added: false,
+    requestSent: false,
   }
 
   componentDidMount() {
@@ -67,7 +68,8 @@ class HobbieDetails extends React.Component {
     axios({
       method: "post",
       url: "http://localhost:5000/hobbies/addToMyHobbies",
-      data: {_id, userId: this.state.user._id}
+      data: {_id, userId: this.state.user._id},
+      withCredentials: true
     })
     .then(result => {
         console.log(result)
@@ -82,7 +84,8 @@ class HobbieDetails extends React.Component {
     axios({
       method: "post",
       url: "http://localhost:5000/hobbies/removeFromMyHobbies",
-      data: {_id, userId: this.state.user._id}
+      data: {_id, userId: this.state.user._id},
+      withCredentials: true
     })
     .then(result => {
         console.log(result)
@@ -93,14 +96,30 @@ class HobbieDetails extends React.Component {
     })  
   }
 
+  sendFriendRequest(id){
+    axios({
+      method: "post",
+      url: "http://localhost:5000/send-request",
+      data: {requester: this.state.user._id, recipient: id},
+      withCredentials: true
+    })
+    .then(result => {
+      this.setState({...this.state, requestSent: true})
+    })
+    .catch(error => {
+      console.log(error)
+    })
+  }
+
   render() {
+
     const {name,photo,description,users, _id} = this.state.hobbie
     const sortedUsersByName = users.sort((a,b)=> a.username.localeCompare(b.username))
     const usersmap = sortedUsersByName.map((user, index)=>{
       return <li key={index}>
                 <img src={user.photo} alt={user.username} style={{width: "100px"}}/> 
                 <h3>{user.username}</h3>
-                <Link to={`/`}><button>Add friend</button></Link>
+                <button onClick={()=>this.sendFriendRequest(user._id)}>Send friend request</button>
               </li>
     })
     return this.state.loaded ? (

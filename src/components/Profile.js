@@ -16,7 +16,8 @@ class Profile extends React.Component {
       photo: '',
       status:''
     },
-    loaded: false
+    loaded: false,
+    requests: []
   }
 
   componentDidMount(){
@@ -26,19 +27,44 @@ class Profile extends React.Component {
       withCredentials: true
     })
     .then(result => {
-      console.log(result)
-      this.setState({user: result.data.result, loaded: true})
+      axios({
+        method: "post",
+        url: "http://localhost:5000/see-requests",
+        data: {_id: result.data.result._id},
+        withCredentials: true
+      })
+      .then(requests => {
+        console.log(requests)
+        const stateCopy = {...this.state}
+        stateCopy.user = result.data.result
+        stateCopy.requests = requests.data
+        stateCopy.loaded = true
+        this.setState(stateCopy)
+      })
     })
     .catch(error => {
       console.log(error)
-    })
-    
+    })  
   }
+
+
+  acceptFriendRequest(id){
+    axios({
+      method: "post",
+      url: "http://localhost:5000/accept-request",
+      withCredentials: true
+    })
+  }
+
+  rejectFriendRequest(id){
+
+  }
+
   render() {
     const { username, friends, photo, hobbies} = this.state.user;
-    console.log(friends)
-    console.log(hobbies)
-    let friendList, hobbiesList
+    const {requests} = this.state
+    console.log(requests)
+    let friendList, hobbiesList, friendRequests
     if (this.state.loaded){
       friendList = friends.map((friend, index) => {
         return (
@@ -56,12 +82,32 @@ class Profile extends React.Component {
           </li>
         );
       });
+      friendRequests = requests.map((req, index)=>{
+        return (
+          <li key={index}>
+            <img src={req.requester.photo} alt={req.requester.username} />
+            <p>{req.requester.username}</p>          
+            <button onClick={()=>this.acceptFriendRequest(req.requester._id)}>Accept</button>
+            <button onClick={()=>this.rejectFriendRequest(req.requester._id)}>Reject</button>
+          </li>
+        )
+      })
     }
     return (
       <div>
         <h1>Hola {username}</h1>
         <img src={photo} alt={`Foto de perfil de ${username}`} />
         <Link to="/edit-user">Edit user</Link>
+
+        {(this.state.requests.length !== 0)
+          ? <div>
+              <h2>Requests</h2>
+              <ul>{friendRequests}</ul>
+            </div>
+
+          : <div>
+            You don't have any friend requests
+            </div>}
 
           {(friends.length !== 0)
           ? <div>
