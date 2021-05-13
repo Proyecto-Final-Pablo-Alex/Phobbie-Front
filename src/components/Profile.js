@@ -48,16 +48,22 @@ class Profile extends React.Component {
   }
 
 
-  acceptFriendRequest(id){
+  acceptFriendRequest(requesterId, reqId){
     axios({
       method: "post",
       url: "http://localhost:5000/accept-request",
+      data: {_id:reqId, requester:requesterId, recipient: this.state.user._id},
       withCredentials: true
     })
   }
 
-  rejectFriendRequest(id){
-
+  rejectFriendRequest(requesterId, reqId){
+    axios({
+      method: "post",
+      url: "http://localhost:5000/reject-request",
+      data: {_id:reqId, requester:requesterId, recipient: this.state.user._id},
+      withCredentials: true
+    })
   }
 
   render() {
@@ -87,8 +93,8 @@ class Profile extends React.Component {
           <li key={index}>
             <img src={req.requester.photo} alt={req.requester.username} />
             <p>{req.requester.username}</p>          
-            <button onClick={()=>this.acceptFriendRequest(req.requester._id)}>Accept</button>
-            <button onClick={()=>this.rejectFriendRequest(req.requester._id)}>Reject</button>
+            <button onClick={()=>this.acceptFriendRequest(req.requester._id, req._id)}>Accept</button>
+            <button onClick={()=>this.rejectFriendRequest(req.requester._id, req._id)}>Reject</button>
           </li>
         )
       })
