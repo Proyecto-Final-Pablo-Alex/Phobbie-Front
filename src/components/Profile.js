@@ -76,7 +76,7 @@ class Profile extends React.Component {
         return (
           <li key={index}>
             <img src={friend.photo} alt={`${friend.name} foto`} />
-            {friend.name}
+            <p>{friend.username}</p>
           </li>
         );
       });
