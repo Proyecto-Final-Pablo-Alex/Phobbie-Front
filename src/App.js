@@ -9,6 +9,8 @@ import AllHobbies from "./components/AllHobbies";
 import AddHobbie from "./components/AddHobbie";
 import Navbar from "./components/Navbar";
 import HobbieDetails from "./components/HobbieDetails";
+import FriendProfile from "./components/FriendProfile";
+
 
 class App extends React.Component {
   state = {
@@ -82,6 +84,11 @@ class App extends React.Component {
             path="/hobbie-details/:name"
             exact
             component={(routeProps) => <HobbieDetails {...routeProps} />}
+          />
+          <Route
+            path="/return-friend/:id"
+            exact
+            component={(routeProps) => <FriendProfile {...routeProps} />}
           />
         </Switch>
       </div>
