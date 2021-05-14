@@ -143,6 +143,7 @@ class HobbieDetails extends React.Component {
       return <li key={index}>
                 <img src={user.photo} alt={user.username} style={{width: "100px"}}/> 
                 <h3>{user.username}</h3>
+                {/* {this.state.user.friends.includes} */}
                 <button onClick={()=>this.sendFriendRequest(user._id)}>Send friend request</button>
               </li>
     })

@@ -54,6 +54,7 @@ class Profile extends React.Component {
   }
 
   componentDidUpdate(){
+    
     axios({
       method: "get",
       url: "http://localhost:5000/return-user",
@@ -73,12 +74,18 @@ class Profile extends React.Component {
         stateCopy.requests = requests.data
         stateCopy.requestCounter = requests.data.length
         stateCopy.loaded = true
-        this.setState(stateCopy)
+        if (requests.data.length === this.state.requests.length && this.state.user.friends.length === result.data.result.friends.length){
+          console.log(requests)
+          
+        } else {
+          this.setState(stateCopy)
+        }
       })
     })
     .catch(error => {
       console.log(error)
     })
+     
   }
 
 
@@ -122,6 +129,7 @@ this.setState({...this.state, requestCounter: this.state.requestCounter-1})
       withCredentials: true
     })
     .then(result => {
+      this.setState({...this.state})
       console.log(result)
     })
     .catch(error => {
@@ -157,7 +165,7 @@ this.setState({...this.state, requestCounter: this.state.requestCounter-1})
   }
 
   render() {
-    const { username, friends, photo, hobbies} = this.state.user;
+    const { username, friends, photo, hobbies,status,age,location} = this.state.user;
     const {requests} = this.state
     console.log(requests)
     let friendList, hobbiesList, friendRequests
@@ -173,10 +181,12 @@ this.setState({...this.state, requestCounter: this.state.requestCounter-1})
       });
       hobbiesList = hobbies.map((hobbie, index) => {
         return (
-          <li key={index}>
-            <img src={hobbie.photo} alt={`${hobbie.name} foto`} style={{width: "200px"}} />
-            {hobbie.name}
-          </li>
+          <Link to={`/hobbie-details/${hobbie.name}`}>
+            <li key={index}>
+              <img src={hobbie.photo} alt={`${hobbie.name} foto`} style={{width: "200px"}} />
+              {hobbie.name}
+            </li>
+          </Link>
         )
       })
       friendRequests = requests.map((req, index)=>{
@@ -192,8 +202,22 @@ this.setState({...this.state, requestCounter: this.state.requestCounter-1})
     }
     return (!this.props.logInSuccess) ? <Redirect to="/signup" /> : (
       <div>
-        <h1>Hola {username}</h1>
         <img src={photo} alt={`Foto de perfil de ${username}`} />
+        <div>
+          <h1>Welcome, {username}</h1>
+          <p>
+            <b>Status:</b> {status}
+          </p>
+          <p>
+            <b>Age:</b> {age}
+          </p>
+          <p>
+            <b>Location:</b> {location}
+          </p>
+          <p>
+            {friends.length} friends
+          </p>
+        </div>
         <Link to="/edit-user"><button>Edit user</button></Link>
         <button onClick={()=>this.deleteAccountButton()}>Delete account</button>
         {this.state.delButton ? (

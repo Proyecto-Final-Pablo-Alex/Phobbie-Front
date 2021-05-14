@@ -1,6 +1,6 @@
 import React from "react";
 import axios from 'axios'
-import { Redirect } from "react-router-dom";
+import { Redirect,Link } from "react-router-dom";
 
 class EditUser extends React.Component {
 
@@ -151,6 +151,7 @@ class EditUser extends React.Component {
           <button>Edit profile</button>
           {this.state.errorMessage ? <p>You have to write the same password on "Password" and "Confirm Password" fields</p> : null}
         </form>
+        <Link to="/profile"><button>Go back</button></Link>
       </div>
     )
   }
