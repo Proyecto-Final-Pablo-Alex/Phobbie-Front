@@ -37,33 +37,24 @@ class FriendProfile extends React.Component {
 
     render(){
         const {username, friends, photo, hobbies,status,age,location} = this.state.user;
-        let friendList, hobbiesList
+        let hobbiesList
         if (this.state.loaded){
-          friendList = friends.map((friend, index) => {
-            return (
-              <li key={index}>
-                <img src={friend.photo} alt={`${friend.name} foto`} />
-                <p>{friend.username}</p>
-                <button onClick={()=>this.deleteFriend(friend._id)}>Delete Friend</button>
-              </li>
-            );
-          });
           hobbiesList = hobbies.map((hobbie, index) => {
             return (
-              <Link to={`/hobbie-details/${hobbie.name}`}>
                 <li key={index}>
                   <img src={hobbie.photo} alt={`${hobbie.name} foto`} style={{width: "200px"}} />
                   {hobbie.name}
+                  <Link to={`/hobbie-details/${hobbie.name}`}><button>See details</button></Link>
                 </li>
-              </Link>
             )
           })
         }
         return this.state.loaded ? (
           <div>
             <img src={photo} alt={`Foto de perfil de ${username}`} />
+
             <div>
-              <h1>Welcome, {username}</h1>
+              <h1>{username} profile</h1>
               <p>
                 <b>Status:</b> {status}
               </p>
@@ -77,28 +68,16 @@ class FriendProfile extends React.Component {
                 {friends.length} friends
               </p>
             </div>
-    
-              {(friends.length !== 0)
-              ? <div>
-                  <h2>Friends</h2>
-                  <ul>{friendList}</ul>
+
+            {(hobbies.length !== 0)
+            ?   <div>
+                    <h2>Hobbies</h2>
+                    <ul>{hobbiesList}</ul>
                 </div>
-    
-              : <div>
-                No friends yet
-                </div>}
-              
-              {(hobbies.length !== 0)
-              ? <div>
-                  <h2>Hobbies</h2>
-                  <ul>{hobbiesList}</ul>
-                </div>
-    
-              : <div>
-                No hobbies yet
-                </div>}
-              
-              </div>
+
+            :   <p>No hobbies yet</p>}
+            
+            </div>
         )
         : <p>Loading...</p>
       }

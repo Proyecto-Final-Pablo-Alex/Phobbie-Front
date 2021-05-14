@@ -173,22 +173,20 @@ this.setState({...this.state, requestCounter: this.state.requestCounter-1})
       friendList = friends.map((friend, index) => {
         return (
           <li key={index}>
-          <Link to={`/return-friend/${friend._id}`}>
             <img src={friend.photo} alt={`${friend.username} foto`} />
             <p>{friend.username}</p>
-          </Link>
             <button onClick={()=>this.deleteFriend(friend._id)}>Delete Friend</button>
+            <Link to={`/return-friend/${friend._id}`}> <button>See profile</button> </Link>
           </li>
         );
       });
       hobbiesList = hobbies.map((hobbie, index) => {
         return (
-          <Link to={`/hobbie-details/${hobbie.name}`}>
-            <li key={index}>
-              <img src={hobbie.photo} alt={`${hobbie.name} foto`} style={{width: "200px"}} />
-              {hobbie.name}
-            </li>
-          </Link>
+          <li key={index}>
+            <img src={hobbie.photo} alt={`${hobbie.name} foto`} style={{width: "200px"}} />
+            {hobbie.name}
+            <Link to={`/hobbie-details/${hobbie.name}`}><button>See details</button></Link>
+          </li>
         )
       })
       friendRequests = requests.map((req, index)=>{
