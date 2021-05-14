@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
 
 class HobbieDetails extends React.Component {
   state = {
@@ -127,7 +126,7 @@ class HobbieDetails extends React.Component {
     const {usersChecked} = this.state
     if (usersChecked === false){
       const filteredUsers = this.state.hobbie.users.filter(user=>{
-        return user.location == this.state.user.location
+        return user.location === this.state.user.location
       })
       this.setState({...this.state, usersChecked: true, renderUsers: filteredUsers})
     }else{
