@@ -176,7 +176,7 @@ this.setState({...this.state, requestCounter: this.state.requestCounter-1})
             <img src={friend.photo} alt={`${friend.username} foto`} />
             <p>{friend.username}</p>
             <button onClick={()=>this.deleteFriend(friend._id)}>Delete Friend</button>
-            <Link to={`/return-friend/${friend._id}`}> <button>See profile</button> </Link>
+            <Link to={`/return-friend/${friend._id}`}><button>See profile</button></Link>
           </li>
         );
       });

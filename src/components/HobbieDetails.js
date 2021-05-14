@@ -76,7 +76,7 @@ class HobbieDetails extends React.Component {
     })
     .then(result => {
         console.log(result)
-      this.setState({...this.state, user: result.data.user, hobbie: result.data.hobbie, added: true})
+      this.setState({...this.state, user: result.data.user, hobbie: result.data.hobbie, renderUsers: result.data.hobbie.users, added: true})
     })
     .catch(error => {
       console.log(error)
@@ -92,7 +92,7 @@ class HobbieDetails extends React.Component {
     })
     .then(result => {
         console.log(result)
-        this.setState({...this.state, user: result.data.user, hobbie: result.data.hobbie, added: false})
+        this.setState({...this.state, user: result.data.user, hobbie: result.data.hobbie, renderUsers: result.data.hobbie.users, added: false})
     })
     .catch(error => {
       console.log(error)
