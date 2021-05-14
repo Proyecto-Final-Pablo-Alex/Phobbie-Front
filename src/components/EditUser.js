@@ -1,5 +1,6 @@
 import React from "react";
 import axios from 'axios'
+import { Redirect } from "react-router-dom";
 
 class EditUser extends React.Component {
 
@@ -12,10 +13,12 @@ class EditUser extends React.Component {
             hobbies: [],
             _id: "",
             password: "",
+            confirmPassword:"",
             photo: '',
             status:''
           },
           successEditing: false,
+          errorMessage:false
     }
     componentDidMount(){
       const user=this.props.user
@@ -27,44 +30,50 @@ class EditUser extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        if (event.target.photo.files.length > 0)
-        {let photo = event.target.photo.files[0]
-        let uploadForm = new FormData()
-        uploadForm.append('imageUrl', photo)
-        axios({
-          method: 'post',
-          url: 'http://localhost:5000/upload',
-          data: uploadForm,
-          withCredentials: true
-        })
-        .then(image => {
-          axios({
-            method: "post",
-            url: "http://localhost:5000/edit-user",
-            data: {...this.state.user, photo: image.data.image},
-            withCredentials: true
-          })
-          .then((res)=>{
-            console.log(res)
-          })
-        })
-          .catch(error => {
+        if(this.state.user.password === this.state.user.confirmPassword){
+          if (event.target.photo.files.length > 0){
+            let photo = event.target.photo.files[0]
+            let uploadForm = new FormData()
+            uploadForm.append('imageUrl', photo)
+            axios({
+              method: 'post',
+              url: 'http://localhost:5000/upload',
+              data: uploadForm,
+              withCredentials: true
+            })
+            .then(image => {
+              axios({
+                method: "post",
+                url: "http://localhost:5000/edit-user",
+                data: {...this.state.user, photo: image.data.image},
+                withCredentials: true
+              })
+              .then((res)=>{
+                console.log(res)
+                this.setState({...this.state, successEditing:true})
+              })
+            })
+            .catch(error => {
+              console.log(error)
+            })
+        }else{
+            axios({
+              method: "post",
+              url: "http://localhost:5000/edit-user",
+              data: {...this.state.user},
+              withCredentials: true
+            })
+            .then((res)=>{
+              console.log(res)
+              this.setState({...this.state, successEditing:true})
+            })
+            .catch(error => {
             console.log(error)
-        })
-      }else{
-          axios({
-            method: "post",
-            url: "http://localhost:5000/edit-user",
-            data: {...this.state.user},
-            withCredentials: true
-          })
-          .then((res)=>{
-            console.log(res)
-          })
-          .catch(error => {
-          console.log(error)
-          })
-          }
+            })
+            }
+        } else{
+         this.setState({...this.state, errorMessage:true}) 
+        }
       }
 
       handleChange(event) { 
@@ -85,8 +94,8 @@ class EditUser extends React.Component {
 
     const allOptions=provincias.map((provincia, index)=>{return(<option key={index}>{provincia}</option>)})
 
-    const {photo, password, age, _id, location,status} = this.props.user
-    return (
+    const {photo, age, _id, location,status} = this.props.user
+    return this.state.successEditing ? <Redirect to="/profile"/> : (
       <div>
        <h1>Edit profile</h1>
         <form onSubmit={(event) => this.handleSubmit(event)}>
@@ -100,13 +109,7 @@ class EditUser extends React.Component {
           />
           <input type="text" name="actualPhoto" hidden value={photo} />
 
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            name="password"
-            onChange={(event) => this.handleChange(event)}
-            defaultValue={password}
-          />
+          
 
           <label htmlFor="age">Age</label>
           <input
@@ -129,8 +132,24 @@ class EditUser extends React.Component {
             defaultValue={status}
           />
 
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            name="password"
+            onChange={(event) => this.handleChange(event)}
+            placeholder= "Enter your password"
+          />
+
+          <label htmlFor="confirmPassword">Confirm Password</label>
+          <input
+            type="password"
+            name="confirmPassword"
+            onChange={(event) => this.handleChange(event)}
+            placeholder= "repeat password"
+          />
+
           <button>Edit profile</button>
-          
+          {this.state.errorMessage ? <p>You have to write the same password on "Password" and "Confirm Password" fields</p> : null}
         </form>
       </div>
     )

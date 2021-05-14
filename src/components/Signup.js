@@ -78,7 +78,7 @@ class Signup extends React.Component {
             onChange={(event) => this.handleChange(event)}
           />
 
-          <label htmlFor="passwordConfirm">Password</label>
+          <label htmlFor="passwordConfirm">Confirm Password</label>
           <input
             type="password"
             name="passwordConfirm"

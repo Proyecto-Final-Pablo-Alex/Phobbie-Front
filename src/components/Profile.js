@@ -18,6 +18,7 @@ class Profile extends React.Component {
     },
     loaded: false,
     requests: [],
+    requestCounter: "",
     delButton:false,
     delButtonConfirm: "",
     deleted:false
@@ -42,6 +43,7 @@ class Profile extends React.Component {
         const stateCopy = {...this.state}
         stateCopy.user = result.data.result
         stateCopy.requests = requests.data
+        stateCopy.requestCounter = requests.data.length
         stateCopy.loaded = true
         this.setState(stateCopy)
       })
@@ -49,6 +51,34 @@ class Profile extends React.Component {
     .catch(error => {
       console.log(error)
     })  
+  }
+
+  componentDidUpdate(){
+    axios({
+      method: "get",
+      url: "http://localhost:5000/return-user",
+      withCredentials: true
+    })
+    .then(result => {
+      axios({
+        method: "post",
+        url: "http://localhost:5000/see-requests",
+        data: {_id: result.data.result._id},
+        withCredentials: true
+      })
+      .then(requests => {
+        console.log(requests)
+        const stateCopy = {...this.state}
+        stateCopy.user = result.data.result
+        stateCopy.requests = requests.data
+        stateCopy.requestCounter = requests.data.length
+        stateCopy.loaded = true
+        this.setState(stateCopy)
+      })
+    })
+    .catch(error => {
+      console.log(error)
+    })
   }
 
 
@@ -61,6 +91,7 @@ class Profile extends React.Component {
     })
     .then(result => {
       console.log(result)
+      this.setState({...this.state, requestCounter: this.state.requestCounter - 1})
     })
     .catch(error => {
       console.log(error)
@@ -76,6 +107,7 @@ class Profile extends React.Component {
     })
     .then(result => {
       console.log(result)
+this.setState({...this.state, requestCounter: this.state.requestCounter-1})
     })
     .catch(error => {
       console.log(error)
