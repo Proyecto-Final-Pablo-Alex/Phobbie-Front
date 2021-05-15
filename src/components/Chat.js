@@ -69,10 +69,12 @@ class Chat extends React.Component {
             <p>{message.date}</p>
            </div>
         })
-        const friend = this.state.chat.participants.filter()
+        const friend = this.state.chat.participants.filter(participant=>{
+            return(participant._id !== req.props.username)
+        })
         return(
             <div>
-                <h2>Chatting with {}</h2>
+                <h2>Chatting with {friend.username}</h2>
                 <div>
                     {messages}
                 </div>
