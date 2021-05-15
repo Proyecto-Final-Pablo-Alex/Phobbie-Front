@@ -10,26 +10,28 @@ class Chat extends React.Component {
             room:'',
             messages:[],
         },
-        message:'',
+        message: '',
         loaded:false,
     }
 
     componentDidMount(){
-        axios({
-            method: "get",
-            url: `http://localhost:5000/return-chat/${this.props.match.params.id}`,
-            withCredentials: true
-          })
-          .then(result => {
-              console.log(result.data)
-              const stateCopy = {...this.state}
-              stateCopy.chat = result.data.result
-              stateCopy.loaded = true
-              this.setState(stateCopy)
-          })
-          .catch(error => {
-              console.log(error)
-          })  
+        const socket = io('http://localhost:5000')
+        console.log(socket)
+        // axios({
+        //     method: "get",
+        //     url: `http://localhost:5000/return-chat/${this.props.match.params.id}`,
+        //     withCredentials: true
+        //   })
+        //   .then(result => {
+        //       console.log(result.data)
+        //       const stateCopy = {...this.state}
+        //       stateCopy.chat = result.data.result
+        //       stateCopy.loaded = true
+        //       this.setState(stateCopy)
+        //   })
+        //   .catch(error => {
+        //       console.log(error)
+        //   })  
     }
 
     componentDidUpdate(){

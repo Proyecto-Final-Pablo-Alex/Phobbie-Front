@@ -26,6 +26,7 @@ class Navbar extends React.Component {
     render(){
         return this.props.logInSuccess ? (
             <div>
+
                 <Link to="/profile"><button> My profile </button></Link>
                 <Link to="/all-hobbies"><button>All Hobbies </button></Link>
                 <Link to="/"><button onClick={()=>this.logout()}>Logout</button></Link>

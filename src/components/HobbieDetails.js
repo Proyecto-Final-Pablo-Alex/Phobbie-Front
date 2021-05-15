@@ -134,17 +134,25 @@ class HobbieDetails extends React.Component {
     }
   }
 
+  checkIfFriends(username){
+    const {friends} = this.state.user
+    const booleanArr = friends.filter(friend=>{
+      return friend.username === username
+      })
+    return booleanArr.length > 0
+  }
+
   render() {
 
     const {name,photo,description, _id} = this.state.hobbie
     const {renderUsers} = this.state
     const sortedUsersByName = renderUsers.sort((a,b)=> a.username.localeCompare(b.username))
-    const usersmap = sortedUsersByName.map((user, index)=>{
+    const filteredUsers = sortedUsersByName.filter(user=>user._id !== this.state.user._id)
+    const usersmap = filteredUsers.map((user, index)=>{
       return <li key={index}>
                 <img src={user.photo} alt={user.username} style={{width: "100px"}}/> 
                 <h3>{user.username}</h3>
-                {/* {this.state.user.friends.includes} */}
-                <button onClick={()=>this.sendFriendRequest(user._id)}>Send friend request</button>
+                {this.checkIfFriends(user.username) ? <button disabled>Already friends</button> : <button onClick={()=>this.sendFriendRequest(user._id)}>Send friend request</button>}
               </li>
     })
     return this.state.loaded ? (
