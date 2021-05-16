@@ -24,7 +24,7 @@ class ChatList extends React.Component {
               })
             .then((user)=>{
                 const stateCopy = {...this.state}
-                stateCopy.chats = result.data.result
+                stateCopy.chats = result.data
                 stateCopy.user = user.data.result
                 stateCopy.loaded = true
                 this.setState(stateCopy)
@@ -34,7 +34,9 @@ class ChatList extends React.Component {
         });
     }
     render(){
-        const allChats = this.chats.map((chat)=>{
+        let allChats
+        if (this.state.loaded){
+        allChats = this.state.chats.map((chat)=>{
             const friend = chat.participants.filter(participant => participant._id !== this.state.user._id)[0]
             const unreadMsgs = chat.messages.filter(message=> message.status === "UNREAD")
             return(
@@ -46,7 +48,7 @@ class ChatList extends React.Component {
                     </div>
                 </div>
             )
-        })
+        })}
         return this.state.loaded ? (
             <div>
                 <ProfileNavbar />
