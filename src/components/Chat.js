@@ -66,14 +66,15 @@ class Chat extends React.Component {
         this.setState({...this.state, message: value})
       }
 
-      sendMessage(){
+      sendMessage(e){
+        e.preventDefault()
           const {message} = this.state
           if (message === ""){
               return null
           }else{
             axios({
                 method: 'post',
-                url: 'http://localhost:5000',
+                url: `http://localhost:5000/send-msg/${this.props.match.params._id}`,
                 data: {
                     message: message,
                     date: new Date(),
@@ -118,7 +119,7 @@ class Chat extends React.Component {
                 <div>
                     <form action="">
                         <input type="text" name="message" onChange={(e)=>this.handleInput(e)}/>
-                        <button onClick={()=>this.sendMessage()}>Send</button>
+                        <button onClick={(e)=>this.sendMessage(e)}>Send</button>
                     </form>
                 </div>
             </div>
