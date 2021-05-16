@@ -26,6 +26,7 @@ class Chat extends React.Component {
                stateCopy.loaded = true
                stateCopy.friendName = result.data.participants.filter(participant=>(participant._id !== this.props.user._id))[0].username
                this.setState(stateCopy)
+               this.nameInput.focus();
                this.scrollToBottom();
                this.chatCheck()
            })
@@ -131,7 +132,7 @@ class Chat extends React.Component {
                 </div>
                 <div>
                     <form action="">
-                        <input type="text" name="message" value={this.state.message} onChange={(e)=>this.handleInput(e)} autoComplete="off"/>
+                        <input type="text" name="message" ref={(input) => { this.nameInput = input; }} value={this.state.message} onChange={(e)=>this.handleInput(e)} autoComplete="off"/>
                         <button onClick={(e)=>this.sendMessage(e)}>Send</button>
                     </form>
                 </div>
