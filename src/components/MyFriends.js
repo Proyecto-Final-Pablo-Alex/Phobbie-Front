@@ -5,7 +5,7 @@ import ProfileNavbar from "./ProfileNavbar";
 
 
 class MyFriends extends React.Component {
-    stat={
+    state={
         user:{},
         requests: [],
         loaded:false,
@@ -36,8 +36,76 @@ class MyFriends extends React.Component {
       console.log(error)
     })  
   }
+
+    componentDidUpdate(){
+        
+        axios({
+        method: "get",
+        url: "http://localhost:5000/return-user",
+        withCredentials: true
+        })
+        .then(result => {
+        axios({
+            method: "post",
+            url: "http://localhost:5000/see-requests",
+            data: {_id: result.data.result._id},
+            withCredentials: true
+        })
+        .then(requests => {
+            console.log(requests)
+            const stateCopy = {...this.state}
+            stateCopy.user = result.data.result
+            stateCopy.requests = requests.data
+            stateCopy.loaded = true
+            if (requests.data.length === this.state.requests.length && this.state.user.friends.length === result.data.result.friends.length){
+            console.log(requests)
+            } else {
+            this.setState(stateCopy)
+            }
+        })
+        })
+        .catch(error => {
+        console.log(error)
+        })
+        
+    }
+
+
+    acceptFriendRequest(requesterId, reqId){
+        axios({
+          method: "post",
+          url: "http://localhost:5000/accept-request",
+          data: {_id:reqId, requester:requesterId, recipient: this.state.user._id},
+          withCredentials: true
+        })
+        .then(result => {
+          console.log(result)
+          this.setState({...this.state})
+        })
+        .catch(error => {
+          console.log(error)
+        })
+      }
+    
+      rejectFriendRequest(requesterId, reqId){
+        axios({
+          method: "post",
+          url: "http://localhost:5000/reject-request",
+          data: {_id:reqId, requester:requesterId, recipient: this.state.user._id},
+          withCredentials: true
+        })
+        .then(result => {
+            console.log(result)
+            this.setState({...this.state})
+        })
+        .catch(error => {
+          console.log(error)
+        })
+      }
+
+
     render(){
-        const { username, friends, photo, hobbies,status,age,location} = this.state.user;
+        const {friends} = this.state.user;
         const {requests} = this.state
         console.log(requests)
         let friendList, friendRequests
@@ -62,13 +130,33 @@ class MyFriends extends React.Component {
                 )
             })
         }
-            return(
+            return this.state.loaded ? (
                 <div>
                     <ProfileNavbar />
-                    <h1>Friends</h1>
+                    {(this.state.requests.length !== 0)
+                        ?   <div>
+                                <h2>Requests</h2>
+                                <ul>{friendRequests}</ul>
+                            </div>
+
+                        :   <div>
+                                <h2>Requests</h2>
+                                You don't have any friend requests
+                            </div>}
+                    
+                    {(friends.length !== 0)
+                        ? <div>
+                            <h2>Friends</h2>
+                            <ul>{friendList}</ul>
+                            </div>
+
+                        : <div>
+                            <h2>Friends</h2>
+                            You don't have friends yet
+                            </div>}
                 </div>
                 
-            )
+            ) : null
     }
 }
 export default MyFriends;
