@@ -1,6 +1,8 @@
 import React from "react";
 import { Link, Redirect } from "react-router-dom";
 import axios from 'axios'
+import ProfileNavbar from "./ProfileNavbar";
+
 
 class Profile extends React.Component {
 
@@ -185,6 +187,7 @@ this.setState({...this.state, requestCounter: this.state.requestCounter-1})
     }
     return (!this.props.logInSuccess) ? <Redirect to="/signup" /> : (
       <div>
+        <ProfileNavbar />
         <img src={photo} alt={`Foto de perfil de ${username}`} />
         <div>
           <h1>Welcome, {username}</h1>
