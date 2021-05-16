@@ -151,10 +151,10 @@ this.setState({...this.state, requestCounter: this.state.requestCounter-1})
   }
 
   render() {
-    const { username, friends, photo, hobbies,status,age,location} = this.state.user;
+    const { username, friends, photo,status,age,location} = this.state.user;
     const {requests} = this.state
     console.log(requests)
-    let friendList, hobbiesList, friendRequests
+    let friendList, friendRequests
     if (this.state.loaded){
       friendList = friends.map((friend, index) => {
         return (
@@ -165,15 +165,6 @@ this.setState({...this.state, requestCounter: this.state.requestCounter-1})
           </li>
         );
       });
-      hobbiesList = hobbies.map((hobbie, index) => {
-        return (
-          <li key={index}>
-            <img src={hobbie.photo} alt={`${hobbie.name} foto`} style={{width: "200px"}} />
-            {hobbie.name}
-            <Link to={`/hobbie-details/${hobbie.name}`}><button>See details</button></Link>
-          </li>
-        )
-      })
       friendRequests = requests.map((req, index)=>{
         return (
           <li key={index}>
@@ -234,16 +225,6 @@ this.setState({...this.state, requestCounter: this.state.requestCounter-1})
 
           : <div>
             You don't have friends yet
-            </div>}
-          
-          {(hobbies.length !== 0)
-          ? <div>
-              <h2>Hobbies</h2>
-              <ul>{hobbiesList}</ul>
-            </div>
-
-          : <div>
-            You don't have hobbies yet
             </div>}
           
           </div>

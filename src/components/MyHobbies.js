@@ -57,9 +57,18 @@ class MyHobbies extends React.Component {
             <div>
                 <ProfileNavbar />
                 <h1>My Hobbies</h1>
-                <ul>
-                    {hobbiesList}
-                </ul>
+                {this.state.user.hobbies.length !== 0 ?
+                (
+                    <ul>
+                        {hobbiesList}
+                    </ul>
+                ) : (
+                    <div>
+                        <p>You don't have any hobbies added yet.</p>
+                        <Link to="/all-hobbies" >Go add some!</Link>
+                    </div>
+                )
+                }
             </div>
             
         )
