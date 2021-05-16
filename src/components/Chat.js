@@ -131,7 +131,7 @@ class Chat extends React.Component {
                 </div>
                 <div>
                     <form action="">
-                        <input type="text" name="message" value={this.state.message} onChange={(e)=>this.handleInput(e)}/>
+                        <input type="text" name="message" value={this.state.message} onChange={(e)=>this.handleInput(e)} autoComplete="off"/>
                         <button onClick={(e)=>this.sendMessage(e)}>Send</button>
                     </form>
                 </div>
