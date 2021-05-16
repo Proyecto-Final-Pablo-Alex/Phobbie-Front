@@ -1,10 +1,21 @@
 import axios from "axios";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 class FriendProfile extends React.Component {
     state = {
-        user: {
+      user: {
+        username: "",
+        age: "",
+        location: "",
+        friends: [],
+        hobbies: [],
+        _id: "",
+        password: "",
+        photo: "",
+        status:''
+      },
+        friend: {
           username: "",
           age: '',
           location: '',
@@ -15,6 +26,7 @@ class FriendProfile extends React.Component {
           status:''
         },
         loaded: false,
+        deleted: false
     }
 
     componentDidMount(){
@@ -26,7 +38,8 @@ class FriendProfile extends React.Component {
         .then(result => {
             console.log(result.data)
             const stateCopy = {...this.state}
-            stateCopy.user = result.data.result
+            stateCopy.friend = result.data.result
+            stateCopy.user = this.props.user
             stateCopy.loaded = true
             this.setState(stateCopy)
         })
@@ -35,8 +48,24 @@ class FriendProfile extends React.Component {
         })  
       }
 
+      deleteFriend(friendId){
+        axios({
+          method: "post",
+          url: "http://localhost:5000/delete-friend",
+          data: {requester:this.state.user._id, recipient:friendId},
+          withCredentials: true
+        })
+        .then(result => {
+          this.setState({...this.state, deleted: true})
+          console.log(result)
+        })
+        .catch(error => {
+          console.log(error)
+        })
+      }
+
     render(){
-        const {username, friends, photo, hobbies,status,age,location} = this.state.user;
+        const {_id, username, friends, photo, hobbies,status,age,location} = this.state.friend;
         let hobbiesList
         if (this.state.loaded){
           hobbiesList = hobbies.map((hobbie, index) => {
@@ -49,7 +78,7 @@ class FriendProfile extends React.Component {
             )
           })
         }
-        return this.state.loaded ? (
+        return this.state.deleted ? <Redirect to="/profile" /> : this.state.loaded ? (
           <div>
             <img src={photo} alt={`Foto de perfil de ${username}`} />
 
@@ -68,6 +97,7 @@ class FriendProfile extends React.Component {
                 {friends.length} friends
               </p>
             </div>
+            <button onClick={()=>this.deleteFriend(_id)}>Delete Friend</button>
 
             {(hobbies.length !== 0)
             ?   <div>

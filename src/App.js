@@ -88,7 +88,7 @@ class App extends React.Component {
           <Route
             path="/return-friend/:id"
             exact
-            component={(routeProps) => <FriendProfile {...routeProps} />}
+            component={(routeProps) => <FriendProfile {...routeProps} user={this.state.user}/>}
           />
         </Switch>
       </div>

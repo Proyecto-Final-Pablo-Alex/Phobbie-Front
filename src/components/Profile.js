@@ -121,22 +121,6 @@ this.setState({...this.state, requestCounter: this.state.requestCounter-1})
     })
   }
 
-  deleteFriend(friendId){
-    axios({
-      method: "post",
-      url: "http://localhost:5000/delete-friend",
-      data: {requester:this.state.user._id, recipient:friendId},
-      withCredentials: true
-    })
-    .then(result => {
-      this.setState({...this.state})
-      console.log(result)
-    })
-    .catch(error => {
-      console.log(error)
-    })
-  }
-
   deleteAccountButton(){
     if(!this.state.delButton){
       this.setState({...this.state, delButton:true})
@@ -175,7 +159,6 @@ this.setState({...this.state, requestCounter: this.state.requestCounter-1})
           <li key={index}>
             <img src={friend.photo} alt={`${friend.username} foto`} />
             <p>{friend.username}</p>
-            <button onClick={()=>this.deleteFriend(friend._id)}>Delete Friend</button>
             <Link to={`/return-friend/${friend._id}`}><button>See profile</button></Link>
           </li>
         );
