@@ -113,7 +113,7 @@ class Chat extends React.Component {
             <div>
                 <Link to="/my-chats">Go back to all chats</Link>
                 <h2>Chatting with {friend.username}</h2>
-                <div style={{height: "400px", border: "3px solid black"}}>
+                <div style={{height: "400px", border: "3px solid black", overflowY: "auto"}}>
                     {messages}
                 </div>
                 <div>
