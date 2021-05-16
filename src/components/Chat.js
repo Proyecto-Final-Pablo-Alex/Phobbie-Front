@@ -22,7 +22,7 @@ class Chat extends React.Component {
            .then(result => {
                console.log(result.data)
                const stateCopy = {...this.state}
-               stateCopy.chat = result.data[0]
+               stateCopy.chat = result.data
                stateCopy.loaded = true
                console.log(stateCopy)
                this.setState(stateCopy)
