@@ -19,4 +19,45 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.chatBox {
+  height: 400px;
+  border: 3px solid black; 
+  overflow-y: auto;
+}
 
+.hiddenDivChat {
+  float:"left";
+  clear: "both";
+}
+
+.userMessage {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 10px;
+  div {
+    border-radius: 30px;
+    background-color: #ffd8a2;
+    font-weight: 400;
+    max-width: 70%;
+    width: auto;
+    padding: 5px 20px 10px;
+  }
+}
+
+.friendMessage {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 10px;
+  div {
+    border-radius: 30px;
+    background-color:#f7b081;
+    font-weight: 400;
+    max-width: 70%;
+    width: auto;
+    padding: 5px 20px 10px;
+  }
+}

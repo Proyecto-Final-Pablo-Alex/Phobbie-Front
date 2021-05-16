@@ -40,8 +40,8 @@ class ChatList extends React.Component {
             const friend = chat.participants.filter(participant => participant._id !== this.state.user._id)[0]
             const unreadMsgs = chat.messages.filter(message=> message.status === "UNREAD" && message.username !== this.state.user.username)
             return(
-                <Link to={`/chat/${friend._id}`}>
-                    <div key={index}>
+                <Link to={`/chat/${friend._id}`} key={index}>
+                    <div>
                         <img src={friend.photo} alt={friend.username}/>
                         <div>
                             <p><b>Chatting with {friend.username}</b></p>
