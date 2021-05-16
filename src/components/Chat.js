@@ -1,7 +1,7 @@
 import axios from "axios";
 import React from "react";
 import { Link } from "react-router-dom";
-
+let check
 
 class Chat extends React.Component {
     state={
@@ -12,7 +12,7 @@ class Chat extends React.Component {
         message: '',
         loaded:false
     }
-
+    
     componentDidMount(){
          axios({
              method: "get",
@@ -26,13 +26,14 @@ class Chat extends React.Component {
                stateCopy.loaded = true
                console.log(stateCopy)
                this.setState(stateCopy)
+               this.chatCheck()
            })
            .catch(error => {
                console.log(error)
            })  
     }
 
-     componentDidUpdate(){
+     /* componentDidUpdate(){
         axios({
             method: "get",
             url: `http://localhost:5000/return-chat/${this.props.match.params._id}`,
@@ -48,6 +49,32 @@ class Chat extends React.Component {
           .catch(error => {
               console.log(error)
           })  
+     } */
+    
+     chatCheck(){
+            check = setInterval(() => {
+            axios({
+                method: "get",
+                url: `http://localhost:5000/return-chat/${this.props.match.params._id}`,
+                withCredentials: true
+              })
+              .then(result => {
+                  console.log("hola")
+                  const stateCopy = {...this.state}
+                  stateCopy.chat = result.data
+                  if(this.state.chat.messages.length !== result.data.messages.length){
+                    this.setState(stateCopy)
+                    }
+              })
+              .catch(error => {
+                  console.log(error)
+              })  
+         }, 3000);
+     }
+
+     componentWillUnmount(){
+         console.log("adios")
+         clearInterval(check)
      }
 
       handleInput(e){
