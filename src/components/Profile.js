@@ -73,15 +73,14 @@ class Profile extends React.Component {
         console.log(requests)
         const stateCopy = {...this.state}
         stateCopy.user = result.data.result
-        this.props.updateUser(result.data.result)
         stateCopy.requests = requests.data
         stateCopy.requestCounter = requests.data.length
         stateCopy.loaded = true
         if (requests.data.length === this.state.requests.length && this.state.user.friends.length === result.data.result.friends.length){
           console.log(requests)
-          
         } else {
           this.setState(stateCopy)
+          this.props.updateUser(result.data.result)
         }
       })
     })

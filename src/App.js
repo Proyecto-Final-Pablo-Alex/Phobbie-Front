@@ -41,13 +41,6 @@ class App extends React.Component {
     this.setState(stateCopy)
   }
 
-  editStateFromProfile(body) {
-    const stateCopy = { ...this.state }
-    stateCopy.user = body
-    stateCopy.logInSuccess = true
-    this.setState(stateCopy)
-  }
-
   editStateFromLogout(){
     const stateCopy = { ...this.state }
     stateCopy.user = {}
@@ -64,7 +57,7 @@ class App extends React.Component {
           <Route
             path="/profile"
             exact
-            component={() => <Profile logInSuccess={this.state.logInSuccess} updateUser={(body)=>this.editStateFromProfile(body)} setAppState={()=>this.editStateFromLogout()}/>}
+            component={() => <Profile logInSuccess={this.state.logInSuccess} setAppState={()=>this.editStateFromLogout()}/>}
           />
           <Route
             path="/login"
@@ -105,17 +98,17 @@ class App extends React.Component {
            <Route
             path="/my-hobbies"
             exact
-            component={() => <MyHobbies user={this.state.user}/>}
+            component={() => <MyHobbies />}
           />
            <Route
             path="/my-friends"
             exact
-            component={() => <MyFriends user={this.state.user}/>}
+            component={() => <MyFriends />}
           />
            <Route
             path="/my-chats"
             exact
-            component={() => <ChatList user={this.state.user}/>}
+            component={() => <ChatList />}
           />
         </Switch>
       </div>

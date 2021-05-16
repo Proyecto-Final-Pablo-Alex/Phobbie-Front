@@ -6,11 +6,60 @@ import ProfileNavbar from "./ProfileNavbar";
 
 
 class MyHobbies extends React.Component {
+
+    state = {
+        user: {
+          username: "",
+          age: '',
+          location: '',
+          friends: [],
+          hobbies: [],
+          _id: "",
+          password: "",
+          photo: '',
+          status:''
+        },
+        loaded: false
+    }
+
+    componentDidMount(){
+        axios({
+            method: "get",
+            url: "http://localhost:5000/return-user",
+            withCredentials: true
+        })
+        .then(result => {
+            const stateCopy = {...this.state}
+            stateCopy.user = result.data.result
+            stateCopy.loaded = true
+            this.setState(stateCopy)
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }
+
     render(){
+        let hobbiesList
+        if(this.state.loaded){
+            hobbiesList = this.state.user.hobbies.map((hobbie, index) => {
+                return (
+                  <li key={index}>
+                    <img src={hobbie.photo} alt={`${hobbie.name} foto`} style={{width: "200px"}} />
+                    {hobbie.name}
+                    <Link to={`/hobbie-details/${hobbie.name}`}><button>See details</button></Link>
+                  </li>
+                )
+              })
+        }
+
         return(
             <div>
                 <ProfileNavbar />
-                <h1>Hobbies</h1>
+                <h1>My Hobbies</h1>
+                <ul>
+                    {hobbiesList}
+                </ul>
             </div>
             
         )
