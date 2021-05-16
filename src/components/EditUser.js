@@ -49,7 +49,6 @@ class EditUser extends React.Component {
                 withCredentials: true
               })
               .then((res)=>{
-                console.log(res)
                 this.setState({...this.state, successEditing:true})
               })
             })
@@ -64,8 +63,7 @@ class EditUser extends React.Component {
               withCredentials: true
             })
             .then((res)=>{
-              console.log(res)
-              this.setState({...this.state, successEditing:true})
+             this.setState({...this.state, successEditing:true})
             })
             .catch(error => {
             console.log(error)
@@ -82,7 +80,6 @@ class EditUser extends React.Component {
           ...this.state,
           user: { ...this.state.user, [name]: value },
         });
-        console.log(this.state.user);  
       }
 
   render() {

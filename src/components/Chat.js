@@ -20,12 +20,11 @@ class Chat extends React.Component {
              withCredentials: true
            })
            .then(result => {
-               console.log(result.data)
                const stateCopy = {...this.state}
                stateCopy.chat = result.data
                stateCopy.loaded = true
-               console.log(stateCopy)
                this.setState(stateCopy)
+               this.scrollToBottom();
                this.chatCheck()
            })
            .catch(error => {
@@ -59,11 +58,11 @@ class Chat extends React.Component {
                 withCredentials: true
               })
               .then(result => {
-                  console.log("hola")
                   const stateCopy = {...this.state}
                   stateCopy.chat = result.data
                   if(this.state.chat.messages.length !== result.data.messages.length){
                     this.setState(stateCopy)
+                    this.scrollToBottom();
                     }
               })
               .catch(error => {
@@ -73,8 +72,7 @@ class Chat extends React.Component {
      }
 
      componentWillUnmount(){
-         console.log("adios")
-         clearInterval(check)
+        clearInterval(check)
      }
 
       handleInput(e){
@@ -99,7 +97,6 @@ class Chat extends React.Component {
                 withCredentials: true
             })
             .then(result => {
-                console.log(result)
                 this.setState({...this.state, message: ""})
             })
             .catch(error => {
@@ -108,7 +105,10 @@ class Chat extends React.Component {
           }
       }
 
-
+      scrollToBottom = () => {
+        this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+      }
+      
     render(){
         let messages, friend
         if(this.state.loaded){
@@ -131,6 +131,8 @@ class Chat extends React.Component {
                 <h2>Chatting with {friend.username}</h2>
                 <div style={{height: "400px", border: "3px solid black", overflowY: "auto"}}>
                     {messages}
+                    <div style={{ float:"left", clear: "both" }}
+                    ref={(el) => { this.messagesEnd = el; }}></div>
                 </div>
                 <div>
                     <form action="">

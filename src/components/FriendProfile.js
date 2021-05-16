@@ -36,7 +36,6 @@ class FriendProfile extends React.Component {
           withCredentials: true
         })
         .then(result => {
-            console.log(result.data)
             const stateCopy = {...this.state}
             stateCopy.friend = result.data.result
             stateCopy.user = this.props.user
@@ -57,7 +56,6 @@ class FriendProfile extends React.Component {
         })
         .then(result => {
           this.setState({...this.state, deleted: true})
-          console.log(result)
         })
         .catch(error => {
           console.log(error)

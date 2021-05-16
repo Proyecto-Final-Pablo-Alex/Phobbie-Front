@@ -75,7 +75,6 @@ class HobbieDetails extends React.Component {
       withCredentials: true
     })
     .then(result => {
-        console.log(result)
       this.setState({...this.state, user: result.data.user, hobbie: result.data.hobbie, renderUsers: result.data.hobbie.users, added: true})
     })
     .catch(error => {
@@ -91,7 +90,6 @@ class HobbieDetails extends React.Component {
       withCredentials: true
     })
     .then(result => {
-        console.log(result)
         this.setState({...this.state, user: result.data.user, hobbie: result.data.hobbie, renderUsers: result.data.hobbie.users, added: false})
     })
     .catch(error => {

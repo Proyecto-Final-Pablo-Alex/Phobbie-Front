@@ -29,7 +29,6 @@ class AllHobbies extends React.Component {
         withCredentials: true
       })
         .then((result) => {
-          console.log(result.data);
           const {hobbies} = result.data
           this.setState({...this.state, allHobbies: hobbies, copyAllHobbies: hobbies, user})
         })

@@ -24,7 +24,6 @@ class MyFriends extends React.Component {
         withCredentials: true
       })
       .then(requests => {
-        console.log(requests)
         const stateCopy = {...this.state}
         stateCopy.user = result.data.result
         stateCopy.requests = requests.data
@@ -52,13 +51,11 @@ class MyFriends extends React.Component {
             withCredentials: true
         })
         .then(requests => {
-            console.log(requests)
             const stateCopy = {...this.state}
             stateCopy.user = result.data.result
             stateCopy.requests = requests.data
             stateCopy.loaded = true
             if (requests.data.length === this.state.requests.length && this.state.user.friends.length === result.data.result.friends.length){
-            console.log(requests)
             } else {
             this.setState(stateCopy)
             }
@@ -79,7 +76,6 @@ class MyFriends extends React.Component {
           withCredentials: true
         })
         .then(result => {
-          console.log(result)
           this.setState({...this.state})
         })
         .catch(error => {
@@ -95,7 +91,6 @@ class MyFriends extends React.Component {
           withCredentials: true
         })
         .then(result => {
-            console.log(result)
             this.setState({...this.state})
         })
         .catch(error => {
@@ -107,7 +102,6 @@ class MyFriends extends React.Component {
     render(){
         const {friends} = this.state.user;
         const {requests} = this.state
-        console.log(requests)
         let friendList, friendRequests
         if (this.state.loaded){
             friendList = friends.map((friend, index) => {

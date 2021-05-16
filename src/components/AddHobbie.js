@@ -32,7 +32,6 @@ class AddHobbie extends React.Component {
   }
 
   handleSubmit(e) {
-    console.log(this.state.newHobbie);
     e.preventDefault();
     axios({
       method: "post",
@@ -41,7 +40,6 @@ class AddHobbie extends React.Component {
       withCredentials: true
     })
       .then((result) => {
-        console.log(result);
         this.setState({...this.state, hobbieCreated:true})
       })
       .catch((error) => {

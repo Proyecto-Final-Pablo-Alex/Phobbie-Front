@@ -41,7 +41,6 @@ class Profile extends React.Component {
         withCredentials: true
       })
       .then(requests => {
-        console.log(requests)
         const stateCopy = {...this.state}
         stateCopy.user = result.data.result
         stateCopy.requests = requests.data
