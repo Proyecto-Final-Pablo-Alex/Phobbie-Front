@@ -32,35 +32,24 @@ class Chat extends React.Component {
            })  
     }
 
-    // componentDidUpdate(){
-    //     axios({
-    //         method: "get",
-    //         url: `http://localhost:5000/return-chat/${this.props.match.params.id}`,
-    //         withCredentials: true
-    //       })
-    //       .then(result => {
-    //           console.log(result.data)
-    //           const stateCopy = {...this.state}
-    //           stateCopy.chat = result.data.result
-    //           stateCopy.loaded = true
-    //         if (result.data.result.messages.length !== this.state.chat.messages.length){
-    //           this.setState(stateCopy)}
-    //       })
-    //       .catch(error => {
-    //           console.log(error)
-    //       }) 
-    // }
+     componentDidUpdate(){
+        axios({
+            method: "get",
+            url: `http://localhost:5000/return-chat/${this.props.match.params._id}`,
+            withCredentials: true
+          })
+          .then(result => {
+              const stateCopy = {...this.state}
+              stateCopy.chat = result.data
+              if(this.state.chat.messages.length !== result.data.messages.length){
+                this.setState(stateCopy)
+                }
+          })
+          .catch(error => {
+              console.log(error)
+          })  
+     }
 
-
-    // handleChange(event) { 
-    //     const {value, name } = event.target;
-    //     this.setState({
-    //       ...this.state,
-    //       message: {[name]: value, username: this.props.match.params.user.username, date: new Date()},
-    //     });
-    //     console.log(this.state.user);  
-    //   }
-    
       handleInput(e){
         const {value} = e.target
         this.setState({...this.state, message: value})
@@ -84,11 +73,11 @@ class Chat extends React.Component {
             })
             .then(result => {
                 console.log(result)
+                this.setState({...this.state, message: ""})
             })
             .catch(error => {
                 console.log(error)
             })
-            this.setState({...this.state, message: ""})
           }
       }
 
@@ -118,7 +107,7 @@ class Chat extends React.Component {
                 </div>
                 <div>
                     <form action="">
-                        <input type="text" name="message" onChange={(e)=>this.handleInput(e)}/>
+                        <input type="text" name="message" value={this.state.message} onChange={(e)=>this.handleInput(e)}/>
                         <button onClick={(e)=>this.sendMessage(e)}>Send</button>
                     </form>
                 </div>
