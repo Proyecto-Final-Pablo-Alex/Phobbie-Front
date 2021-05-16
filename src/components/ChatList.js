@@ -36,17 +36,19 @@ class ChatList extends React.Component {
     render(){
         let allChats
         if (this.state.loaded){
-        allChats = this.state.chats.map((chat)=>{
+        allChats = this.state.chats.map((chat, index)=>{
             const friend = chat.participants.filter(participant => participant._id !== this.state.user._id)[0]
             const unreadMsgs = chat.messages.filter(message=> message.status === "UNREAD")
             return(
-                <div>
-                    <img src={friend.photo} alt={friend.username}/>
-                    <div>
-                        <p><b>Chatting with {friend.username}</b></p>
-                        <p>Unread messages: {unreadMsgs.length}</p>
+                <Link to={`/chat/${friend._id}`}>
+                    <div key={index}>
+                        <img src={friend.photo} alt={friend.username}/>
+                        <div>
+                            <p><b>Chatting with {friend.username}</b></p>
+                            <p>Unread messages: {unreadMsgs.length}</p>
+                        </div>
                     </div>
-                </div>
+                </Link>
             )
         })}
         return this.state.loaded ? (

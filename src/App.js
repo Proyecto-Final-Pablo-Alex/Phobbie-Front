@@ -110,6 +110,11 @@ class App extends React.Component {
             exact
             component={() => <ChatList />}
           />
+          <Route
+            path="/chat/:_id"
+            exact
+            component={(routeProps) => <Chat {...routeProps} user={this.state.user}/>}
+          />
         </Switch>
       </div>
     );
