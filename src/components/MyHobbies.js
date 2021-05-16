@@ -4,15 +4,16 @@ import { Link } from "react-router-dom";
 import ProfileNavbar from "./ProfileNavbar";
 
 
-class ChatList extends React.Component {
+
+class MyHobbies extends React.Component {
     render(){
         return(
             <div>
                 <ProfileNavbar />
-                <h1>Chatlist</h1>
+                <h1>Hobbies</h1>
             </div>
-
+            
         )
     }
 }
-export default ChatList;
+export default MyHobbies;

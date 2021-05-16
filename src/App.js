@@ -10,6 +10,11 @@ import AddHobbie from "./components/AddHobbie";
 import Navbar from "./components/Navbar";
 import HobbieDetails from "./components/HobbieDetails";
 import FriendProfile from "./components/FriendProfile";
+import MyFriends from "./components/MyFriends";
+import MyHobbies from "./components/MyHobbies";
+import ChatList from "./components/ChatList";
+import Chat from "./components/Chat";
+
 
 
 class App extends React.Component {
@@ -89,6 +94,21 @@ class App extends React.Component {
             path="/return-friend/:id"
             exact
             component={(routeProps) => <FriendProfile {...routeProps} user={this.state.user}/>}
+          />
+           <Route
+            path="/my-hobbies"
+            exact
+            component={() => <MyHobbies />}
+          />
+           <Route
+            path="/my-friends"
+            exact
+            component={() => <MyFriends />}
+          />
+           <Route
+            path="/my-chats"
+            exact
+            component={() => <ChatList />}
           />
         </Switch>
       </div>

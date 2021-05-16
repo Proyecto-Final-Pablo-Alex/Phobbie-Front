@@ -4,15 +4,15 @@ import { Link } from "react-router-dom";
 import ProfileNavbar from "./ProfileNavbar";
 
 
-class ChatList extends React.Component {
+class MyFriends extends React.Component {
     render(){
         return(
             <div>
                 <ProfileNavbar />
-                <h1>Chatlist</h1>
+                <h1>Friends</h1>
             </div>
-
+            
         )
     }
 }
-export default ChatList;
+export default MyFriends;

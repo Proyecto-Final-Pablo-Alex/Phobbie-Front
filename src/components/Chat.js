@@ -1,7 +1,7 @@
 import axios from "axios";
 import React from "react";
 import { Link } from "react-router-dom";
-import io from 'socket.io-client'
+
 
 class Chat extends React.Component {
     state={
@@ -15,23 +15,22 @@ class Chat extends React.Component {
     }
 
     componentDidMount(){
-        const socket = io('http://localhost:5000')
-        console.log(socket)
-        // axios({
-        //     method: "get",
-        //     url: `http://localhost:5000/return-chat/${this.props.match.params.id}`,
-        //     withCredentials: true
-        //   })
-        //   .then(result => {
-        //       console.log(result.data)
-        //       const stateCopy = {...this.state}
-        //       stateCopy.chat = result.data.result
-        //       stateCopy.loaded = true
-        //       this.setState(stateCopy)
-        //   })
-        //   .catch(error => {
-        //       console.log(error)
-        //   })  
+        
+         axios({
+             method: "get",
+             url: `http://localhost:5000/return-chat/${this.props.match.params.id}`,
+             withCredentials: true
+           })
+           .then(result => {
+               console.log(result.data)
+               const stateCopy = {...this.state}
+               stateCopy.chat = result.data.result
+               stateCopy.loaded = true
+               this.setState(stateCopy)
+           })
+           .catch(error => {
+               console.log(error)
+           })  
     }
 
     componentDidUpdate(){
@@ -58,7 +57,7 @@ class Chat extends React.Component {
         const {value, name } = event.target;
         this.setState({
           ...this.state,
-          message: {[name]: value, username: req.params.user.username, date: new Date()},
+          message: {[name]: value, username: this.props.match.params.user.username, date: new Date()},
         });
         console.log(this.state.user);  
       }
@@ -72,7 +71,7 @@ class Chat extends React.Component {
            </div>
         })
         const friend = this.state.chat.participants.filter(participant=>{
-            return(participant._id !== req.props.username)
+            return(participant._id !== this.props.match.params.user.username)
         })
         return(
             <div>
