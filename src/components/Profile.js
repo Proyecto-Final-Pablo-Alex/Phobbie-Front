@@ -73,6 +73,7 @@ class Profile extends React.Component {
         console.log(requests)
         const stateCopy = {...this.state}
         stateCopy.user = result.data.result
+        this.props.updateUser(result.data.result)
         stateCopy.requests = requests.data
         stateCopy.requestCounter = requests.data.length
         stateCopy.loaded = true
