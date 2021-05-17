@@ -30,7 +30,16 @@ class App extends React.Component {
       photo: "",
       status:''
     },
-    logInSuccess: false
+    logInSuccess: false,
+    theme: 'light'
+  }
+
+  toggleMode(){
+    if (this.state.theme === 'light'){
+      this.setState({...this.state, theme: "dark"})
+    }else{
+      this.setState({...this.state, theme: "light"})
+    }
   }
 
 
@@ -50,9 +59,9 @@ class App extends React.Component {
   
   render() {
     return (
-      <div className="App">
+      <div className={`App ${this.state.theme}`}>
         <h1>Welcome to HobbiesSphere</h1>
-        <Navbar logInSuccess={this.state.logInSuccess} setAppState={()=>this.editStateFromLogout()}/>
+        <Navbar logInSuccess={this.state.logInSuccess} toggleButton={()=>this.toggleMode()} setAppState={()=>this.editStateFromLogout()}/>
         <Switch>
           <Route
             path="/profile"

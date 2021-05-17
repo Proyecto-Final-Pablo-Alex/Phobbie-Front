@@ -25,13 +25,21 @@ class Navbar extends React.Component {
 
     render(){
         return this.props.logInSuccess ? (
-            <div>
+            <div className="Navbar">
+                <label className="switch">
+                    <input type="checkbox" onChange={(e)=>this.props.toggleButton(e)}/>
+                    <span className="slider round"></span>
+                </label>
                 <Link to="/profile"><button> My profile </button></Link>
                 <Link to="/all-hobbies"><button>All Hobbies </button></Link>
                 <Link to="/"><button onClick={()=>this.logout()}>Logout</button></Link>
             </div>
         ) : (
-            <div>
+            <div className="Navbar">
+                <label className="switch">
+                    <input type="checkbox" onChange={(e)=>this.props.toggleButton(e)}/>
+                    <span className="slider round"></span>
+                </label>
                 <Link to="/login"><button>Log in </button></Link>
                 <Link to="/signup"><button>Sign up</button></Link>
             </div>
