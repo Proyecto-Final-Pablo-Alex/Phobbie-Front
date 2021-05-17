@@ -1,6 +1,7 @@
 import React from "react";
 import {Switch, Route} from "react-router-dom";
 
+import Home from "./components/Home";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Profile from "./components/Profile";
@@ -14,7 +15,6 @@ import MyFriends from "./components/MyFriends";
 import MyHobbies from "./components/MyHobbies";
 import ChatList from "./components/ChatList";
 import Chat from "./components/Chat";
-
 
 
 class App extends React.Component {
@@ -60,9 +60,13 @@ class App extends React.Component {
   render() {
     return (
       <div className={`App ${this.state.theme}`}>
-        <h1>Welcome to Phobbie</h1>
         <Navbar logInSuccess={this.state.logInSuccess} toggleButton={()=>this.toggleMode()} setAppState={()=>this.editStateFromLogout()}/>
         <Switch>
+          <Route
+            path="/"
+            exact
+            component={() => <Home />}
+          />
           <Route
             path="/profile"
             exact
