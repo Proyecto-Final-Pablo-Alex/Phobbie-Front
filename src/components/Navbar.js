@@ -26,6 +26,7 @@ class Navbar extends React.Component {
     render(){
         return this.props.logInSuccess ? (
             <div className="Navbar">
+            <img src="https://res.cloudinary.com/hobbiesphere/image/upload/v1621264700/Logo_Phobbie_solo_nombre_white_vbti3g.png" alt="logo name" />
                 <label className="switch">
                     <input type="checkbox" onChange={(e)=>this.props.toggleButton(e)}/>
                     <span className="slider round"></span>
@@ -36,6 +37,7 @@ class Navbar extends React.Component {
             </div>
         ) : (
             <div className="Navbar">
+            <img src="https://res.cloudinary.com/hobbiesphere/image/upload/v1621264700/Logo_Phobbie_solo_nombre_white_vbti3g.png" alt="logo name" />
                 <label className="switch">
                     <input type="checkbox" onChange={(e)=>this.props.toggleButton(e)}/>
                     <span className="slider round"></span>

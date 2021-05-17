@@ -35,6 +35,9 @@ button{
   justify-content: space-evenly;
   align-items: center;
 
+  img{
+    width: 3vw;
+  }
   button{
     background-color: $color4;
     border-radius: 10vw;
