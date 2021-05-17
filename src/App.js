@@ -60,7 +60,7 @@ class App extends React.Component {
   render() {
     return (
       <div className={`App ${this.state.theme}`}>
-        <h1>Welcome to HobbiesSphere</h1>
+        <h1>Welcome to Phobbie</h1>
         <Navbar logInSuccess={this.state.logInSuccess} toggleButton={()=>this.toggleMode()} setAppState={()=>this.editStateFromLogout()}/>
         <Switch>
           <Route
