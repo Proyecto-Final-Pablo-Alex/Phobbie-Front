@@ -53,7 +53,7 @@ class Chat extends React.Component {
               .catch(error => {
                   console.log(error)
               })  
-         }, 3000);
+         }, 1500);
      }
 
      componentWillUnmount(){

@@ -77,25 +77,28 @@ class FriendProfile extends React.Component {
           })
         }
         return this.state.deleted ? <Redirect to="/profile" /> : this.state.loaded ? (
-          <div>
+          <div className="Profile">
             <img src={photo} alt={`Foto de perfil de ${username}`} />
 
-            <div>
+            <div className="info">
               <h1>{username} profile</h1>
-              <p>
+              <p className="info-status">
                 <b>Status:</b> {status}
+              </p>
+              <p className="info-location">
+                <b>Location:</b> {location}
               </p>
               <p>
                 <b>Age:</b> {age}
               </p>
               <p>
-                <b>Location:</b> {location}
-              </p>
-              <p>
                 {friends.length} friends
               </p>
             </div>
-            <button onClick={()=>this.deleteFriend(_id)}>Delete Friend</button>
+            <div className="info-buttons">
+              <Link to={`/chat/${_id}`}><button>Chat</button></Link>
+              <button onClick={()=>this.deleteFriend(_id)}>Delete Friend</button>
+            </div>
 
             {(hobbies.length !== 0)
             ?   <div>

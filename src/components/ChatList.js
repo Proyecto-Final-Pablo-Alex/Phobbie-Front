@@ -27,6 +27,7 @@ class ChatList extends React.Component {
             .then((user)=>{
                 const stateCopy = {...this.state}
                 stateCopy.chats = result.data
+                stateCopy.renderChats = result.data
                 stateCopy.user = user.data.result
                 stateCopy.loaded = true
                 this.setState(stateCopy)
@@ -36,12 +37,23 @@ class ChatList extends React.Component {
         });
     }
 
+    // filterChats(e){
+    //     const {value} = e.target
+    //     const chatsFiltered = this.state.chats.filter((chat, index)=>{
+    //       return chat.participants[index].username.toLowerCase().includes(value.toLowerCase())
+    //     })
+    //     this.setState({...this.state, renderChats: chatsFiltered})
+    //   }
+
     render(){
         let allChats
         if (this.state.loaded){
-        allChats = this.state.chats.map((chat, index)=>{
+        allChats = this.state.renderChats.map((chat, index)=>{
+
             const friend = chat.participants.filter(participant => participant._id !== this.state.user._id)[0]
+
             const unreadMsgs = chat.messages.filter(message=> message.status === "UNREAD" && message.username !== this.state.user.username)
+
             return(
                 <Link to={`/chat/${friend._id}`} key={index}>
                     <div>
@@ -54,10 +66,12 @@ class ChatList extends React.Component {
                 </Link>
             )
         })}
+
         return this.state.loaded ? (
             <div>
                 <ProfileNavbar />
                 <h1>Chatlist</h1>
+                {/* <input type='text' onChange={(e)=>this.filterChats(e)} /> */}
                 {allChats}
             </div>
 

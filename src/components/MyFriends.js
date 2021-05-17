@@ -8,6 +8,7 @@ class MyFriends extends React.Component {
     state={
         user:{},
         requests: [],
+        friendsRender: [],
         loaded:false,
     }
     componentDidMount(){
@@ -26,6 +27,7 @@ class MyFriends extends React.Component {
       .then(requests => {
         const stateCopy = {...this.state}
         stateCopy.user = result.data.result
+        stateCopy.friendsRender = result.data.result.friends
         stateCopy.requests = requests.data
         stateCopy.loaded = true
         this.setState(stateCopy)
@@ -37,7 +39,7 @@ class MyFriends extends React.Component {
   }
 
     componentDidUpdate(){
-        
+   
         axios({
         method: "get",
         url: "http://localhost:5000/return-user",
@@ -106,7 +108,7 @@ class MyFriends extends React.Component {
         if (this.state.loaded){
             friendList = friends.map((friend, index) => {
                 return (
-                <li key={index}>
+                <li key={index} className="friend">
                     <img src={friend.photo} alt={`${friend.username} foto`} />
                     <p>{friend.username}</p>
                     <Link to={`/return-friend/${friend._id}`}><button>See profile</button></Link>
@@ -115,7 +117,7 @@ class MyFriends extends React.Component {
             });
             friendRequests = requests.map((req, index)=>{
                 return (
-                <li key={index}>
+                <li key={index} className="friend">
                     <img src={req.requester.photo} alt={req.requester.username} />
                     <p>{req.requester.username}</p>          
                     <button onClick={()=>this.acceptFriendRequest(req.requester._id, req._id)}>Accept</button>
@@ -125,10 +127,10 @@ class MyFriends extends React.Component {
             })
         }
             return this.state.loaded ? (
-                <div>
+                <div className="MyFriends">
                     <ProfileNavbar />
                     {(this.state.requests.length !== 0)
-                        ?   <div>
+                        ?   <div className="requestList">
                                 <h2>Requests</h2>
                                 <ul>{friendRequests}</ul>
                             </div>
@@ -139,7 +141,7 @@ class MyFriends extends React.Component {
                             </div>}
                     
                     {(friends.length !== 0)
-                        ? <div>
+                        ? <div className="friendList">
                             <h2>Friends</h2>
                             <ul>{friendList}</ul>
                             </div>

@@ -44,8 +44,8 @@ class MyHobbies extends React.Component {
         if(this.state.loaded){
             hobbiesList = this.state.user.hobbies.map((hobbie, index) => {
                 return (
-                  <li key={index}>
-                    <img src={hobbie.photo} alt={`${hobbie.name} foto`} style={{width: "200px"}} />
+                  <li key={index} className="hobby">
+                    <img src={hobbie.photo} alt={`${hobbie.name} foto`} />
                     {hobbie.name}
                     <Link to={`/hobbie-details/${hobbie.name}`}><button>See details</button></Link>
                   </li>
@@ -65,7 +65,7 @@ class MyHobbies extends React.Component {
                 ) : (
                     <div>
                         <p>You don't have any hobbies added yet.</p>
-                        <Link to="/all-hobbies" >Go add some!</Link>
+                        <Link to="/all-hobbies">Go add some!</Link>
                     </div>
                 )
                 }

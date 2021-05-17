@@ -201,10 +201,7 @@ button{
         text-align: center;
       }
     }
-
   }
-
-
 }
 
 .ProfileNavbar{
@@ -222,7 +219,77 @@ button{
   }
 }
 
+.hobby{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+    img{
+      width: 60vw;
+      height: 22vh;
+    }
+  margin: 0 auto;
+  margin-top: 2vh;
+  border: $color4 solid 1px;
+  width: 60vw;
+  padding: 1vw;
+  background-color: wheat;
+  color: black;
 
+}
+.MyHobbies{
+
+  ul{
+    overflow-y: scroll;
+    height: 68vh;
+    padding: 0;
+  }
+
+  h1{
+    text-align: center;
+  }
+}
+
+.friend{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  img{
+    width: 20vw;
+    border-radius: 50%;
+  }
+}
+
+.Myfriends{
+  ul{
+    overflow-y: scroll;
+    height: 30vh;
+  }
+}
+
+.EditUser{
+  text-align: center;
+
+  form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center
+  }
+
+  input{
+    text-align: center;
+    border-radius: 15vh;
+    font-family: 'Pacifico', cursive;
+  }
+
+  button{
+    margin-top: 2vh;
+    padding: 1vh 8vw;
+    border-radius: 2vh;
+  }
+}
 
 
 

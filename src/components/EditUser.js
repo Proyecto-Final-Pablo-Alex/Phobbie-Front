@@ -93,7 +93,7 @@ class EditUser extends React.Component {
 
     const {photo, age, _id, location,status} = this.props.user
     return this.state.successEditing ? <Redirect to="/profile"/> : (
-      <div>
+      <div className="EditUser">
        <h1>Edit profile</h1>
         <form onSubmit={(event) => this.handleSubmit(event)}>
 
@@ -123,6 +123,7 @@ class EditUser extends React.Component {
 
           <label htmlFor="status">Status</label>
           <input
+            className="status"
             type="text"
             name="status"
             onChange={(event) => this.handleChange(event)}
