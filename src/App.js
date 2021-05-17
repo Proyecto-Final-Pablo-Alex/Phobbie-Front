@@ -31,7 +31,7 @@ class App extends React.Component {
       status:''
     },
     logInSuccess: false,
-    theme: 'light'
+    theme: 'dark'
   }
 
   toggleMode(){
@@ -60,7 +60,7 @@ class App extends React.Component {
   render() {
     return (
       <div className={`App ${this.state.theme}`}>
-        <Navbar logInSuccess={this.state.logInSuccess} toggleButton={()=>this.toggleMode()} setAppState={()=>this.editStateFromLogout()}/>
+        <Navbar logInSuccess={this.state.logInSuccess} toggleButton={()=>this.toggleMode()}/>
         <Switch>
           <Route
             path="/"

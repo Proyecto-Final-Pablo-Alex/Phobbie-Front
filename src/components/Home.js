@@ -5,7 +5,7 @@ class Home extends React.Component {
     render(){
         return(
             <div className="Home">
-                <img src="https://res.cloudinary.com/hobbiesphere/image/upload/v1621249675/Logo_Phobbie_completo_q1jiwe.png" alt="Logo" />
+                <img src="https://res.cloudinary.com/hobbiesphere/image/upload/v1621265972/Logo_Phobbie_completo_negro_unzt25.png" alt="Logo" />
                 <h1>Welcome to Phobbie!!</h1>
                 <hr />
                 <div>

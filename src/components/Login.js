@@ -52,6 +52,7 @@ class Login extends React.Component {
             type="text"
             name="username"
             onChange={(event) => this.handleInput(event)}
+            autoComplete="off"
           />
 
           <label htmlFor="password">Password</label>
@@ -59,6 +60,7 @@ class Login extends React.Component {
             type="password"
             name="password"
             onChange={(event) => this.handleInput(event)}
+            autoComplete="off"
           />
 
           <button>Log in</button>

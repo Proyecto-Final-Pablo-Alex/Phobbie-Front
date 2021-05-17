@@ -1,14 +1,14 @@
 
   $color1:#fcecdd;
   $color2:#ffc288;
-  $color3:#fea82f;
-  $color4:#ff6701;
+  $color3:#ff8432;
+  $color4:#fea82f;
 
 
 
 body {
   margin: 0;
-  font-family: 'Satisfy', cursive;
+  font-family: 'Pacifico', cursive;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -19,7 +19,7 @@ code {
 }
 
 button{
-  font-family: 'Satisfy', cursive;
+  font-family: 'Pacifico', cursive;
 }
 
 .App{
@@ -36,8 +36,10 @@ button{
   align-items: center;
 
   img{
-    width: 3vw;
+    padding-top: 1vh;
+    width: 20vw;
   }
+  
   button{
     background-color: $color4;
     border-radius: 10vw;
@@ -76,9 +78,9 @@ button{
     margin-top: 3vh;
     width: 85vw;
     text-align: center;
-    font-style: italic;
+    // font-style: italic;
     font-size: 5vw;
-    font-weight: bold;
+    // font-weight: bold;
     
     span{
       font-style: normal;
@@ -99,6 +101,7 @@ button{
   input{
     text-align: center;
     border-radius: 15vh;
+    font-family: 'Pacifico', cursive;
   }
 
   button{
@@ -109,8 +112,115 @@ button{
 
 }
 
+.Signup{
+  text-align: center;
+
+  form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center
+  }
+
+  input{
+    text-align: center;
+    border-radius: 15vh;
+    font-family: 'Pacifico', cursive;
+  }
+
+  button{
+    margin-top: 2vh;
+    padding: 1vh 8vw;
+    border-radius: 2vh;
+  }
+}
+
+.Profile{
+  h1{
+    text-align: center;
+    margin: 0;
+    font-size: 8.5vw;
+  }
+
+  img{
+    margin: 2vh 27.5vw 0;
+    width: 45vw;
+    border-radius: 50%;
+  }
+ 
+  .info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 95vw;
+    margin: 0 auto;
+    
+    
+    p{
+      margin: 0;
+      font-size: 4.5vw;
+    }
+
+    &-status{
+      padding-bottom: 2.5vh;
+      text-align: center;
+    }
+
+    &-location{
+      width: 100%;
+      text-align: center;
+    }
+
+    &-buttons{
+      margin-top: 3vh;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      align-items: center;
+      flex-wrap: wrap;
+
+      button{
+        background-color: $color4;
+        border-radius: 10vw;
+        width: 38vw;
+      }
+    }
+
+    &-delete{
+
+      input{
+        text-align: center;
+        border-radius: 15vh;
+        font-family: 'Pacifico', cursive;
+      }
+
+      p{
+        margin: 0;
+        text-align: center;
+      }
+    }
+
+  }
 
 
+}
+
+.ProfileNavbar{
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+
+  button{
+    margin-top: 1vh;
+    background-color: $color4;
+    border-radius: 10vw;
+    width: 18vw;
+  }
+}
 
 
 
@@ -202,7 +312,7 @@ button{
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #dbab68;
+  background-color: rgb(39, 39, 39);
   -webkit-transition: .4s;
   transition: .4s;
 }
@@ -215,7 +325,7 @@ button{
   left: 0.5vw;
   bottom: 0.45vh;
   background-color: rgb(212, 212, 212);
-  background-image: url(https://res.cloudinary.com/hobbiesphere/image/upload/v1621249645/LightMode_xp0pmn.png);
+  background-image: url(https://res.cloudinary.com/hobbiesphere/image/upload/v1621249667/DarkMode_oghl4g.png);
   background-size: contain;
   background-repeat: no-repeat;
   -webkit-transition: .4s;
@@ -223,7 +333,7 @@ button{
 }
 
 .switch input:checked + .slider {
-  background-color:rgb(39, 39, 39);
+  background-color:#dbab68;
 }
 
 .switch input:focus + .slider {
@@ -234,7 +344,7 @@ button{
   -webkit-transform: translateX(11.5vw);
   -ms-transform: translateX(11.5vw);
   transform: translateX(11.5vw);
-  background-image: url(https://res.cloudinary.com/hobbiesphere/image/upload/v1621249667/DarkMode_oghl4g.png);
+  background-image: url(https://res.cloudinary.com/hobbiesphere/image/upload/v1621249645/LightMode_xp0pmn.png);
   background-size: contain;
   background-repeat: no-repeat;
 }

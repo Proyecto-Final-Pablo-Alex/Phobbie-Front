@@ -87,35 +87,37 @@ class Profile extends React.Component {
   render() {
     const { username, friends, photo,status,age,location} = this.state.user;
     return (!this.props.logInSuccess) ? <Redirect to="/signup" /> : (
-      <div>
-        <ProfileNavbar />
+      <div className="Profile">
+        <ProfileNavbar setAppState={()=>this.props.setAppState()}/>
         <img src={photo} alt={`Foto de perfil de ${username}`} />
-        <div>
+        <div className="info">
           <h1>Welcome, {username}</h1>
-          <p>
+          <p className="info-status">
             <b>Status:</b> {status}
+          </p>
+          <p className="info-location">
+            <b>Location:</b> {location}
           </p>
           <p>
             <b>Age:</b> {age}
           </p>
           <p>
-            <b>Location:</b> {location}
-          </p>
-          <p>
             {friends.length} friends
           </p>
         </div>
-        <Link to="/edit-user"><button>Edit user</button></Link>
-        <button onClick={()=>this.deleteAccountButton()}>Delete account</button>
-          {this.state.delButton ? (
-            <div>
-              <p>Are you sure? Type your username to confirm: </p>
-              <form onSubmit={()=>this.delAccountConfirmation()}>
-                <input type="text" onChange={(e)=>this.handleInput(e)} />
-                <button>Confirm</button>
-              </form>
-            </div>
-            ) : null}
+        <div className="info-buttons">
+          <Link to="/edit-user"><button>Edit user</button></Link>
+          <button onClick={()=>this.deleteAccountButton()}>Delete account</button>
+            {this.state.delButton ? (
+              <div className="info-delete">
+                <p>Are you sure? Confirm your username: </p>
+                <form onSubmit={()=>this.delAccountConfirmation()}>
+                  <input type="text" onChange={(e)=>this.handleInput(e)} autoComplete="off"/>
+                  <button>Confirm</button>
+                </form>
+              </div>
+              ) : null}
+        </div>
       </div>
     )
   }

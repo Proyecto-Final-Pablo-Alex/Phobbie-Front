@@ -68,6 +68,7 @@ class Signup extends React.Component {
             type="text"
             name="username"
             onChange={(event) => this.handleChange(event)}
+            autoComplete="off"
           />
 
           <label htmlFor="password">Password</label>
@@ -75,6 +76,7 @@ class Signup extends React.Component {
             type="password"
             name="password"
             onChange={(event) => this.handleChange(event)}
+            autoComplete="off"
           />
 
           <label htmlFor="passwordConfirm">Confirm Password</label>
@@ -82,6 +84,7 @@ class Signup extends React.Component {
             type="password"
             name="passwordConfirm"
             onChange={(event) => this.handleChange(event)}
+            autoComplete="off"
           />
 
           <label htmlFor="age">Age</label>
@@ -89,6 +92,7 @@ class Signup extends React.Component {
             type="number"
             name="age"
             onChange={(event) => this.handleChange(event)}
+            autoComplete="off"
           />
 
           <label htmlFor="location">Location</label>

@@ -54,7 +54,7 @@ class MyHobbies extends React.Component {
         }
 
         return(
-            <div>
+            <div className="MyHobbies">
                 <ProfileNavbar />
                 <h1>My Hobbies</h1>
                 {this.state.user.hobbies.length !== 0 ?

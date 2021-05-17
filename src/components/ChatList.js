@@ -6,10 +6,12 @@ import ProfileNavbar from "./ProfileNavbar";
 
 class ChatList extends React.Component {
     state={
-        chats:[],
         user:{},
-        loaded:false
+        loaded:false,
+        chats:[],
+        renderChats: []
     }
+
     componentDidMount(){
         axios({
             method: "get",
@@ -33,6 +35,7 @@ class ChatList extends React.Component {
             console.log(err)
         });
     }
+
     render(){
         let allChats
         if (this.state.loaded){

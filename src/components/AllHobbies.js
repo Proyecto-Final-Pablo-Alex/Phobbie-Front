@@ -17,8 +17,7 @@ class AllHobbies extends React.Component {
         status:''
       },
         allHobbies:[],
-        copyAllHobbies:[],
-        search:``
+        copyAllHobbies:[]
     }
 
     componentDidMount(){
