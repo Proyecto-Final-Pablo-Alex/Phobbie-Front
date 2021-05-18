@@ -38,8 +38,7 @@ class MyFriends extends React.Component {
     })  
   }
 
-    componentDidUpdate(){
-      
+    updateRequestAndFriends(){
         axios({
         method: "get",
         url: "http://localhost:5000/return-user",
@@ -47,25 +46,23 @@ class MyFriends extends React.Component {
         })
         .then(result => {
           axios({
-              method: "post",
-              url: "http://localhost:5000/see-requests",
-              data: {_id: result.data.result._id},
-              withCredentials: true
+            method: "post",
+            url: "http://localhost:5000/see-requests",
+            data: {_id: result.data.result._id},
+            withCredentials: true
           })
           .then(requests => {
-              const stateCopy = {...this.state}
-              stateCopy.user = result.data.result
-              stateCopy.requests = requests.data
-              stateCopy.loaded = true
-              if (!(requests.data.length === this.state.requests.length && this.state.user.friends.length === result.data.result.friends.length)){
-                this.setState(stateCopy)
-              }
+            const stateCopy = {...this.state}
+            stateCopy.user = result.data.result
+            stateCopy.friendsRender = result.data.result.friends
+            stateCopy.requests = requests.data
+            stateCopy.loaded = true
+            this.setState(stateCopy)
           })
         })
         .catch(error => {
           console.log(error)
         })
-        
     }
 
 
@@ -77,7 +74,7 @@ class MyFriends extends React.Component {
           withCredentials: true
         })
         .then(result => {
-          this.setState({...this.state})
+          this.updateRequestAndFriends()
         })
         .catch(error => {
           console.log(error)
@@ -92,7 +89,7 @@ class MyFriends extends React.Component {
           withCredentials: true
         })
         .then(result => {
-            this.setState({...this.state})
+            this.updateRequestAndFriends()
         })
         .catch(error => {
           console.log(error)
@@ -109,11 +106,12 @@ class MyFriends extends React.Component {
 
 
     render(){
-        const {friends} = this.state.user;
+        const {friends} = this.state.user
+        const {friendsRender} = this.state;
         const {requests} = this.state
         let friendList, friendRequests
         if (this.state.loaded){
-            friendList = friends.map((friend, index) => {
+            friendList = friendsRender.map((friend, index) => {
                 return (
                 <div className="friend">
                     <img src={friend.photo} alt={`${friend.username} foto`} />
