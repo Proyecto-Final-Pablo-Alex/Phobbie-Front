@@ -147,11 +147,11 @@ class HobbieDetails extends React.Component {
     const sortedUsersByName = renderUsers.sort((a,b)=> a.username.localeCompare(b.username))
     const filteredUsers = sortedUsersByName.filter(user=>user._id !== this.state.user._id)
     const usersmap = filteredUsers.map((user, index)=>{
-      return <li key={index}>
+      return <div className="friend" key={index}>
                 <img src={user.photo} alt={user.username} style={{width: "100px"}}/> 
                 <h3>{user.username}</h3>
                 {this.checkIfFriends(user.username) ? <button disabled>Already friends</button> : <button onClick={()=>this.sendFriendRequest(user._id)}>Send friend request</button>}
-              </li>
+              </div>
     })
     return this.state.loaded ? (
       <div className="HobbieDetails">
@@ -173,9 +173,10 @@ class HobbieDetails extends React.Component {
             <label>My area users</label>            
         </div> 
 
-        <ul>
+        <div>
             {usersmap}
-        </ul>
+        </div>
+
         </div>
         </div>
       </div>
