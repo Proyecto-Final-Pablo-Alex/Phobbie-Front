@@ -99,8 +99,8 @@ class Signup extends React.Component {
           />
 
           <label htmlFor="location">Location</label>
-          <select name="location" onChange={(event) => this.handleChange(event)}>
-          <option value="" disabled selected hidden>Choose your location...</option>
+          <select name="location" onChange={(event) => this.handleChange(event)} defaultValue="Choose your location...">
+          <option value=""  hidden>Choose your location...</option>
             {allOptions}
           </select>
 

@@ -181,7 +181,11 @@ class HobbieDetails extends React.Component {
         </div>
         </div>
       </div>
-    ) : (<p>Loading...</p>)
+    ) : (
+      <div className="spinner">
+        <div className="lds-ring"><div></div><div></div><div></div><div></div></div>
+      </div>
+    )
   }
 }
 

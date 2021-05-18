@@ -142,7 +142,11 @@ class Chat extends React.Component {
                     </form>
                 </div>
             </div>
-        ) : <p>Loading...</p>
+        ) : (
+            <div className="spinner">
+                <div className="lds-ring"><div></div><div></div><div></div><div></div></div>
+            </div>
+        )
     }
 }
 export default Chat;

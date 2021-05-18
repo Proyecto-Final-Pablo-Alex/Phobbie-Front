@@ -53,7 +53,7 @@ class MyHobbies extends React.Component {
               })
         }
 
-        return(
+        return this.state.loaded ? (
             <div className="MyHobbies">
                 <ProfileNavbar />
                 <h1>My Hobbies</h1>
@@ -69,8 +69,11 @@ class MyHobbies extends React.Component {
                     </div>
                 )
                 }
+            </div> 
+        ) : (
+            <div className="spinner">
+                <div className="lds-ring"><div></div><div></div><div></div><div></div></div>
             </div>
-            
         )
     }
 }

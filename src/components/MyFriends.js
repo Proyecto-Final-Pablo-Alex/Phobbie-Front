@@ -151,7 +151,11 @@ class MyFriends extends React.Component {
 
             </div>
             
-        ) : <p>Loading...</p>
+        ) : (
+          <div className="spinner">
+            <div className="lds-ring"><div></div><div></div><div></div><div></div></div>
+          </div>
+        )
     }
 }
 export default MyFriends;

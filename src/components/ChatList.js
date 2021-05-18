@@ -79,7 +79,11 @@ class ChatList extends React.Component {
                 </div>
             </div>
 
-        ) : null
+        ) : (
+            <div className="spinner">
+                <div className="lds-ring"><div></div><div></div><div></div><div></div></div>
+            </div>
+        )
     }
 }
 export default ChatList;

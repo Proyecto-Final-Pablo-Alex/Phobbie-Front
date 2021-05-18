@@ -17,7 +17,8 @@ class AllHobbies extends React.Component {
         status:''
       },
         allHobbies:[],
-        copyAllHobbies:[]
+        copyAllHobbies:[],
+        loaded: false
     }
 
     componentDidMount(){
@@ -29,7 +30,7 @@ class AllHobbies extends React.Component {
       })
         .then((result) => {
           const {hobbies} = result.data
-          this.setState({...this.state, allHobbies: hobbies, copyAllHobbies: hobbies, user})
+          this.setState({...this.state, loaded: true,  allHobbies: hobbies, copyAllHobbies: hobbies, user})
         })
         .catch((err) => {
           console.log(err);
@@ -57,7 +58,7 @@ class AllHobbies extends React.Component {
                 <Link to={`/hobbie-details/${hobbie.name}`}><button>Details & Users</button></Link>
               </div>
     })
-    return (
+    return this.state.loaded ? (
       <div className="AllHobbies">
         <input type='text' onChange={(e)=>this.filterHobbies(e)} placeholder="Search your hobby"/>
 
@@ -70,6 +71,10 @@ class AllHobbies extends React.Component {
           </div>
           }
         </div>
+    ) : (
+      <div className="spinner">
+        <div className="lds-ring"><div></div><div></div><div></div><div></div></div>
+      </div>
     )
   }
 }

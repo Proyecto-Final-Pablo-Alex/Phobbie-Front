@@ -109,8 +109,11 @@ class FriendProfile extends React.Component {
             :   <p>No hobbies yet</p>}
             
             </div>
+        ) : (
+          <div className="spinner">
+            <div className="lds-ring"><div></div><div></div><div></div><div></div></div>
+          </div>
         )
-        : <p>Loading...</p>
       }
 }
 

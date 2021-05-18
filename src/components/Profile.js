@@ -86,7 +86,7 @@ class Profile extends React.Component {
 
   render() {
     const { username, friends, photo,status,age,location} = this.state.user;
-    return (!this.props.logInSuccess) ? <Redirect to="/signup" /> : (
+    return (!this.state.loaded) ? (<div className="spinner"><div className="lds-ring"><div></div><div></div><div></div><div></div></div></div>) : (!this.props.logInSuccess) ? <Redirect to="/signup" /> : (
       <div className="Profile">
         <ProfileNavbar setAppState={()=>this.props.setAppState()}/>
         <img src={photo} alt={`Foto de perfil de ${username}`} />
