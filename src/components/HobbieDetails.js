@@ -167,10 +167,8 @@ class HobbieDetails extends React.Component {
             <button onClick={()=>this.addToMyHobbies(_id)}>Add to my hobbies</button>
             )}
         <div>
-
-        <p>Search users</p>
-        <input type="text" onChange={(e)=>this.filterUsers(e)}/>
-        <div>
+        <input className="search-user" type="text" onChange={(e)=>this.filterUsers(e)} placeholder="Search users..."/>
+        <div className="my-area">
             <input type="checkbox" onChange={()=>this.onlyMyAreaUsers()} />
             <label>My area users</label>            
         </div> 

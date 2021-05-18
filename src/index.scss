@@ -439,7 +439,28 @@ button{
   }
 
   p{
-    width: 75%
+    width: 75%;
+    text-align: center;
+  }
+
+  input{
+    text-align: center;
+    border-radius: 15vh;
+    font-family: 'Pacifico', cursive;
+  }
+
+  button {
+    padding: 0.7vh 5vw;
+    border-radius: 2vh;
+    background-color: $color4;
+  }
+
+  .search-user {
+    margin-top: 3vh;
+  }
+
+  .my-area {
+    text-align: center;
   }
 
   .hobbieContainer{
