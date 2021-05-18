@@ -104,7 +104,6 @@ class MyFriends extends React.Component {
         this.setState({...this.state, friendsRender: friendsFiltered})
       }
 
-
     render(){
         const {friends} = this.state.user
         const {friendsRender} = this.state;
@@ -113,7 +112,7 @@ class MyFriends extends React.Component {
         if (this.state.loaded){
             friendList = friendsRender.map((friend, index) => {
                 return (
-                <div className="friend">
+                <div key={index} className="friend">
                     <img src={friend.photo} alt={`${friend.username} foto`} />
                     <p>{friend.username}</p>
                     <Link to={`/return-friend/${friend._id}`}><button>See profile</button></Link>
