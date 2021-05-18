@@ -154,7 +154,7 @@ class HobbieDetails extends React.Component {
               </li>
     })
     return this.state.loaded ? (
-      <div>
+      <div className="HobbieDetails">
         <h1>{name}</h1>
         <img src={photo} alt={name} />
         <h2>{name}</h2>

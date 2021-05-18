@@ -9,7 +9,7 @@ class Chat extends React.Component {
             participants:[],
             messages:[],
         },
-        friendName: '',
+        friend: {},
         message: '',
         loaded:false
     }
@@ -24,7 +24,7 @@ class Chat extends React.Component {
                const stateCopy = {...this.state}
                stateCopy.chat = result.data
                stateCopy.loaded = true
-               stateCopy.friendName = result.data.participants.filter(participant=>(participant._id !== this.props.user._id))[0].username
+               stateCopy.friend = result.data.participants.filter(participant=>(participant._id !== this.props.user._id))[0]
                this.setState(stateCopy)
                this.nameInput.focus();
                this.scrollToBottom();
@@ -122,9 +122,14 @@ class Chat extends React.Component {
             })
         }
         return this.state.loaded ? (
-            <div>
-                <Link to="/my-chats">Go back to all chats</Link>
-                <h2>Chatting with {this.state.friendName}</h2>
+            <div className="Chat">
+                <div className="bar">
+                    <div className="photo">
+                        <img src={this.state.friend.photo} alt={this.state.friend.username} />
+                        <h3>{this.state.friend.username}</h3>
+                    </div>
+                    <Link to="/my-chats"><button>All chats</button></Link>
+                </div>
                 <div className="chatBox">
                     {messages}
                     <div

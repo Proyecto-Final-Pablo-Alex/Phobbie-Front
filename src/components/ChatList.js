@@ -58,7 +58,7 @@ class ChatList extends React.Component {
             
             return(
                 <Link to={`/chat/${friend._id}`} key={index}>
-                    <div>
+                    <div className="friend">
                         <img src={friend.photo} alt={friend.username}/>
                         <div>
                             <p><b>Chatting with {friend.username}</b></p>
@@ -70,11 +70,13 @@ class ChatList extends React.Component {
         })}
 
         return this.state.loaded ? (
-            <div>
+            <div className="Chatlist">
                 <ProfileNavbar />
                 <h1>Chatlist</h1>
                 <input type='text' onChange={(e)=>this.filterChats(e)} />
-                {allChats}
+                <div className="chatContainer">
+                   {allChats} 
+                </div>
             </div>
 
         ) : null

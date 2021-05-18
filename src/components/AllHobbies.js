@@ -52,8 +52,8 @@ class AllHobbies extends React.Component {
       return <div key={index} className="hobby">
                 <img src={hobbie.photo} alt={hobbie.name}/> 
                 <h3>{hobbie.name}</h3>
-                <p>{hobbie.description}</p>
-                <p>{hobbie.users.length} users</p>
+                <p>{hobbie.description.slice(0, 40)}...</p>
+                <p><i>{hobbie.users.length} {(hobbie.users.length === 1) ? ("user") : ("users")}</i></p>
                 <Link to={`/hobbie-details/${hobbie.name}`}><button>Details & Users</button></Link>
               </div>
     })

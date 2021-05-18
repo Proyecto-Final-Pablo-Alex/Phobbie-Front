@@ -123,9 +123,11 @@ class MyFriends extends React.Component {
                 return (
                 <div key={index} className="friend">
                     <img src={req.requester.photo} alt={req.requester.username} />
-                    <p>{req.requester.username}</p>          
-                    <button onClick={()=>this.acceptFriendRequest(req.requester._id, req._id)}>Accept</button>
-                    <button onClick={()=>this.rejectFriendRequest(req.requester._id, req._id)}>Reject</button>
+                    <p>{req.requester.username}</p>    
+                    <div className="friend-req-buttons">     
+                      <button onClick={()=>this.acceptFriendRequest(req.requester._id, req._id)}>Accept</button>
+                      <button onClick={()=>this.rejectFriendRequest(req.requester._id, req._id)}>Reject</button>
+                    </div> 
                 </div>
                 )
             })
@@ -143,8 +145,8 @@ class MyFriends extends React.Component {
 
                 <div className="friendList">
                   <h2>Friends</h2>
-                  <input type='text' onChange={(e)=>this.filterFriends(e)} />
-                  {(friends.length !== 0) ? <div>{friendList}</div> : <p>You don't have friends yet</p>}
+                  <input type='text' onChange={(e)=>this.filterFriends(e)} placeholder="Search friend..."/>
+                  {(friends.length !== 0) ? <div className="friendContainer">{friendList}</div> : <p>You don't have friends yet</p>}
                 </div>
 
             </div>

@@ -4,6 +4,19 @@ $color3:#ff8432;
 $color4:#fea82f;
 $color5:#f7b995;
 
+$evenly: space-evenly;
+$between: space-between;
+$start: flex-start;
+$end: flex-end;
+
+@mixin flex($direction, $justify){
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: center;
+}
+
+
 body {
   margin: 0;
   font-family: 'Pacifico', cursive;
@@ -32,10 +45,7 @@ button{
 .Navbar{
   height: 8vh;
   background-color: $color3;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
+  @include flex(row, $evenly);
 
   img{
     padding-top: 1vh;
@@ -52,10 +62,7 @@ button{
 
 .Home{
   padding-top: 8vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  @include flex(column, center);
   margin: 0 auto;
   img{
     width: 40vw;
@@ -80,9 +87,7 @@ button{
     margin-top: 3vh;
     width: 85vw;
     text-align: center;
-    // font-style: italic;
     font-size: 5vw;
-    // font-weight: bold;
     
     span{
       font-style: normal;
@@ -94,10 +99,7 @@ button{
   text-align: center;
 
   form{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center
+    @include flex(column, center);
   }
 
   input{
@@ -119,10 +121,7 @@ button{
   text-align: center;
 
   form{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center
+    @include flex(column, center);
   }
 
   input{
@@ -163,10 +162,7 @@ button{
   }
  
   .info{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
+    @include flex(row, $evenly);
     flex-wrap: wrap;
     width: 95vw;
     margin: 0 auto;
@@ -189,10 +185,7 @@ button{
 
     &-buttons{
       margin-top: 3vh;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-evenly;
-      align-items: center;
+      @include flex(row, $evenly);
       flex-wrap: wrap;
 
       button{
@@ -220,10 +213,7 @@ button{
 
 .ProfileNavbar{
   width: 100vw;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
+  @include flex(row, $evenly);
 
   button{
     margin-top: 1vh;
@@ -234,22 +224,29 @@ button{
 }
 
 .hobby{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  @include flex(column, center);
+  margin: 0 auto;
+  margin-top: 2vh;
+  border: 1px solid $color4;
+  width: 60vw;
+  padding: 2vw;
+  background-color: wheat;
+  color: black;
+  
     img{
       width: 60vw;
       height: 22vh;
     }
-  margin: 0 auto;
-  margin-top: 2vh;
-  border: $color4 solid 1px;
-  width: 60vw;
-  padding: 1vw;
-  background-color: wheat;
-  color: black;
 
+    p{
+      margin: 0;
+      text-align: center;
+    }
+
+    h3{
+      margin: 0;
+      margin-bottom: 1vh;
+    }
 }
 
 .MyHobbies{
@@ -266,21 +263,74 @@ button{
 }
 
 .friend{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
+  width: 90vw;
+  @include flex(row, $evenly);
+  margin-top: 2vh;
   img{
     width: 20vw;
     height: 20vw;
     border-radius: 50%;
   }
+  button{
+    padding: 0.4vh 3vw;
+    border-radius: 2vh;
+    background-color: $color4;
+  }
+
+  &-req-buttons{
+    @include flex(column, center);
+
+    button{
+      padding: 0.25vh 3vw;
+      margin: 0.4vh 0vw;
+    }
+  }
 }
 
-.Myfriends{
-  ul{
-    overflow-y: scroll;
-    height: 30vh;
+.MyFriends{
+
+  h2{
+    margin-top: 1vh;
+    text-align: center;
+  }
+
+  p{
+    text-align: center;
+  }
+
+  .requestList{
+    @include flex(column, center);
+
+    div{
+      margin: 0;
+      overflow-y: scroll;
+      height: 12vh;
+      
+    }
+
+    p{
+      height: 5vh
+    }
+  }
+
+  .friendList{
+    @include flex(column, center);
+
+    
+    .friendContainer{
+      margin-top: 2vh;
+      overflow-y: scroll;
+      height: 39vh;
+      width: 90vw;
+      @include flex(column, $start);
+    }
+    
+    input{
+      margin: 0 auto;
+      text-align: center;
+      border-radius: 15vh;
+      font-family: 'Pacifico', cursive;
+    }
   }
 }
 
@@ -293,10 +343,7 @@ button{
   }
 
   form{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center
+    @include flex(column, center);
   }
 
   input{
@@ -314,10 +361,7 @@ button{
 }
 
 .AllHobbies{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  @include flex(column, center);
 
 
   .CreateHobby {
@@ -326,10 +370,7 @@ button{
     }
 
     form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center
+      @include flex(column, center);
   }
 }
 
@@ -354,52 +395,142 @@ button{
   }
 }
 
+.Chatlist{
+    @include flex(column, center);
+  
+  h1{
+    text-align: center;
+  }
+
+  input{
+    text-align: center;
+    border-radius: 15vh;
+    font-family: 'Pacifico', cursive;
+  }
+
+ a{
+   text-decoration: none;
+   color: inherit;
+ }
+
+ .chatContainer{
+   overflow-y: scroll;
+   height: 60vh;
+ }
+ 
+ 
+}
+
 .error-message{
   color: $color3;
 }
 
-.chatBox {
-  height: 400px;
-  border: 3px solid black; 
-  overflow-y: auto;
-}
+.Chat{
+  @include flex(column, center);
 
-.hiddenDivChat {
-  float:"left";
-  clear: "both";
-}
-
-.userMessage {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
-  margin-top: 10px;
-  color: black;
-  div {
-    border-radius: 30px;
-    background-color: #ffd8a2;
-    font-weight: 400;
-    max-width: 70%;
-    width: auto;
-    padding: 5px 20px 10px;
+  button{
+    margin: 1vh 1vw;
+    padding: 0.2vh 2vw;
+    border-radius: 2vh;
+    background-color: $color4;
   }
-}
 
-.friendMessage {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  margin-top: 10px;
-  color: black;
-  div {
-    border-radius: 30px;
-    background-color:#f7b081;
-    font-weight: 400;
-    max-width: 70%;
-    width: auto;
-    padding: 5px 20px 10px;
+  h2{
+    margin: 0;
+    text-align: center;
+  }
+
+  input{
+    width: 72vw;
+    border-radius: 15vh;
+    font-family: 'Pacifico', cursive;
+    outline: none;
+  }
+
+  .bar{
+    @include flex(row, $between);
+    width: 90vw;
+
+    .photo{
+      @include flex(row, $evenly);
+
+      img{
+        width: 10vh;
+        height:10vh;
+        border-radius: 50%;
+        margin-right: 2vw;
+      }
+    }
+
+  }
+
+  .chatBox {
+    height: 65vh;
+    width: 95vw;
+    border: 1vw solid black; 
+    overflow-y: auto;
+    padding-bottom: 1vh;
+  }
+
+  .hiddenDivChat {
+    float:"left";
+    clear: "both";
+  }
+
+  .userMessage {
+    @include flex(row, $end);
+    margin-top: 1vh;
+    color: black;
+    div {
+      margin-right: 2vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: stretch;
+      border-radius: 3.5vh;
+      background-color: #ffd8a2;
+      font-weight: 400;
+      max-width: 70vw;
+      width: auto;
+      padding: 0.5vh 2vw 1vw;
+
+      p {
+        text-align:justify;
+        overflow-wrap: break-word;
+        margin: 0.1vh 0.1vw;
+      }
+      i {
+        text-align: right;
+      }
+    }
+  }
+
+  .friendMessage {
+    @include flex(row, $start);
+    margin-top: 1vh;
+    color: black;
+    div {
+      margin-left: 2vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: stretch;
+      border-radius: 3.5vh;
+      background-color:#f7b081;
+      font-weight: 400;
+      max-width: 70vw;
+      width: auto;
+      padding: 0.5vh 2vw 1vw;
+
+      p {
+        text-align:justify;
+        overflow-wrap: break-word;
+        margin: 0.1vh 0.1vw;
+      }
+      i {
+        text-align: left;
+      }
+    }
   }
 }
 
