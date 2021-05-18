@@ -1,16 +1,18 @@
-
-  $color1:#fcecdd;
-  $color2:#ffc288;
-  $color3:#ff8432;
-  $color4:#fea82f;
-
-
+$color1:#fcecdd;
+$color2:#ffc288;
+$color3:#ff8432;
+$color4:#fea82f;
+$color5:#f7b995;
 
 body {
   margin: 0;
   font-family: 'Pacifico', cursive;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; 
 }
 
 code {
@@ -108,6 +110,7 @@ button{
     margin-top: 2vh;
     padding: 1vh 8vw;
     border-radius: 2vh;
+    background-color: $color4;
   }
 
 }
@@ -128,10 +131,20 @@ button{
     font-family: 'Pacifico', cursive;
   }
 
+  select{
+    border-radius: 15vh;
+    text-align: center;
+    font-family: 'Pacifico', cursive;
+    color:rgb(39, 39, 39);
+    background-color: $color2;
+    overflow: hidden;
+  }
+
   button{
     margin-top: 2vh;
     padding: 1vh 8vw;
     border-radius: 2vh;
+    background-color: $color4;
   }
 }
 
@@ -145,6 +158,7 @@ button{
   img{
     margin: 2vh 27.5vw 0;
     width: 45vw;
+    height:45vw;
     border-radius: 50%;
   }
  
@@ -237,6 +251,7 @@ button{
   color: black;
 
 }
+
 .MyHobbies{
 
   ul{
@@ -257,6 +272,7 @@ button{
   align-items: center;
   img{
     width: 20vw;
+    height: 20vw;
     border-radius: 50%;
   }
 }
@@ -270,6 +286,11 @@ button{
 
 .EditUser{
   text-align: center;
+
+  h1{
+    margin: 0 auto;
+    margin-top: 1vh;
+  }
 
   form{
     display: flex;
@@ -286,22 +307,56 @@ button{
 
   button{
     margin-top: 2vh;
-    padding: 1vh 8vw;
+    padding: 0.7vh 5vw;
     border-radius: 2vh;
+    background-color: $color4;
   }
 }
 
+.AllHobbies{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
 
+  .CreateHobby {
+    h2 {
+      text-align: center;
+    }
 
+    form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center
+  }
+}
 
+  input{
+    text-align: center;
+    border-radius: 15vh;
+    font-family: 'Pacifico', cursive;
+    margin-top: 2vh;
+  }
 
+  button{
+    margin-top: 2vh;
+    padding: 0.7vh 5vw;
+    border-radius: 2vh;
+    background-color: $color4;
+  }
+  
+  .hobbyContainer{
+    margin-top: 2vh;
+    overflow-y: scroll;
+    height: 75vh;
+  }
+}
 
-
-
-
-
-
+.error-message{
+  color: $color3;
+}
 
 .chatBox {
   height: 400px;
@@ -320,6 +375,7 @@ button{
   justify-content: flex-end;
   align-items: center;
   margin-top: 10px;
+  color: black;
   div {
     border-radius: 30px;
     background-color: #ffd8a2;
@@ -336,6 +392,7 @@ button{
   justify-content: flex-start;
   align-items: center;
   margin-top: 10px;
+  color: black;
   div {
     border-radius: 30px;
     background-color:#f7b081;
@@ -356,7 +413,6 @@ button{
   color: rgb(212, 212, 212);
 }
 
-/* The switch - the box around the slider */
 .switch {
   position: relative;
   display: inline-block;
@@ -364,14 +420,12 @@ button{
   height: 5vh;
 }
 
-/* Hide default HTML checkbox */
 .switch input {
   opacity: 0;
   width: 0;
   height: 0;
 }
 
-/* The slider */
 .slider {
   position: absolute;
   cursor: pointer;
@@ -416,7 +470,6 @@ button{
   background-repeat: no-repeat;
 }
 
-/* Rounded sliders */
 .slider.round {
   border-radius: 34px;
 }

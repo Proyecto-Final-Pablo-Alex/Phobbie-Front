@@ -145,11 +145,12 @@ class EditUser extends React.Component {
             onChange={(event) => this.handleChange(event)}
             placeholder= "repeat password"
           />
-
+          <div>
           <button>Edit profile</button>
+          <Link to="/profile"><button>Go back</button></Link>
+          </div>
           {this.state.errorMessage ? <p>You have to write the same password on "Password" and "Confirm Password" fields</p> : null}
         </form>
-        <Link to="/profile"><button>Go back</button></Link>
       </div>
     )
   }

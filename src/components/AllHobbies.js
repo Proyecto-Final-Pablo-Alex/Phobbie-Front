@@ -49,25 +49,23 @@ class AllHobbies extends React.Component {
     const sortedHobbiesByName = this.state.copyAllHobbies.sort((a,b)=> a.name.localeCompare(b.name))
     const sortedHobbiesByUsers = sortedHobbiesByName.sort((a,b)=> b.users.length - a.users.length)
     const hobbiesmap = sortedHobbiesByUsers.map((hobbie, index)=>{
-      return <li key={index} className="hobby">
+      return <div key={index} className="hobby">
                 <img src={hobbie.photo} alt={hobbie.name}/> 
                 <h3>{hobbie.name}</h3>
                 <p>{hobbie.description}</p>
                 <p>{hobbie.users.length} users</p>
                 <Link to={`/hobbie-details/${hobbie.name}`}><button>Details & Users</button></Link>
-              </li>
+              </div>
     })
     return (
-      <div>
-        <input type='text' onChange={(e)=>this.filterHobbies(e)} />
+      <div className="AllHobbies">
+        <input type='text' onChange={(e)=>this.filterHobbies(e)} placeholder="Search your hobby"/>
 
         {(hobbiesmap.length > 0)
-        ? <div>
-            <ul>
+        ? <div className="hobbyContainer">
               {hobbiesmap}
-            </ul>
           </div>
-        : <div>
+        : <div className="CreateHobby">
             <AddHobbie user={this.state.user}/>
           </div>
           }

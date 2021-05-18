@@ -28,7 +28,7 @@ class Login extends React.Component {
         }
       })
       .catch((error) => {
-        console.log(error);
+        this.setState({...this.state, errorMsg: true})
       });
   }
 
@@ -65,7 +65,7 @@ class Login extends React.Component {
 
           <button>Log in</button>
 
-          {this.state.errorMsg ? <p>Wrong credentials. Try again.</p> : null}
+          {this.state.errorMsg ? <p className="error-message">Wrong credentials. Try again.</p> : null}
         </form>
       </div>
     );

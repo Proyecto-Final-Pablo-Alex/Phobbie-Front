@@ -18,6 +18,7 @@ class Signup extends React.Component {
     },
     successSignUp: false,
     errorMessage: false,
+    errorMsg: '',
   };
 
   handleSubmit(event) {
@@ -29,14 +30,16 @@ class Signup extends React.Component {
       withCredentials: true
     })
       .then((result) => {
+        console.log('then',result.data)
         if (result.data.message === "User created") {
           this.setState({ ...this.state, successSignUp: true });
         } else {
-          this.setState({ ...this.state, errorMessage: true });
+          this.setState({ ...this.state, errorMessage: true, errorMsg: result.data.message });
         }
       })
       .catch((err) => {
-        console.log(err);
+        console.log('catch', err)
+        this.setState({ ...this.state, errorMessage: true, errorMsg: err.message });
       });
   }
 
@@ -55,7 +58,7 @@ class Signup extends React.Component {
     'Orense','Palencia','Las Palmas','Pontevedra','La Rioja','Salamanca','Segovia','Sevilla','Soria','Tarragona',
     'Tenerife','Teruel','Toledo','Valencia','Valladolid','Vizcaya','Zamora','Zaragoza']
 
-    const allOptions=provincias.map((provincia, index)=>{return(<option key={index}>{provincia}</option>)})
+    const allOptions=provincias.map((provincia, index)=>{return(<option key={index} style={{textAlign:"center", border:"1px solid black"}}>{provincia}</option>)})
 
     return this.state.successSignUp ? (
       <Redirect to="/login" />
@@ -104,7 +107,7 @@ class Signup extends React.Component {
           <button>Sign up</button>
           
         </form>
-        {this.state.errorMessage ? <p>Este usuario ya existe</p> : null}
+        {this.state.errorMessage ? <p className="error-message">{this.state.errorMsg}</p> : null}
       </div>
     );
   }

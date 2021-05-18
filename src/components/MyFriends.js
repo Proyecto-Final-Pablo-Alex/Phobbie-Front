@@ -3,7 +3,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import ProfileNavbar from "./ProfileNavbar";
 
-
 class MyFriends extends React.Component {
     state={
         user:{},
@@ -11,6 +10,7 @@ class MyFriends extends React.Component {
         friendsRender: [],
         loaded:false,
     }
+
     componentDidMount(){
     axios({
       method: "get",
@@ -39,32 +39,31 @@ class MyFriends extends React.Component {
   }
 
     componentDidUpdate(){
-   
+      
         axios({
         method: "get",
         url: "http://localhost:5000/return-user",
         withCredentials: true
         })
         .then(result => {
-        axios({
-            method: "post",
-            url: "http://localhost:5000/see-requests",
-            data: {_id: result.data.result._id},
-            withCredentials: true
-        })
-        .then(requests => {
-            const stateCopy = {...this.state}
-            stateCopy.user = result.data.result
-            stateCopy.requests = requests.data
-            stateCopy.loaded = true
-            if (requests.data.length === this.state.requests.length && this.state.user.friends.length === result.data.result.friends.length){
-            } else {
-            this.setState(stateCopy)
-            }
-        })
+          axios({
+              method: "post",
+              url: "http://localhost:5000/see-requests",
+              data: {_id: result.data.result._id},
+              withCredentials: true
+          })
+          .then(requests => {
+              const stateCopy = {...this.state}
+              stateCopy.user = result.data.result
+              stateCopy.requests = requests.data
+              stateCopy.loaded = true
+              if (!(requests.data.length === this.state.requests.length && this.state.user.friends.length === result.data.result.friends.length)){
+                this.setState(stateCopy)
+              }
+          })
         })
         .catch(error => {
-        console.log(error)
+          console.log(error)
         })
         
     }
@@ -100,6 +99,14 @@ class MyFriends extends React.Component {
         })
       }
 
+      filterFriends(e){
+        const {value} = e.target
+        const friendsFiltered = this.state.user.friends.filter((friend)=>{
+          return friend.username.toLowerCase().includes(value.toLowerCase())
+        })
+        this.setState({...this.state, friendsRender: friendsFiltered})
+      }
+
 
     render(){
         const {friends} = this.state.user;
@@ -108,51 +115,44 @@ class MyFriends extends React.Component {
         if (this.state.loaded){
             friendList = friends.map((friend, index) => {
                 return (
-                <li key={index} className="friend">
+                <div className="friend">
                     <img src={friend.photo} alt={`${friend.username} foto`} />
                     <p>{friend.username}</p>
                     <Link to={`/return-friend/${friend._id}`}><button>See profile</button></Link>
-                </li>
+                </div>
                 );
             });
             friendRequests = requests.map((req, index)=>{
                 return (
-                <li key={index} className="friend">
+                <div key={index} className="friend">
                     <img src={req.requester.photo} alt={req.requester.username} />
                     <p>{req.requester.username}</p>          
                     <button onClick={()=>this.acceptFriendRequest(req.requester._id, req._id)}>Accept</button>
                     <button onClick={()=>this.rejectFriendRequest(req.requester._id, req._id)}>Reject</button>
-                </li>
+                </div>
                 )
             })
         }
-            return this.state.loaded ? (
-                <div className="MyFriends">
-                    <ProfileNavbar />
-                    {(this.state.requests.length !== 0)
-                        ?   <div className="requestList">
-                                <h2>Requests</h2>
-                                <ul>{friendRequests}</ul>
-                            </div>
 
-                        :   <div>
-                                <h2>Requests</h2>
-                                You don't have any friend requests
-                            </div>}
-                    
-                    {(friends.length !== 0)
-                        ? <div className="friendList">
-                            <h2>Friends</h2>
-                            <ul>{friendList}</ul>
-                            </div>
+        return this.state.loaded ? (
+            <div className="MyFriends">
+            
+                <ProfileNavbar />
 
-                        : <div>
-                            <h2>Friends</h2>
-                            You don't have friends yet
-                            </div>}
+                <div className="requestList">
+                  <h2>Requests</h2>
+                  {(this.state.requests.length !== 0) ? <div>{friendRequests}</div> : <p>You don't have any friend requests</p>}
                 </div>
-                
-            ) : null
+
+                <div className="friendList">
+                  <h2>Friends</h2>
+                  <input type='text' onChange={(e)=>this.filterFriends(e)} />
+                  {(friends.length !== 0) ? <div>{friendList}</div> : <p>You don't have friends yet</p>}
+                </div>
+
+            </div>
+            
+        ) : <p>Loading...</p>
     }
 }
 export default MyFriends;
