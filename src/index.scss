@@ -421,6 +421,34 @@ button{
  
 }
 
+.HobbieDetails{
+  @include flex(column, center);
+
+  h1{
+    text-align: center;
+    margin: 0;
+  }
+
+  hr{
+    width: 90vw;
+  }
+
+  img{
+    width: 90vw;
+    margin: 0 auto;
+  }
+
+  p{
+    width: 75%
+  }
+
+  .hobbieContainer{
+    @include flex(column, $start);
+    overflow-y: scroll;
+    height: 70vh;
+  }
+}
+
 .error-message{
   color: $color3;
 }

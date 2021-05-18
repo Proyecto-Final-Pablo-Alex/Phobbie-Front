@@ -156,8 +156,10 @@ class HobbieDetails extends React.Component {
     return this.state.loaded ? (
       <div className="HobbieDetails">
         <h1>{name}</h1>
+        <hr />
+        <div className="hobbieContainer">
         <img src={photo} alt={name} />
-        <h2>{name}</h2>
+        {/* <h2>{name}</h2> */}
         <p>{description}</p>
         {this.state.added ? (
             <button onClick={()=>this.removeFromMyHobbies(_id)}>Remove from my hobbies</button>
@@ -176,6 +178,7 @@ class HobbieDetails extends React.Component {
         <ul>
             {usersmap}
         </ul>
+        </div>
         </div>
       </div>
     ) : (<p>Loading...</p>)
