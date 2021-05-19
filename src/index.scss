@@ -973,3 +973,65 @@ button{
     transform: rotateY(1800deg);
   }
 }
+
+.BigScreen{
+
+  div{
+    @include flex(column,center);
+    width: 80vw;
+    margin: 10vh auto;
+
+    div {
+      margin: 10vh auto;
+      @include flex(row,center);
+    }
+
+    p{
+      margin: 2vh auto;
+      overflow-wrap: break-word;
+      font-size: 3vh;
+      text-align: center;
+    }
+  }
+}
+
+.gear1{
+  height: 10vh;
+  animation-name: ckw;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  transform-origin: 50% 50%;
+  display: inline-block;
+  animation-timing-function: linear;
+  color: blue;
+}
+@keyframes ckw {
+  0% {
+      transform: rotate(360deg);
+  }
+  100% {
+      transform: rotate(0deg);
+  }
+}
+.gear2{
+  height: 10vh;
+  animation-name: cks;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  transform-origin: 50% 50%;
+  display: inline-block;
+  animation-timing-function: linear;
+  color: blue;
+}
+@keyframes cks {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
+}
+
+.phobbie-logo{
+  width: 50vw;
+}

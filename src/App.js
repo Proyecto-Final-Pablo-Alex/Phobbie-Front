@@ -16,6 +16,7 @@ import MyHobbies from "./components/MyHobbies";
 import ChatList from "./components/ChatList";
 import Chat from "./components/Chat";
 
+import BigScreen from "./components/BigScreen"
 
 class App extends React.Component {
   state = {
@@ -31,7 +32,13 @@ class App extends React.Component {
       status:''
     },
     logInSuccess: false,
-    theme: 'dark'
+    theme: 'dark',
+    matches: window.matchMedia("(min-width: 501px)").matches,
+  }
+
+  componentDidMount() {
+    const handler = e => this.setState({matches: e.matches});
+    window.matchMedia("(min-width: 501px)").addListener(handler);
   }
 
   toggleMode(){
@@ -58,7 +65,7 @@ class App extends React.Component {
   }
   
   render() {
-    return (
+    return this.state.matches ? <BigScreen /> : (
       <div className={`App ${this.state.theme}`}>
         <Navbar logInSuccess={this.state.logInSuccess} toggleButton={()=>this.toggleMode()}/>
         <Switch>
