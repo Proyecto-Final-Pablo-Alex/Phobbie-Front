@@ -35,7 +35,7 @@ class AddHobbie extends React.Component {
     e.preventDefault();
     axios({
       method: "post",
-      url: "https://phobbies-app.herokuapp.com/sv/hobbies/addHobbie",
+      url: "https://phobbie.herokuapp.com/sv/hobbies/addHobbie",
       data: this.state.newHobbie,
       withCredentials: true
     })

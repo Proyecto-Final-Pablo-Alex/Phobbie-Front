@@ -15,13 +15,13 @@ class ChatList extends React.Component {
     componentDidMount(){
         axios({
             method: "get",
-            url: "https://phobbies-app.herokuapp.com/sv/return-all-chats",
+            url: "https://phobbie.herokuapp.com/sv/return-all-chats",
             withCredentials: true
           })
         .then((result) => {
             axios({
                 method: "get",
-                url: "https://phobbies-app.herokuapp.com/sv/return-user",
+                url: "https://phobbie.herokuapp.com/sv/return-user",
                 withCredentials: true
               })
             .then((user)=>{

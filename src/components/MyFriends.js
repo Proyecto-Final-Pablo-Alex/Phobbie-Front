@@ -14,13 +14,13 @@ class MyFriends extends React.Component {
     componentDidMount(){
     axios({
       method: "get",
-      url: "https://phobbies-app.herokuapp.com/sv/return-user",
+      url: "https://phobbie.herokuapp.com/sv/return-user",
       withCredentials: true
     })
     .then(result => {
       axios({
         method: "post",
-        url: "https://phobbies-app.herokuapp.com/sv/see-requests",
+        url: "https://phobbie.herokuapp.com/sv/see-requests",
         data: {_id: result.data.result._id},
         withCredentials: true
       })
@@ -41,13 +41,13 @@ class MyFriends extends React.Component {
     updateRequestAndFriends(){
         axios({
         method: "get",
-        url: "https://phobbies-app.herokuapp.com/sv/return-user",
+        url: "https://phobbie.herokuapp.com/sv/return-user",
         withCredentials: true
         })
         .then(result => {
           axios({
             method: "post",
-            url: "https://phobbies-app.herokuapp.com/sv/see-requests",
+            url: "https://phobbie.herokuapp.com/sv/see-requests",
             data: {_id: result.data.result._id},
             withCredentials: true
           })
@@ -69,7 +69,7 @@ class MyFriends extends React.Component {
     acceptFriendRequest(requesterId, reqId){
         axios({
           method: "post",
-          url: "https://phobbies-app.herokuapp.com/sv/accept-request",
+          url: "https://phobbie.herokuapp.com/sv/accept-request",
           data: {_id:reqId, requester:requesterId, recipient: this.state.user._id},
           withCredentials: true
         })
@@ -84,7 +84,7 @@ class MyFriends extends React.Component {
       rejectFriendRequest(requesterId, reqId){
         axios({
           method: "post",
-          url: "https://phobbies-app.herokuapp.com/sv/reject-request",
+          url: "https://phobbie.herokuapp.com/sv/reject-request",
           data: {_id:reqId, requester:requesterId, recipient: this.state.user._id},
           withCredentials: true
         })
