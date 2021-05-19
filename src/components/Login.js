@@ -16,7 +16,7 @@ class Login extends React.Component {
     event.preventDefault();
     axios({
       method: "post",
-      url: "http://localhost:5000/sv/login",
+      url: "https://phobbies-app.herokuapp.com/sv/login",
       data: this.state.user,
       withCredentials: true
     })

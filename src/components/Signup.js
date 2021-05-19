@@ -25,7 +25,7 @@ class Signup extends React.Component {
     event.preventDefault();
     axios({
       method: "post",
-      url: "http://localhost:5000/sv/signup",
+      url: "https://phobbies-app.herokuapp.com/sv/signup",
       data: this.state.user,
       withCredentials: true
     })

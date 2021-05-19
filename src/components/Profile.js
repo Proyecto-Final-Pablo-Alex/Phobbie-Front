@@ -30,13 +30,13 @@ class Profile extends React.Component {
   componentDidMount(){
     axios({
       method: "get",
-      url: "http://localhost:5000/sv/return-user",
+      url: "https://phobbies-app.herokuapp.com/sv/return-user",
       withCredentials: true
     })
     .then(result => {
       axios({
         method: "post",
-        url: "http://localhost:5000/sv/see-requests",
+        url: "https://phobbies-app.herokuapp.com/sv/see-requests",
         data: {_id: result.data.result._id},
         withCredentials: true
       })
@@ -75,7 +75,7 @@ class Profile extends React.Component {
   delAccountConfirmation(){
     axios({
       method:"POST",
-      url:"http://localhost:5000/sv/delete-user",
+      url:"https://phobbies-app.herokuapp.com/sv/delete-user",
       data: {_id: this.state.user._id},
       withCredentials:true
     })
