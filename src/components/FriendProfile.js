@@ -69,7 +69,7 @@ class FriendProfile extends React.Component {
           hobbiesList = hobbies.map((hobbie, index) => {
             return (
                 <li key={index}>
-                  <img src={hobbie.photo} alt={`${hobbie.name} foto`} style={{width: "200px"}} />
+                  <img src={hobbie.photo} alt={`${hobbie.name} foto`} />
                   {hobbie.name}
                   <Link to={`/hobbie-details/${hobbie.name}`}><button>See details</button></Link>
                 </li>

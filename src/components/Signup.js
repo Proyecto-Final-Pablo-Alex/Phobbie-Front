@@ -52,11 +52,11 @@ class Signup extends React.Component {
   render() {
     const provincias = ['Alava','Albacete','Alicante','Almería','Asturias','Avila','Badajoz','Barcelona','Burgos','Cáceres',
     'Cádiz','Cantabria','Castellón','Ciudad Real','Córdoba','La Coruña','Cuenca','Gerona','Granada','Guadalajara',
-    'Guipúzcoa','Huelva','Huesca','Islas Baleares','Jaén','León','Lérida','Lugo','Madrid','Málaga','Murcia','Navarra',
+    'Guipúzcoa','Huelva','Huesca','Baleares','Jaén','León','Lérida','Lugo','Madrid','Málaga','Murcia','Navarra',
     'Orense','Palencia','Las Palmas','Pontevedra','La Rioja','Salamanca','Segovia','Sevilla','Soria','Tarragona',
     'Tenerife','Teruel','Toledo','Valencia','Valladolid','Vizcaya','Zamora','Zaragoza']
 
-    const allOptions=provincias.map((provincia, index)=>{return(<option key={index} style={{textAlign:"center", border:"1px solid black"}}>{provincia}</option>)})
+    const allOptions=provincias.map((provincia, index)=>{return(<option key={index}>{provincia}</option>)})
 
     return this.state.successSignUp ? (
       <Redirect to="/login" />

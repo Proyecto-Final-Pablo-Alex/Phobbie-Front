@@ -149,9 +149,9 @@ class HobbieDetails extends React.Component {
     const filteredUsers = sortedUsersByName.filter(user=>user._id !== this.state.user._id)
     const usersmap = filteredUsers.map((user, index)=>{
       return <div className="friend" key={index}>
-                <img src={user.photo} alt={user.username} style={{width: "100px"}}/> 
+                <img src={user.photo} alt={user.username}/> 
                 <h3>{user.username}</h3>
-                {this.checkIfFriends(user.username) ? <button disabled>Already friends</button> : (this.state.errorMessage) ? <p>Check your requests...</p> : <button onClick={()=>this.sendFriendRequest(user._id)}>Send friend request</button>}
+                {this.checkIfFriends(user.username) ? <button disabled>Already friends</button> : <button onClick={()=>this.sendFriendRequest(user._id)}>Friend request</button>}
               </div>
     })
     return this.state.loaded ? (
@@ -159,8 +159,7 @@ class HobbieDetails extends React.Component {
         <h1>{name}</h1>
         <hr />
         <div className="hobbieContainer">
-        <img src={photo} alt={name} />
-        {/* <h2>{name}</h2> */}
+        <img src={photo} alt={name} className="HobbieDetails-img"/>
         <p>{description}</p>
         {this.state.added ? (
             <button onClick={()=>this.removeFromMyHobbies(_id)}>Remove from my hobbies</button>
