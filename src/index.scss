@@ -352,11 +352,55 @@ button{
     font-family: 'Pacifico', cursive;
   }
 
+  input[type="file"]{
+    text-align: center;
+    border-radius: 15vh;
+    font-family: 'Pacifico', cursive;
+  }
+
+  select{
+    border-radius: 15vh;
+    text-align: center;
+    font-family: 'Pacifico', cursive;
+    color:rgb(39, 39, 39);
+    background-color: $color2;
+    overflow: hidden;
+  }
+
   button{
     margin-top: 2vh;
     padding: 0.7vh 5vw;
     border-radius: 2vh;
     background-color: $color4;
+  }
+
+  .file-select {          
+    position: relative;
+    display: inline-block;
+  }
+   
+  .file-select::before {
+    background-color: $color4;
+    color: black;
+    font-size: 2.5vh;
+    display: flex;            
+    justify-content: center;
+    align-items: center;
+    border-radius: 15vh;
+    content: 'Select file';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;                
+  }
+   
+  .file-select input[type="file"] {
+    border-radius: 3vh;
+    opacity: 0;
+    width: 50vw;
+    height: 3.5vh;
+    display: inline-block;            
   }
 }
 

@@ -37,14 +37,14 @@ class EditUser extends React.Component {
             uploadForm.append('imageUrl', photo)
             axios({
               method: 'post',
-              url: 'http://localhost:5000/sv/upload',
+              url: 'https://phobbies-app.herokuapp.com/sv/upload',
               data: uploadForm,
               withCredentials: true
             })
             .then(image => {
               axios({
                 method: "post",
-                url: "http://localhost:5000/sv/edit-user",
+                url: "https://phobbies-app.herokuapp.com/sv/edit-user",
                 data: {...this.state.user, photo: image.data.image},
                 withCredentials: true
               })
@@ -58,7 +58,7 @@ class EditUser extends React.Component {
         }else{
             axios({
               method: "post",
-              url: "http://localhost:5000/sv/edit-user",
+              url: "https://phobbies-app.herokuapp.com/sv/edit-user",
               data: {...this.state.user},
               withCredentials: true
             })
@@ -100,10 +100,12 @@ class EditUser extends React.Component {
         <input type="text" name="_id" hidden value={_id} />
 
         <label htmlFor="photo">Profile Picture</label>
-          <input
-            type="file"
-            name="photo"
-          />
+          <div className="file-select">
+            <input
+              type="file"
+              name="photo"
+            />
+          </div>
           <input type="text" name="actualPhoto" hidden value={photo} />
 
           
