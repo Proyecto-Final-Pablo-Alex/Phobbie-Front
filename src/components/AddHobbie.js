@@ -54,7 +54,7 @@ class AddHobbie extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="AddHobbie">
         {this.state.hobbieCreated ? <Redirect to='/profile'/> : null}
         <h2>No results, create your desired hobbie</h2>
         <form onSubmit={(e)=>this.handleSubmit(e)}>

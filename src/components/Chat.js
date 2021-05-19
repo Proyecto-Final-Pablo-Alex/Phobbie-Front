@@ -103,6 +103,14 @@ class Chat extends React.Component {
         const date = timeArr[0].split("-")
         return `${timeArr[1].slice(0,5)} - ${date[2]}/${date[1]}`
       }
+
+      checkIfRead(status){
+        if (status === "READ"){
+            return <img className="read-icon" src="https://res.cloudinary.com/hobbiesphere/image/upload/v1621440328/msg-color2_we6x4c.png" />
+        }else if (status === "UNREAD"){
+            return <img className="read-icon" src="https://res.cloudinary.com/hobbiesphere/image/upload/v1621440365/msg-gris_h433ri.png" /> 
+        }
+      }
       
     render(){
         let messages
@@ -112,7 +120,7 @@ class Chat extends React.Component {
                     <div key={index} className="userMessage">
                         <div>
                             <p>{message.message}</p>
-                            <i>{this.displayTime(message.date)}</i>
+                            <i>{this.displayTime(message.date)}{this.checkIfRead(message.status)}</i>
                         </div>
                     </div> 
                 ) : (

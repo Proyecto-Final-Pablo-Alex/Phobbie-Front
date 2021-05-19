@@ -48,34 +48,38 @@ class ChatList extends React.Component {
 
     render(){
         let allChats
+
         if (this.state.loaded){  
-        allChats = this.state.renderChats.map((chat, index)=>{
+            allChats = this.state.renderChats.map((chat, index)=>{
 
-            const friend = chat.participants.filter(participant => participant._id !== this.state.user._id)[0]
+                const friend = chat.participants.filter(participant => participant._id !== this.state.user._id)[0]
 
-            const unreadMsgs = chat.messages.filter(message=> message.status === "UNREAD" && message.username !== this.state.user.username)
+                const unreadMsgs = chat.messages.filter(message=> message.status === "UNREAD" && message.username !== this.state.user.username)
 
-            
-            return(
-                <Link to={`/chat/${friend._id}`} key={index}>
-                    <div className="friend">
-                        <img src={friend.photo} alt={friend.username}/>
-                        <div>
-                            <p><b>Chatting with {friend.username}</b></p>
-                            <p>Unread messages: {unreadMsgs.length}</p>
+                
+                return(
+                    <Link to={`/chat/${friend._id}`} key={index}>
+                        <div className="friend">
+                            <img src={friend.photo} alt={friend.username}/>
+                            <div>
+                                <p><b>Chatting with {friend.username}</b></p>
+                                <p>Unread messages: {unreadMsgs.length}</p>
+                            </div>
                         </div>
-                    </div>
-                </Link>
-            )
-        })}
+                    </Link>
+                )
+            })
+
+        }
 
         return this.state.loaded ? (
             <div className="Chatlist">
                 <ProfileNavbar />
                 <h1>Chatlist</h1>
-                <input type='text' onChange={(e)=>this.filterChats(e)} />
+                <input type='text' placeholder="Search chat..." onChange={(e)=>this.filterChats(e)} />
                 <div className="chatContainer">
-                   {allChats.length === 0 ? <p>Add some friends to chat with them</p> : allChats} 
+                    {this.state.chats.length === 0 ? <p>Add some friends to chat with them.</p> :
+                    this.state.renderChats.length === 0 ? <p>No results...</p> : <div>{allChats}</div>}
                 </div>
             </div>
 

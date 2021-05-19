@@ -1,4 +1,6 @@
 import React from "react";
+import Footer from "./Footer";
+
 
 
 class Home extends React.Component {
@@ -11,6 +13,7 @@ class Home extends React.Component {
                 <div>
                     Phobbie is a place to connect with other people with your same hobbies. It was first developed as a final project for a Web Developer Bootcamp but we hope you like it and give it a try. <span>😉</span>
                 </div>
+                <Footer />
             </div>
         )
     }

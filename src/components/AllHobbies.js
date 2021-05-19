@@ -66,10 +66,7 @@ class AllHobbies extends React.Component {
         ? <div className="hobbyContainer">
               {hobbiesmap}
           </div>
-        : <div className="CreateHobby">
-            <AddHobbie user={this.state.user}/>
-          </div>
-          }
+        : <AddHobbie user={this.state.user}/>}
         </div>
     ) : (
       <div className="spinner">

@@ -109,19 +109,23 @@ class EditUser extends React.Component {
           <input type="text" name="actualPhoto" hidden value={photo} />
 
           
-
-          <label htmlFor="age">Age</label>
-          <input
-            type="number"
-            name="age"
-            onChange={(event) => this.handleChange(event)}
-            defaultValue={age}
-          />
-
-          <label htmlFor="location">Location</label>
-          <select name="location" onChange={(event) => this.handleChange(event)} defaultValue={location}>
-            {allOptions}
-          </select>
+          <div className="EditUser-age-location">
+            <div>
+              <label htmlFor="age">Age</label>
+              <input className="age"
+                type="number"
+                name="age"
+                onChange={(event) => this.handleChange(event)}
+                defaultValue={age}
+              />
+            </div>
+            <div>
+              <label htmlFor="location">Location</label>
+              <select name="location" onChange={(event) => this.handleChange(event)} defaultValue={location}>
+                {allOptions}
+              </select>
+            </div>
+          </div>
 
           <label htmlFor="status">Status</label>
           <textarea className="status"

@@ -91,7 +91,7 @@ class Profile extends React.Component {
         <ProfileNavbar setAppState={()=>this.props.setAppState()}/>
         <img src={photo} alt={`Foto de perfil de ${username}`} />
         <div className="info">
-          <h1>Welcome, {username}</h1>
+          <h1>{username}</h1>
           <p className="info-status">
             <b>Status:</b> {status}
           </p>

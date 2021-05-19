@@ -145,9 +145,17 @@ class MyFriends extends React.Component {
 
                 <div className="friendList">
                   <h2>Friends</h2>
-                  <input type='text' onChange={(e)=>this.filterFriends(e)} placeholder="Search friend..."/>
-                  {(friends.length !== 0) ? <div className="friendContainer">{friendList}</div> : <p>You don't have friends yet</p>}
+                  
+                  {(friends.length !== 0) ? (
+                  <div className="friendContainer">
+                    <input type='text' onChange={(e)=>this.filterFriends(e)} placeholder="Search in friends..."/>
+                    {friendList.length === 0 ? <p>No results</p> : <div>{friendList}</div>}
+                  </div> 
+                  ) : (
+                  <p>You don't have friends yet</p>
+                  )}
                 </div>
+                
 
             </div>
             
