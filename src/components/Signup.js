@@ -30,7 +30,6 @@ class Signup extends React.Component {
       withCredentials: true
     })
       .then((result) => {
-        console.log('then',result.data)
         if (result.data.message === "User created") {
           this.setState({ ...this.state, successSignUp: true });
         } else {
@@ -38,7 +37,6 @@ class Signup extends React.Component {
         }
       })
       .catch((err) => {
-        console.log('catch', err)
         this.setState({ ...this.state, errorMessage: true, errorMsg: err.message });
       });
   }
