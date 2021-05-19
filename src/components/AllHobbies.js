@@ -25,7 +25,7 @@ class AllHobbies extends React.Component {
       const user = this.props.user
       axios({
         method: "get",
-        url: "http://localhost:5000/hobbies/allHobbies",
+        url: "https://phobbies-app.herokuapp.com/sv/hobbies/allHobbies",
         withCredentials: true
       })
         .then((result) => {

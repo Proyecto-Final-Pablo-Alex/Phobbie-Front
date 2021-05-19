@@ -17,7 +17,7 @@ class Chat extends React.Component {
     componentDidMount(){
          axios({
              method: "get",
-             url: `http://localhost:5000/return-chat/${this.props.match.params._id}`,
+             url: `https://phobbies-app.herokuapp.com/sv/return-chat/${this.props.match.params._id}`,
              withCredentials: true
            })
            .then(result => {
@@ -39,7 +39,7 @@ class Chat extends React.Component {
             check = setInterval(() => {
             axios({
                 method: "get",
-                url: `http://localhost:5000/return-chat/${this.props.match.params._id}`,
+                url: `https://phobbies-app.herokuapp.com/sv/return-chat/${this.props.match.params._id}`,
                 withCredentials: true
               })
               .then(result => {
@@ -73,7 +73,7 @@ class Chat extends React.Component {
           }else{
             axios({
                 method: 'post',
-                url: `http://localhost:5000/send-msg/${this.props.match.params._id}`,
+                url: `https://phobbies-app.herokuapp.com/sv/send-msg/${this.props.match.params._id}`,
                 data: {
                     message: message,
                     date: new Date(),

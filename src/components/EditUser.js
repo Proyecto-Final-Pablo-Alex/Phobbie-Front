@@ -37,14 +37,14 @@ class EditUser extends React.Component {
             uploadForm.append('imageUrl', photo)
             axios({
               method: 'post',
-              url: 'http://localhost:5000/upload',
+              url: 'https://phobbies-app.herokuapp.com/sv/upload',
               data: uploadForm,
               withCredentials: true
             })
             .then(image => {
               axios({
                 method: "post",
-                url: "http://localhost:5000/edit-user",
+                url: "https://phobbies-app.herokuapp.com/sv/edit-user",
                 data: {...this.state.user, photo: image.data.image},
                 withCredentials: true
               })
@@ -58,7 +58,7 @@ class EditUser extends React.Component {
         }else{
             axios({
               method: "post",
-              url: "http://localhost:5000/edit-user",
+              url: "https://phobbies-app.herokuapp.com/sv/edit-user",
               data: {...this.state.user},
               withCredentials: true
             })

@@ -12,7 +12,7 @@ class ProfileNavbar extends React.Component {
     logout(){
         axios({
             method: 'get',
-            url: "http://localhost:5000/logout",
+            url: "https://phobbies-app.herokuapp.com/sv/logout",
             withCredentials: true
         })
         .then(result => {

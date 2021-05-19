@@ -25,7 +25,7 @@ class MyHobbies extends React.Component {
     componentDidMount(){
         axios({
             method: "get",
-            url: "http://localhost:5000/return-user",
+            url: "https://phobbies-app.herokuapp.com/sv/return-user",
             withCredentials: true
         })
         .then(result => {

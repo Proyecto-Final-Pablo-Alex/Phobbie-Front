@@ -31,14 +31,14 @@ class HobbieDetails extends React.Component {
   componentDidMount() {
     axios({
       method: "get",
-      url: `http://localhost:5000/hobbie-details/${this.props.match.params.name}`,
+      url: `https://phobbies-app.herokuapp.com/sv/hobbie-details/${this.props.match.params.name}`,
       withCredentials: true,
     })
       .then((hobbie) => {
 
           axios({
               method: "get",
-              url: "http://localhost:5000/return-user",
+              url: "https://phobbies-app.herokuapp.com/sv/return-user",
               withCredentials: true
           })
           .then(user=>{
@@ -70,7 +70,7 @@ class HobbieDetails extends React.Component {
   addToMyHobbies(_id){
     axios({
       method: "post",
-      url: "http://localhost:5000/hobbies/addToMyHobbies",
+      url: "https://phobbies-app.herokuapp.com/sv/hobbies/addToMyHobbies",
       data: {_id, userId: this.state.user._id},
       withCredentials: true
     })
@@ -85,7 +85,7 @@ class HobbieDetails extends React.Component {
   removeFromMyHobbies(_id){
     axios({
       method: "post",
-      url: "http://localhost:5000/hobbies/removeFromMyHobbies",
+      url: "https://phobbies-app.herokuapp.com/sv/hobbies/removeFromMyHobbies",
       data: {_id, userId: this.state.user._id},
       withCredentials: true
     })
@@ -100,7 +100,7 @@ class HobbieDetails extends React.Component {
   sendFriendRequest(id){
     axios({
       method: "post",
-      url: "http://localhost:5000/send-request",
+      url: "https://phobbies-app.herokuapp.com/sv/send-request",
       data: {requester: this.state.user._id, recipient: id},
       withCredentials: true
     })

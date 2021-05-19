@@ -32,7 +32,7 @@ class FriendProfile extends React.Component {
     componentDidMount(){
         axios({
           method: "get",
-          url: `http://localhost:5000/return-friend/${this.props.match.params.id}`,
+          url: `https://phobbies-app.herokuapp.com/sv/return-friend/${this.props.match.params.id}`,
           withCredentials: true
         })
         .then(result => {
@@ -50,7 +50,7 @@ class FriendProfile extends React.Component {
       deleteFriend(friendId){
         axios({
           method: "post",
-          url: "http://localhost:5000/delete-friend",
+          url: "https://phobbies-app.herokuapp.com/sv/delete-friend",
           data: {requester:this.state.user._id, recipient:friendId},
           withCredentials: true
         })
