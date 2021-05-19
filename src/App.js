@@ -126,7 +126,7 @@ class App extends React.Component {
           <Route
             path="/chat/:_id"
             exact
-            component={(routeProps) => <Chat {...routeProps} user={this.state.user}/>}
+            component={(routeProps) => <Chat {...routeProps} />}
           />
         </Switch>
       </div>

@@ -5,6 +5,7 @@ let check
 
 class Chat extends React.Component {
     state={
+        user: {},
         chat:{
             participants:[],
             messages:[],
@@ -15,24 +16,32 @@ class Chat extends React.Component {
     }
     
     componentDidMount(){
-         axios({
-             method: "get",
-             url: `https://phobbies-app.herokuapp.com/sv/return-chat/${this.props.match.params._id}`,
-             withCredentials: true
-           })
-           .then(result => {
-               const stateCopy = {...this.state}
-               stateCopy.chat = result.data
-               stateCopy.loaded = true
-               stateCopy.friend = result.data.participants.filter(participant=>(participant._id !== this.props.user._id))[0]
-               this.setState(stateCopy)
-               this.nameInput.focus();
-               this.scrollToBottom();
-               this.chatCheck()
-           })
-           .catch(error => {
-               console.log(error)
-           })  
+        axios({
+            method: "get",
+            url: "https://phobbies-app.herokuapp.com/sv/return-user",
+            withCredentials: true
+        })
+        .then(user=>{
+            axios({
+                method: "get",
+                url: `https://phobbies-app.herokuapp.com/sv/return-chat/${this.props.match.params._id}`,
+                withCredentials: true
+              })
+              .then(result => {
+                  const stateCopy = {...this.state}
+                  stateCopy.chat = result.data
+                  stateCopy.user = user.data.result
+                  stateCopy.loaded = true
+                  stateCopy.friend = result.data.participants.filter(participant=>(participant._id !== this.state.user._id))[0]
+                  this.setState(stateCopy)
+                  this.nameInput.focus();
+                  this.scrollToBottom();
+                  this.chatCheck()
+              })
+        })
+        .catch(error => {
+            console.log(error)
+        })  
     }
     
      chatCheck(){
@@ -70,6 +79,8 @@ class Chat extends React.Component {
           const {message} = this.state
           if (message === ""){
               return null
+          }else if (this.state.user.username === ""){
+            return null
           }else{
             axios({
                 method: 'post',
@@ -77,7 +88,7 @@ class Chat extends React.Component {
                 data: {
                     message: message,
                     date: new Date(),
-                    username: this.props.user.username
+                    username: this.state.user.username
                 },
                 withCredentials: true
             })
