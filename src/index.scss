@@ -61,17 +61,14 @@ button{
 }
 
 .Home{
-  padding-top: 8vh;
+  padding-top: 3vh;
   @include flex(column, center);
   margin: 0 auto;
-  img{
-    width: 40vw;
-  }
 
   h1{
     margin: 0 auto;
     font-size: 5vh;
-    margin-top: 8vh;
+    margin-top: 6vh;
     font-style: italic;
     text-align: center;
 
@@ -84,7 +81,7 @@ button{
 
   div{
     margin: 0 auto;
-    margin-top: 3vh;
+    margin-top: 2vh;
     width: 85vw;
     text-align: center;
     font-size: 5vw;
@@ -260,6 +257,21 @@ button{
   h1{
     text-align: center;
   }
+
+  &-empty{
+    @include flex(column, center);
+    p {
+      margin-top: 3vh;
+    }
+
+    button {
+      margin-top: 2vh;
+      padding: 0.7vh 5vw;
+      border-radius: 2vh;
+      background-color: $color4;
+    }
+  }
+
 }
 
 .friend{
@@ -340,6 +352,8 @@ button{
   h1{
     margin: 0 auto;
     margin-top: 1vh;
+    font-size: 1.5rem;
+    text-decoration: underline;
   }
 
   form{
@@ -351,6 +365,15 @@ button{
     border-radius: 15vh;
     font-family: 'Pacifico', cursive;
   }
+
+  textarea {
+    overflow: scroll;
+    resize: none;
+    text-align: center;
+    border-radius: 3vh;
+    font-family: 'Pacifico', cursive;
+  }
+  
 
   input[type="file"]{
     text-align: center;
@@ -442,24 +465,24 @@ button{
 .Chatlist{
     @include flex(column, center);
   
-  h1{
+  h1 {
     text-align: center;
   }
 
-  input{
+  input {
     text-align: center;
     border-radius: 15vh;
     font-family: 'Pacifico', cursive;
   }
 
- a{
-   text-decoration: none;
-   color: inherit;
- }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
 
- .chatContainer{
-   overflow-y: scroll;
-   height: 60vh;
+  .chatContainer{
+    overflow-y: scroll;
+    height: 60vh;
  }
  
  
@@ -751,5 +774,38 @@ button{
     100% {
       transform: rotate(360deg);
     }
+  }
+}
+
+
+
+
+.lds-circle {
+  margin: 0;
+  display: inline-block;
+  transform: translateZ(1px);
+}
+
+.lds-circle > div {
+  width: 30vh;
+  height: 30vh;
+  background-image: url("https://res.cloudinary.com/hobbiesphere/image/upload/v1621249684/Logo_Phobbie_solo_logo_dpqaxm.png");
+  background-size: contain;
+  animation: lds-circle 10s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+@keyframes lds-circle {
+  0%, 100% {
+    animation-timing-function: cubic-bezier(0, 0, 0, 0.5);
+  }
+  0% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(900deg);
+    animation-timing-function: cubic-bezier(0, 0.5, 0.5, 1);
+  }
+  100% {
+    transform: rotateY(1800deg);
   }
 }

@@ -75,7 +75,7 @@ class ChatList extends React.Component {
                 <h1>Chatlist</h1>
                 <input type='text' onChange={(e)=>this.filterChats(e)} />
                 <div className="chatContainer">
-                   {allChats} 
+                   {allChats.length === 0 ? <p>Add some friends to chat with them</p> : allChats} 
                 </div>
             </div>
 

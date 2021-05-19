@@ -37,14 +37,14 @@ class EditUser extends React.Component {
             uploadForm.append('imageUrl', photo)
             axios({
               method: 'post',
-              url: 'https://phobbies-app.herokuapp.com/sv/upload',
+              url: 'http://localhost:5000/sv/upload',
               data: uploadForm,
               withCredentials: true
             })
             .then(image => {
               axios({
                 method: "post",
-                url: "https://phobbies-app.herokuapp.com/sv/edit-user",
+                url: "http://localhost:5000/sv/edit-user",
                 data: {...this.state.user, photo: image.data.image},
                 withCredentials: true
               })
@@ -58,7 +58,7 @@ class EditUser extends React.Component {
         }else{
             axios({
               method: "post",
-              url: "https://phobbies-app.herokuapp.com/sv/edit-user",
+              url: "http://localhost:5000/sv/edit-user",
               data: {...this.state.user},
               withCredentials: true
             })
@@ -124,13 +124,12 @@ class EditUser extends React.Component {
           </select>
 
           <label htmlFor="status">Status</label>
-          <input
-            className="status"
+          <textarea className="status"
             type="text"
             name="status"
             onChange={(event) => this.handleChange(event)}
-            defaultValue={status}
-          />
+            defaultValue={status} cols="35" rows="2"></textarea>
+
 
           <label htmlFor="password">Password</label>
           <input
@@ -151,7 +150,7 @@ class EditUser extends React.Component {
           <button>Edit profile</button>
           <Link to="/profile"><button>Go back</button></Link>
           </div>
-          {this.state.errorMessage ? <p>You have to write the same password on "Password" and "Confirm Password" fields</p> : null}
+          {this.state.errorMessage ? <p>Password and Confirm must match</p> : null}
         </form>
       </div>
     )

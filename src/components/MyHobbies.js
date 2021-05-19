@@ -63,9 +63,9 @@ class MyHobbies extends React.Component {
                         {hobbiesList}
                     </ul>
                 ) : (
-                    <div>
+                    <div className="MyHobbies-empty">
                         <p>You don't have any hobbies added yet.</p>
-                        <Link to="/all-hobbies">Go add some!</Link>
+                        <Link to="/all-hobbies"><button>Go add some!</button></Link>
                     </div>
                 )
                 }
