@@ -25,20 +25,21 @@ class HobbieDetails extends React.Component {
     added: false,
     requestSent: false,
     renderUsers: [],
-    usersChecked: false
+    usersChecked: false,
+    errorMessage: ''
   }
 
   componentDidMount() {
     axios({
       method: "get",
-      url: `https://phobbies-app.herokuapp.com/sv/hobbie-details/${this.props.match.params.name}`,
+      url: `http://localhost:5000/sv/hobbie-details/${this.props.match.params.name}`,
       withCredentials: true,
     })
       .then((hobbie) => {
 
           axios({
               method: "get",
-              url: "https://phobbies-app.herokuapp.com/sv/return-user",
+              url: "http://localhost:5000/sv/return-user",
               withCredentials: true
           })
           .then(user=>{
@@ -70,7 +71,7 @@ class HobbieDetails extends React.Component {
   addToMyHobbies(_id){
     axios({
       method: "post",
-      url: "https://phobbies-app.herokuapp.com/sv/hobbies/addToMyHobbies",
+      url: "http://localhost:5000/sv/hobbies/addToMyHobbies",
       data: {_id, userId: this.state.user._id},
       withCredentials: true
     })
@@ -85,7 +86,7 @@ class HobbieDetails extends React.Component {
   removeFromMyHobbies(_id){
     axios({
       method: "post",
-      url: "https://phobbies-app.herokuapp.com/sv/hobbies/removeFromMyHobbies",
+      url: "http://localhost:5000/sv/hobbies/removeFromMyHobbies",
       data: {_id, userId: this.state.user._id},
       withCredentials: true
     })
@@ -100,12 +101,12 @@ class HobbieDetails extends React.Component {
   sendFriendRequest(id){
     axios({
       method: "post",
-      url: "https://phobbies-app.herokuapp.com/sv/send-request",
+      url: "http://localhost:5000/sv/send-request",
       data: {requester: this.state.user._id, recipient: id},
       withCredentials: true
     })
     .then(result => {
-      this.setState({...this.state, requestSent: true})
+      this.setState({...this.state, requestSent: true, errorMessage: result.data.errorMessage,})
     })
     .catch(error => {
       console.log(error)
@@ -150,7 +151,7 @@ class HobbieDetails extends React.Component {
       return <div className="friend" key={index}>
                 <img src={user.photo} alt={user.username} style={{width: "100px"}}/> 
                 <h3>{user.username}</h3>
-                {this.checkIfFriends(user.username) ? <button disabled>Already friends</button> : <button onClick={()=>this.sendFriendRequest(user._id)}>Send friend request</button>}
+                {this.checkIfFriends(user.username) ? <button disabled>Already friends</button> : (this.state.errorMessage) ? <p>Check your requests...</p> : <button onClick={()=>this.sendFriendRequest(user._id)}>Send friend request</button>}
               </div>
     })
     return this.state.loaded ? (

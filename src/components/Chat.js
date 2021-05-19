@@ -16,28 +16,21 @@ class Chat extends React.Component {
     }
     
     componentDidMount(){
-        axios({
-            method: "get",
-            url: "https://phobbies-app.herokuapp.com/sv/return-user",
-            withCredentials: true
+    axios({
+        method: "get",
+        url: `http://localhost:5000/sv/return-chat/${this.props.match.params._id}`,
+        withCredentials: true
         })
-        .then(user=>{
-            axios({
-                method: "get",
-                url: `https://phobbies-app.herokuapp.com/sv/return-chat/${this.props.match.params._id}`,
-                withCredentials: true
-              })
-              .then(result => {
-                  const stateCopy = {...this.state}
-                  stateCopy.chat = result.data
-                  stateCopy.user = user.data.result
-                  stateCopy.loaded = true
-                  stateCopy.friend = result.data.participants.filter(participant=>(participant._id !== this.state.user._id))[0]
-                  this.setState(stateCopy)
-                  this.nameInput.focus();
-                  this.scrollToBottom();
-                  this.chatCheck()
-              })
+        .then(result => {
+            const stateCopy = {...this.state}
+            stateCopy.chat = result.data
+            stateCopy.user = result.data.participants.filter(participant=>(participant._id === this.props.user._id))[0]
+            stateCopy.friend = result.data.participants.filter(participant=>(participant._id !== this.props.user._id))[0]
+            stateCopy.loaded = true
+            this.setState(stateCopy)
+            this.nameInput.focus();
+            this.scrollToBottom();
+            this.chatCheck()
         })
         .catch(error => {
             console.log(error)
@@ -48,7 +41,7 @@ class Chat extends React.Component {
             check = setInterval(() => {
             axios({
                 method: "get",
-                url: `https://phobbies-app.herokuapp.com/sv/return-chat/${this.props.match.params._id}`,
+                url: `http://localhost:5000/sv/return-chat/${this.props.match.params._id}`,
                 withCredentials: true
               })
               .then(result => {
@@ -78,13 +71,13 @@ class Chat extends React.Component {
         e.preventDefault()
           const {message} = this.state
           if (message === ""){
-              return null
-          }else if (this.state.user.username === ""){
             return null
-          }else{
+        }else if (this.state.user.username === ""){
+            return null
+        }else{
             axios({
                 method: 'post',
-                url: `https://phobbies-app.herokuapp.com/sv/send-msg/${this.props.match.params._id}`,
+                url: `http://localhost:5000/sv/send-msg/${this.props.match.params._id}`,
                 data: {
                     message: message,
                     date: new Date(),
