@@ -45,12 +45,10 @@ class Chat extends React.Component {
                 withCredentials: true
               })
               .then(result => {
-                  const stateCopy = {...this.state}
-                  stateCopy.chat = result.data
-                  if(this.state.chat.messages.length !== result.data.messages.length){
-                    this.setState(stateCopy)
-                    this.scrollToBottom();
-                    }
+                const stateCopy = {...this.state}
+                stateCopy.chat = result.data
+                this.setState(stateCopy)
+                this.scrollToBottom()
               })
               .catch(error => {
                   console.log(error)
