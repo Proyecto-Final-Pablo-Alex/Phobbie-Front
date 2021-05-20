@@ -4,6 +4,7 @@ $color3:#ff8432;
 $color4:#fea82f;
 $color5:#f7b995;
 
+
 $evenly: space-evenly;
 $between: space-between;
 $start: flex-start;
@@ -16,6 +17,19 @@ $end: flex-end;
   align-items: center;
 }
 
+.light {
+  background-color: rgb(212, 212, 212);
+  color: rgb(39, 39, 39);
+}
+
+.dark {
+  background-color: rgb(39, 39, 39);
+  color: rgb(212, 212, 212);
+}
+
+html{
+  height: 100%;
+}
 
 body {
   margin: 0;
@@ -27,6 +41,8 @@ body {
   -ms-user-select: none;
   user-select: none; 
 }
+
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -40,7 +56,7 @@ button{
 .App{
   height: 100vh;
   width: 100vw;
-  min-height: 100%
+  min-height: 499px;
 }
 
 .Navbar{
@@ -113,6 +129,7 @@ button{
 
 .Login{
   text-align: center;
+  min-height: 499px;
 
   h1{
     font-size: 11vw;
@@ -143,7 +160,8 @@ button{
   }
 }
 
-.Signup{
+.Signup{ 
+  min-height: 499px;
   text-align: center;
   h1 {
     font-size: 11vw;
@@ -186,6 +204,19 @@ button{
       padding: 1vh 8vw;
       border-radius: 2vh;
       background-color: $color4;
+    }
+
+  }
+  &-age-location{
+    width: 90%;
+    @include flex(row, $evenly);
+
+    div {
+      @include flex(column, center);
+
+      .age{
+        width: 30vw;
+      }
     }
   }
 }
@@ -253,6 +284,33 @@ button{
         margin: 1vh auto;
         text-align: center;
         font-size: 4.5vw;
+      }
+    }
+  }
+  .friendHobbies{
+    margin-top: 1vh;
+    overflow-y: scroll;
+    height: 25vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    div{
+      @include flex(row, $evenly);
+      width: 90vw;
+      margin: 0 auto;
+      margin-top: 1vh;
+      img{
+        margin: 0;
+        width: 20vw;
+        height: 20vw;
+        border-radius: 50%;
+      }
+      button{
+        font-size: 4.4vw;
+        background-color: $color4;
+        border-radius: 10vw;
+        width: 25vw;
       }
     }
   }
@@ -420,6 +478,8 @@ button{
     }
   }
 }
+
+
 
 .AddHobbie{
   h2{
@@ -814,17 +874,6 @@ button{
     }
   }
 }
-
-.light {
-  background-color: rgb(212, 212, 212);
-  color: black;
-}
-
-.dark {
-  background-color: rgb(39, 39, 39);
-  color: rgb(212, 212, 212);
-}
-
 
 // DARK MODE - LIGHT MODE SWITCH
 .switch {

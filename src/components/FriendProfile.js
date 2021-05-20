@@ -68,11 +68,11 @@ class FriendProfile extends React.Component {
         if (this.state.loaded){
           hobbiesList = hobbies.map((hobbie, index) => {
             return (
-                <li key={index}>
+                <div key={index}>
                   <img src={hobbie.photo} alt={`${hobbie.name} foto`} />
                   {hobbie.name}
                   <Link to={`/hobbie-details/${hobbie.name}`}><button>See details</button></Link>
-                </li>
+                </div>
             )
           })
         }
@@ -101,9 +101,8 @@ class FriendProfile extends React.Component {
             </div>
 
             {(hobbies.length !== 0)
-            ?   <div>
-                    <h2>Hobbies</h2>
-                    <ul>{hobbiesList}</ul>
+            ?   <div className="friendHobbies">
+                    {hobbiesList}
                 </div>
 
             :   <p>No hobbies yet</p>}

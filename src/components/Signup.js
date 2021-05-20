@@ -72,19 +72,24 @@ class Signup extends React.Component {
             autoComplete="off"
           />
 
-          <label htmlFor="location">Location</label>
-          <select name="location" onChange={(event) => this.handleChange(event)} defaultValue="Choose your location...">
-          <option value=""  hidden>Choose your location...</option>
-            {allOptions}
-          </select>
-
-          <label htmlFor="age">Age</label>
-          <input
-            type="number"
-            name="age"
-            onChange={(event) => this.handleChange(event)}
-            autoComplete="off"
-          />
+          <div className="Signup-age-location">
+            <div>
+              <label htmlFor="age">Age</label>
+              <input className="age"
+                type="number"
+                name="age"
+                onChange={(event) => this.handleChange(event)}
+                autoComplete="off"
+              />
+            </div>
+            <div>
+              <label htmlFor="location">Location</label>
+              <select name="location" onChange={(event) => this.handleChange(event)} defaultValue="Choose your location...">
+                <option value=""  hidden>Your location...</option>
+                {allOptions}
+              </select>
+            </div>
+          </div>
 
           <label htmlFor="password">Password</label>
           <input
