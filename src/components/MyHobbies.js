@@ -1,9 +1,10 @@
+// ---------- IMPORTS -------------//
 import axios from "axios";
 import React from "react";
 import { Link } from "react-router-dom";
 import ProfileNavbar from "./ProfileNavbar";
 
-
+// ---------- Component for rendering the own hobbies list -------------//
 
 class MyHobbies extends React.Component {
 

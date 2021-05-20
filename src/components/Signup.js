@@ -1,6 +1,9 @@
+// ---------- IMPORTS -------------//
 import React from "react";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
+
+// ---------- Component for rendering the signup -------------//
 
 class Signup extends React.Component {
   state = {

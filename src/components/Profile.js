@@ -1,8 +1,10 @@
+// ---------- IMPORTS -------------//
 import React from "react";
 import { Link, Redirect } from "react-router-dom";
 import axios from 'axios'
 import ProfileNavbar from "./ProfileNavbar";
 
+// ---------- Component for rendering the own profile -------------//
 
 class Profile extends React.Component {
 

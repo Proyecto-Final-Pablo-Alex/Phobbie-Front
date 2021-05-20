@@ -1,7 +1,10 @@
+// ---------- IMPORTS -------------//
 import axios from "axios";
 import React from "react";
 import { Link } from "react-router-dom";
 let check
+
+// ---------- Component for rendering the chat -------------//
 
 class Chat extends React.Component {
     state={
@@ -28,15 +31,17 @@ class Chat extends React.Component {
             stateCopy.friend = result.data.participants.filter(participant=>(participant._id !== this.props.user._id))[0]
             stateCopy.loaded = true
             this.setState(stateCopy)
-            this.nameInput.focus();
-            this.scrollToBottom();
-            this.chatCheck()
+            this.nameInput.focus();     //Focus to the input
+            this.scrollToBottom();      //Scroll to the bottom when new msg appears
+            this.chatCheck()            //Calls a function to check for new msgs
         })
         .catch(error => {
             console.log(error)
         })  
     }
     
+// ---------- Function that gets all chat info from DB and updates the state with it every 1.5 secs -------------//
+
      chatCheck(){
             check = setInterval(() => {
             axios({
@@ -56,14 +61,20 @@ class Chat extends React.Component {
          }, 1500);
      }
 
+// ---------- Function that clears the interval when exitting chat to avoid memory leaks -------------//
+
      componentWillUnmount(){
         clearInterval(check)
      }
+
+// ---------- Function that register the info from the inputs -------------//
 
       handleInput(e){
         const {value} = e.target
         this.setState({...this.state, message: value})
       }
+
+// ---------- Function that register new messages on the DB -------------//
 
       sendMessage(e){
         e.preventDefault()
@@ -96,11 +107,15 @@ class Chat extends React.Component {
         this.messagesEnd.scrollIntoView({ behavior: "smooth" });
       }
 
+// ---------- Function that extracts only the day and hour of the msgs -------------//
+
       displayTime(time){
         const timeArr = time.split("T")
         const date = timeArr[0].split("-")
         return `${timeArr[1].slice(0,5)} - ${date[2]}/${date[1]}`
       }
+
+// ---------- Function that checks if the msgs are read or unread -------------//
 
       checkIfRead(status){
         if (status === "READ"){

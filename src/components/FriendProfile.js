@@ -1,6 +1,9 @@
+// ---------- IMPORTS -------------//
 import axios from "axios";
 import React from "react";
 import { Link, Redirect } from "react-router-dom";
+
+// ---------- Component for rendering the friends profiles -------------//
 
 class FriendProfile extends React.Component {
     state = {

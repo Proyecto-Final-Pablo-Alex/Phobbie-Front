@@ -1,6 +1,9 @@
+// ---------- IMPORTS -------------//
 import React from "react";
 import axios from 'axios'
 import { Redirect,Link } from "react-router-dom";
+
+// ---------- Component for editing the profile info -------------//
 
 class EditUser extends React.Component {
 
@@ -28,12 +31,14 @@ class EditUser extends React.Component {
         });
     }
 
+// ---------- Function to register the changes of the profile into the DB -------------//
+
     handleSubmit(event) {
         event.preventDefault();
-        if(this.state.user.password === this.state.user.confirmPassword){
-          if (event.target.photo.files.length > 0){
+        if(this.state.user.password === this.state.user.confirmPassword){     //Check of the Password concordance
+          if (event.target.photo.files.length > 0){                           //Check if there's a new photo to upload to cloudinary
             let photo = event.target.photo.files[0]
-            let uploadForm = new FormData()
+            let uploadForm = new FormData()                                   //Upload new photo to cloudinary
             uploadForm.append('imageUrl', photo)
             axios({
               method: 'post',
@@ -74,6 +79,8 @@ class EditUser extends React.Component {
         }
       }
 
+// ---------- Function to register the info from the inputs -------------//
+
       handleChange(event) { 
         const { value, name } = event.target;
         this.setState({
@@ -89,7 +96,7 @@ class EditUser extends React.Component {
     'Orense','Palencia','Las Palmas','Pontevedra','La Rioja','Salamanca','Segovia','Sevilla','Soria','Tarragona',
     'Tenerife','Teruel','Toledo','Valencia','Valladolid','Vizcaya','Zamora','Zaragoza']
 
-    const allOptions=provincias.map((provincia, index)=>{return(<option key={index}>{provincia}</option>)})
+    const allOptions=provincias.map((provincia, index)=>{return(<option key={index}>{provincia}</option>)})     //Location selector
 
     const {photo, age, _id, location,status} = this.props.user
     return this.state.successEditing ? <Redirect to="/profile"/> : (

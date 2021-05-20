@@ -1,4 +1,7 @@
+// ---------- IMPORTS -------------//
 import React from 'react'
+
+// ---------- Component for rendering the footer on the homepage -------------//
 
 class Footer extends React.Component {
     render(){

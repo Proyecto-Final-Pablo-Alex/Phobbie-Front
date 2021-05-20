@@ -3,7 +3,7 @@ import React from "react"
 import axios from 'axios'
 import { Redirect } from "react-router";
 
-
+// ---------- Component for adding hobbies to the DB -------------//
 class AddHobbie extends React.Component {
 
   state = {
@@ -32,6 +32,8 @@ class AddHobbie extends React.Component {
     this.setState({user, newHobbie: {...this.state.newHobbie, userId: user._id}})
   }
 
+// ---------- Function to submit the Hobbie info to the DB -------------//
+
   handleSubmit(e) {
     e.preventDefault();
     axios({
@@ -47,6 +49,8 @@ class AddHobbie extends React.Component {
         console.log(error);
       });
   }
+
+// ---------- Function to register the info from the inputs -------------//
 
   handleInput(e) {
     const {name, value } = e.target;

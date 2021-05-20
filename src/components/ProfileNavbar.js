@@ -1,6 +1,9 @@
+// ---------- IMPORTS -------------//
 import React from "react";
 import { Link } from "react-router-dom";
 import axios from 'axios'
+
+// ---------- Component for rendering the profile navbar -------------//
 
 class ProfileNavbar extends React.Component {
 

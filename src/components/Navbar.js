@@ -1,5 +1,8 @@
+// ---------- IMPORTS -------------//
 import React from "react";
 import { Link } from "react-router-dom";
+
+// ---------- Component for rendering the navbar -------------//
 
 class Navbar extends React.Component {
 

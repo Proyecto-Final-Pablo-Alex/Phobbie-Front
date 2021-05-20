@@ -1,7 +1,9 @@
+// ---------- IMPORTS -------------//
 import React from "react";
 import axios from "axios";
-
 import { Redirect } from "react-router-dom";
+
+// ---------- Component for rendering the login  -------------//
 
 class Login extends React.Component {
   state = {

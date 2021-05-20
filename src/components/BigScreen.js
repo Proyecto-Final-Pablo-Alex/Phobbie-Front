@@ -1,8 +1,11 @@
+// ---------- IMPORTS -------------//
 import React from 'react'
+
+// ---------- Component informing of the inhability of access from desktop or tablets -------------//
 
 class BigScreen extends React.Component{
     render(){
-        const tuerca = 'https://res.cloudinary.com/hobbiesphere/image/upload/v1621495656/tuerca_zkxbhg.png'
+        const tuerca = 'https://res.cloudinary.com/hobbiesphere/image/upload/v1621495656/tuerca_zkxbhg.png'     //Photo for the spinning gears
         return (
             <div className="BigScreen">
                 <div>

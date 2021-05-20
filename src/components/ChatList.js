@@ -1,8 +1,10 @@
+// ---------- IMPORTS -------------//
 import axios from "axios";
 import React from "react";
 import { Link } from "react-router-dom";
 import ProfileNavbar from "./ProfileNavbar";
 
+// ---------- Component for rendering the list of all chats -------------//
 
 class ChatList extends React.Component {
     state={
@@ -37,6 +39,8 @@ class ChatList extends React.Component {
         });
     }
 
+// ---------- Function that searchs in the chat list -------------//
+
     filterChats(e){
         const {value} = e.target
         const chatsFiltered = this.state.chats.filter((chat, index)=>{
@@ -52,9 +56,9 @@ class ChatList extends React.Component {
         if (this.state.loaded){  
             allChats = this.state.renderChats.map((chat, index)=>{
 
-                const friend = chat.participants.filter(participant => participant._id !== this.state.user._id)[0]
+                const friend = chat.participants.filter(participant => participant._id !== this.state.user._id)[0]      //Returns the id from the other chat participant
 
-                const unreadMsgs = chat.messages.filter(message=> message.status === "UNREAD" && message.username !== this.state.user.username)
+                const unreadMsgs = chat.messages.filter(message=> message.status === "UNREAD" && message.username !== this.state.user.username)     //Returns the unread msg number
 
                 
                 return(

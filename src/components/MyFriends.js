@@ -1,7 +1,10 @@
+// ---------- IMPORTS -------------//
 import axios from "axios";
 import React from "react";
 import { Link } from "react-router-dom";
 import ProfileNavbar from "./ProfileNavbar";
+
+// ---------- Component for rendering the friend list -------------//
 
 class MyFriends extends React.Component {
     state={

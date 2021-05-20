@@ -1,5 +1,8 @@
+// ---------- IMPORTS -------------//
 import React from "react";
 import axios from "axios";
+
+// ---------- Component for rendering the hobbies details -------------//
 
 class HobbieDetails extends React.Component {
   state = {

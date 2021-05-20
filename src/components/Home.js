@@ -1,7 +1,8 @@
+// ---------- IMPORTS -------------//
 import React from "react";
 import Footer from "./Footer";
 
-
+// ---------- Component for rendering the homepage -------------//
 
 class Home extends React.Component {
     render(){

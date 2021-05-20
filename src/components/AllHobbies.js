@@ -1,7 +1,10 @@
+// ---------- IMPORTS -------------//
 import axios from "axios";
 import React from "react";
 import { Link } from "react-router-dom";
 import AddHobbie from "./AddHobbie";
+
+// ---------- Component for rendering all hobbies -------------//
 
 class AllHobbies extends React.Component {
     state={
@@ -37,6 +40,8 @@ class AllHobbies extends React.Component {
         });
     }
 
+// ---------- Function that filters hobbies for the search feature -------------//
+
     filterHobbies(e){
       const {value} = e.target
       const hobbiesfiletered = this.state.allHobbies.filter(hobbie=>{
@@ -47,9 +52,9 @@ class AllHobbies extends React.Component {
 
 
   render() {
-    const sortedHobbiesByName = this.state.copyAllHobbies.sort((a,b)=> a.name.localeCompare(b.name))
-    const sortedHobbiesByUsers = sortedHobbiesByName.sort((a,b)=> b.users.length - a.users.length)
-    const hobbiesmap = sortedHobbiesByUsers.map((hobbie, index)=>{
+    const sortedHobbiesByName = this.state.copyAllHobbies.sort((a,b)=> a.name.localeCompare(b.name))  //Function that sorts hobbies by name
+    const sortedHobbiesByUsers = sortedHobbiesByName.sort((a,b)=> b.users.length - a.users.length)    //Function that sorts hobbies by number of users  
+    const hobbiesmap = sortedHobbiesByUsers.map((hobbie, index)=>{                                    //Function that maps all hobbies already sorted
       return <div key={index} className="hobby">
                 <img src={hobbie.photo} alt={hobbie.name}/> 
                 <h3>{hobbie.name}</h3>
@@ -70,7 +75,7 @@ class AllHobbies extends React.Component {
         </div>
     ) : (
       <div className="spinner">
-        <div className="lds-ring"><div></div><div></div><div></div><div></div></div>
+        <div className="lds-ring"><div></div><div></div><div></div><div></div></div>                   {/* Spinner for the loading */}
       </div>
     )
   }
