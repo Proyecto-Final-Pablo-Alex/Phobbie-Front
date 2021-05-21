@@ -1,10 +1,9 @@
 // ---------- IMPORTS -------------//
-import React from "react";
-import axios from "axios";
-import { Redirect } from "react-router-dom";
+import React from "react"
+import axios from "axios"
+import { Redirect } from "react-router-dom"
 
 // ---------- Component for rendering the signup -------------//
-
 class Signup extends React.Component {
   state = {
     user: {
@@ -22,36 +21,43 @@ class Signup extends React.Component {
     successSignUp: false,
     errorMessage: false,
     errorMsg: '',
-  };
+  }
 
+// ---------- Function that register the user into the DB -------------//
   handleSubmit(event) {
-    event.preventDefault();
+
+    event.preventDefault()
+
     axios({
       method: "post",
       url: "https://phobbie.herokuapp.com/sv/signup",
       data: this.state.user,
       withCredentials: true
     })
-      .then((result) => {
-        if (result.data.message === "User created") {
-          this.setState({ ...this.state, successSignUp: true });
-        } else {
-          this.setState({ ...this.state, errorMessage: true, errorMsg: result.data.message });
-        }
-      })
-      .catch((err) => {
-        this.setState({ ...this.state, errorMessage: true, errorMsg: err.message });
-      });
+    .then((result) => {
+
+      if (result.data.message === "User created") {
+        this.setState({ ...this.state, successSignUp: true })
+
+      } else {
+        this.setState({ ...this.state, errorMessage: true, errorMsg: result.data.message })
+
+      }
+    })
+    .catch((err) => {
+      this.setState({ ...this.state, errorMessage: true, errorMsg: err.message })
+
+    })
   }
 
+  // ---------- Function that register the info from the inputs -------------//
   handleChange(event) {
-    const { value, name } = event.target;
-    this.setState({
-      ...this.state,
-      user: { ...this.state.user, [name]: value },
-    });
+    const { value, name } = event.target
+
+    this.setState({...this.state, user: { ...this.state.user, [name]: value }})
   }
 
+  // ---------- Render the sign up form -------------//
   render() {
     const provincias = ['Alava','Albacete','Alicante','Almería','Asturias','Avila','Badajoz','Barcelona','Burgos','Cáceres',
     'Cádiz','Cantabria','Castellón','Ciudad Real','Córdoba','La Coruña','Cuenca','Gerona','Granada','Guadalajara',
@@ -59,13 +65,17 @@ class Signup extends React.Component {
     'Orense','Palencia','Las Palmas','Pontevedra','La Rioja','Salamanca','Segovia','Sevilla','Soria','Tarragona',
     'Tenerife','Teruel','Toledo','Valencia','Valladolid','Vizcaya','Zamora','Zaragoza']
 
+  //--------------Map the locations----------------\\
     const allOptions=provincias.map((provincia, index)=>{return(<option key={index}>{provincia}</option>)})
 
-    return this.state.successSignUp ? (
+    return this.state.successSignUp ? 
+    (
       <Redirect to="/login" />
     ) : (
       <div className="Signup">
+
         <h1>Sign up</h1>
+
         <form onSubmit={(event) => this.handleSubmit(event)}>
           <label htmlFor="username">Username</label>
           <input
@@ -76,6 +86,7 @@ class Signup extends React.Component {
           />
 
           <div className="Signup-age-location">
+
             <div>
               <label htmlFor="age">Age</label>
               <input className="age"
@@ -85,6 +96,7 @@ class Signup extends React.Component {
                 autoComplete="off"
               />
             </div>
+
             <div>
               <label htmlFor="location">Location</label>
               <select name="location" onChange={(event) => this.handleChange(event)} defaultValue="Choose your location...">
@@ -92,6 +104,7 @@ class Signup extends React.Component {
                 {allOptions}
               </select>
             </div>
+
           </div>
 
           <label htmlFor="password">Password</label>
@@ -113,9 +126,11 @@ class Signup extends React.Component {
           <button>Sign up</button>
           
         </form>
+
+    {/* //------------------error message that appears when password don't match the confirmation password or any field is empty----------------// */}
         {this.state.errorMessage ? <p className="error-message">{this.state.errorMsg}</p> : null}
       </div>
-    );
+    )
   }
 }
-export default Signup;
+export default Signup

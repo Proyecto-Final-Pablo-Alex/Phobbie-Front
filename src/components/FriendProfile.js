@@ -1,11 +1,11 @@
 // ---------- IMPORTS -------------//
-import axios from "axios";
-import React from "react";
-import { Link, Redirect } from "react-router-dom";
+import axios from "axios"
+import React from "react"
+import { Link, Redirect } from "react-router-dom"
 
 // ---------- Component for rendering the friends profiles -------------//
-
 class FriendProfile extends React.Component {
+
     state = {
       user: {
         username: "",
@@ -32,7 +32,9 @@ class FriendProfile extends React.Component {
         deleted: false
     }
 
+// ---------- Get friend info form DB on CDM -------------//
     componentDidMount(){
+
         axios({
           method: "get",
           url: `https://phobbie.herokuapp.com/sv/return-friend/${this.props.match.params.id}`,
@@ -40,17 +42,23 @@ class FriendProfile extends React.Component {
         })
         .then(result => {
             const stateCopy = {...this.state}
+
             stateCopy.friend = result.data.result
             stateCopy.user = this.props.user
             stateCopy.loaded = true
+
             this.setState(stateCopy)
+
         })
         .catch(error => {
             console.log(error)
+
         })  
       }
 
+// ---------- Function that delete a friend from the friendlist -------------//
       deleteFriend(friendId){
+
         axios({
           method: "post",
           url: "https://phobbie.herokuapp.com/sv/delete-friend",
@@ -59,64 +67,80 @@ class FriendProfile extends React.Component {
         })
         .then(result => {
           this.setState({...this.state, deleted: true})
+
         })
         .catch(error => {
           console.log(error)
+
         })
       }
 
+// ---------- Render the friends profile mapped -------------//
     render(){
-        const {_id, username, friends, photo, hobbies,status,age,location} = this.state.friend;
+
+        const {_id, username, friends, photo, hobbies,status,age,location} = this.state.friend
         let hobbiesList
+
+        //----- When loaded maps the friends hobbies list------//
         if (this.state.loaded){
-          hobbiesList = hobbies.map((hobbie, index) => {
+        
+          hobbiesList = hobbies.map((hobbie, index) => {      
             return (
                 <div key={index}>
+
                   <img src={hobbie.photo} alt={`${hobbie.name} foto`} />
                   {hobbie.name}
                   <Link to={`/hobbie-details/${hobbie.name}`}><button>See details</button></Link>
+
                 </div>
             )
           })
         }
-        return this.state.deleted ? <Redirect to="/profile" /> : this.state.loaded ? (
-          <div className="Profile">
-            <img src={photo} alt={`Foto de perfil de ${username}`} />
 
-            <div className="info">
-              <h1>{username} profile</h1>
-              <p className="info-status">
-                <b>Status:</b> {status}
-              </p>
-              <p className="info-location">
-                <b>Location:</b> {location}
-              </p>
-              <p>
-                <b>Age:</b> {age}
-              </p>
-              <p>
-                {friends.length} friends
-              </p>
-            </div>
-            <div className="info-buttons">
-              <Link to={`/chat/${_id}`}><button>Chat</button></Link>
-              <button onClick={()=>this.deleteFriend(_id)}>Delete Friend</button>
-            </div>
+        //----- Render friends and redirect if deleted ------//
+        return this.state.deleted ? <Redirect to="/profile" /> : this.state.loaded ? 
+          (
+            <div className="Profile">
+              <img src={photo} alt={`Foto de perfil de ${username}`} />
 
-            {(hobbies.length !== 0)
-            ?   <div className="friendHobbies">
-                    {hobbiesList}
+              <div className="info">
+                <h1>{username} profile</h1>
+                <p className="info-status">
+                  <b>Status:</b> {status}
+                </p>
+                <p className="info-location">
+                  <b>Location:</b> {location}
+                </p>
+                <p>
+                  <b>Age:</b> {age}
+                </p>
+                <p>
+                  {friends.length} friends
+                </p>
+              </div>
+              
+              <div className="info-buttons">
+                <Link to={`/chat/${_id}`}><button>Chat</button></Link>
+                <button onClick={()=>this.deleteFriend(_id)}>Delete Friend</button>
+              </div>
+
+              {(hobbies.length !== 0)
+              ? (
+                <div className="friendHobbies">
+                      {hobbiesList}
                 </div>
-
-            :   <p>No hobbies yet</p>}
-            
+              ) : (
+                <p>No hobbies yet</p>
+              )}
+              
             </div>
-        ) : (
-          <div className="spinner">
-            <div className="lds-ring"><div></div><div></div><div></div><div></div></div>
-          </div>
-        )
+          ) : (
+          //------------------Spinner for the loading----------------//
+            <div className="spinner">
+              <div className="lds-ring"><div></div><div></div><div></div><div></div></div>
+            </div>
+          )
       }
 }
 
-export default FriendProfile;
+export default FriendProfile

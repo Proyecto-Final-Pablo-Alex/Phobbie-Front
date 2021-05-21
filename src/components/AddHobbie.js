@@ -1,7 +1,7 @@
 // ---------- IMPORTS -------------//
 import React from "react"
 import axios from 'axios'
-import { Redirect } from "react-router";
+import { Redirect } from "react-router"
 
 // ---------- Component for adding hobbies to the DB -------------//
 class AddHobbie extends React.Component {
@@ -25,43 +25,53 @@ class AddHobbie extends React.Component {
       description: ''
     },
     hobbieCreated: false
-  };
+  }
 
+// ---------- On CDM store the user logged in the state -------------//
   componentDidMount(){
     const {user} = this.props
+
     this.setState({user, newHobbie: {...this.state.newHobbie, userId: user._id}})
   }
 
 // ---------- Function to submit the Hobbie info to the DB -------------//
-
   handleSubmit(e) {
-    e.preventDefault();
+
+    e.preventDefault()
+
     axios({
       method: "post",
       url: "https://phobbie.herokuapp.com/sv/hobbies/addHobbie",
       data: this.state.newHobbie,
       withCredentials: true
     })
-      .then((result) => {
-        this.setState({...this.state, hobbieCreated:true})
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    .then((result) => {
+      this.setState({...this.state, hobbieCreated:true})
+
+    })
+    .catch((error) => {
+      console.log(error)
+
+    })
   }
 
 // ---------- Function to register the info from the inputs -------------//
-
   handleInput(e) {
-    const {name, value } = e.target;
+    const {name, value } = e.target
+
     this.setState({ ...this.state, newHobbie: {...this.state.newHobbie, [name]: value }})
   }
 
+  // ---------- Render a form to add hobbie and redirects to profile when created -------------//
   render() {
+
     return (
       <div className="AddHobbie">
+
         {this.state.hobbieCreated ? <Redirect to='/profile'/> : null}
+
         <h2>No results, create your desired hobbie</h2>
+
         <form onSubmit={(e)=>this.handleSubmit(e)}>
 
             <label htmlFor="name">Name: </label>
@@ -75,6 +85,7 @@ class AddHobbie extends React.Component {
 
             <button>Add hobbie</button>
         </form>
+
       </div>
     )
   }

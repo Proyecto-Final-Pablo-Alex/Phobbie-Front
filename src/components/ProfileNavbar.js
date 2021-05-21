@@ -1,17 +1,16 @@
 // ---------- IMPORTS -------------//
-import React from "react";
-import { Link } from "react-router-dom";
+import React from "react"
+import { Link } from "react-router-dom"
 import axios from 'axios'
 
 // ---------- Component for rendering the profile navbar -------------//
-
 class ProfileNavbar extends React.Component {
 
-    
     state = {
         loggedout: false
     }
 
+// ---------- Function that logout the user and redirects to Login -------------//
     logout(){
         axios({
             method: 'get',
@@ -27,7 +26,7 @@ class ProfileNavbar extends React.Component {
         })
     }
 
-
+// ---------- Render the profile navbar -------------//
     render(){
         return (
             <div className="ProfileNavbar">
@@ -41,4 +40,4 @@ class ProfileNavbar extends React.Component {
     }
 }
 
-export default ProfileNavbar;
+export default ProfileNavbar

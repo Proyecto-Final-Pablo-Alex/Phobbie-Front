@@ -88,7 +88,7 @@ class App extends React.Component {
           <Route
             path="/profile"
             exact
-            component={() => <Profile logInSuccess={this.state.logInSuccess} setAppState={()=>this.editStateFromLogout()}/>}
+            component={() => <Profile logInSuccess={this.state.logInSuccess} setAppState={()=>this.editStateFromLogout()} />}
           />
 
           <Route
@@ -135,19 +135,19 @@ class App extends React.Component {
            <Route
             path="/my-hobbies"
             exact
-            component={() => <MyHobbies />}
+            component={() => <MyHobbies  setAppState={()=>this.editStateFromLogout()} />}
           />
 
            <Route
             path="/my-friends"
             exact
-            component={() => <MyFriends />}
+            component={() => <MyFriends  setAppState={()=>this.editStateFromLogout()} />}
           />
 
            <Route
             path="/my-chats"
             exact
-            component={() => <ChatList />}
+            component={() => <ChatList  setAppState={()=>this.editStateFromLogout()} />}
           />
 
           <Route
