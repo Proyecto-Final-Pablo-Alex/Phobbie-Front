@@ -66,10 +66,11 @@ class Chat extends React.Component {
                 stateCopy.chat = result.data
 
                 if(this.state.chat.messages.length !== result.data.messages.length){
+                    this.setState(stateCopy)
                     this.scrollToBottom()
                 }
-
                 this.setState(stateCopy)
+
             })
             .catch(error => {
                 console.log(error)
@@ -198,13 +199,12 @@ class Chat extends React.Component {
 
                     <div className="chatBox">
                         {messages}
-                        <div
-                        ref={(el) => { this.messagesEnd = el }}></div>
+                        <div ref={(el) => { this.messagesEnd = el; }}></div>
                     </div>
 
                     <div>
                         <form action="">
-                            <input type="text" name="message" ref={(input) => { this.nameInput = input }} value={this.state.message} onChange={(e)=>this.handleInput(e)} autoComplete="off"/>
+                            <input type="text" name="message" ref={(input) => { this.nameInput = input; }} value={this.state.message} onChange={(e)=>this.handleInput(e)} autoComplete="off"/>
                             <button onClick={(e)=>this.sendMessage(e)}>Send</button>
                         </form>
                     </div>
